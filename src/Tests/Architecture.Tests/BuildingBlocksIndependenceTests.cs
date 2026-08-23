@@ -51,14 +51,23 @@ public class BuildingBlocksIndependenceTests
     [Fact]
     public void BuildingBlocks_Should_Not_Depend_On_Hosts()
     {
+        // BuildingBlocks live in DreamTeam.Framework.*; the broad "DreamTeam"
+        // namespace filter would forbid them from depending on themselves,
+        // so list the host projects explicitly instead.
+        string[] hostNamespaces =
+        [
+            "DreamTeam.Api",
+            "DreamTeam.AppHost",
+            "DreamTeam.DbMigrator",
+            "DreamTeam.Migrations.PostgreSQL",
+        ];
+
         foreach (var assembly in BuildingBlockAssemblies)
         {
             var result = Types
                 .InAssembly(assembly)
                 .ShouldNot()
-                .HaveDependencyOnAny(
-                    "DreamTeam",
-                    "DreamTeam.Api")
+                .HaveDependencyOnAny(hostNamespaces)
                 .GetResult();
 
             var failingTypes = result.FailingTypeNames ?? [];

@@ -4,11 +4,7 @@ using DreamTeam.Framework.Web.Modules;
 using DreamTeam.Modules.Files;
 using DreamTeam.Modules.Forms;
 using DreamTeam.Modules.Identity;
-using DreamTeam.Modules.Identity.Contracts.v1.Tokens.TokenGeneration;
-using DreamTeam.Modules.Identity.Features.v1.Tokens.TokenGeneration;
 using DreamTeam.Modules.Multitenancy;
-using DreamTeam.Modules.Multitenancy.Contracts.v1.GetTenantStatus;
-using DreamTeam.Modules.Multitenancy.Features.v1.GetTenantStatus;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -39,15 +35,16 @@ if (builder.Environment.IsProduction())
 builder.Services.AddMediator(o =>
 {
     o.ServiceLifetime = ServiceLifetime.Scoped;
+    // List module types only — the Mediator source generator scans the
+    // referenced assemblies for ICommand / IQuery / INotification and
+    // their handlers. Listing the module type keeps Program.cs out of
+    // the `DreamTeam.Modules.*.Features` namespace, which the
+    // architecture tests forbid hosts from referencing.
     o.Assemblies = [
-        typeof(GenerateTokenCommand),
-        typeof(GenerateTokenCommandHandler),
-        typeof(GetTenantStatusQuery),
-        typeof(GetTenantStatusQueryHandler),
-        typeof(DreamTeam.Modules.Files.Contracts.v1.Commands.RequestUploadUrlCommand),
+        typeof(IdentityModule),
+        typeof(MultitenancyModule),
         typeof(DreamTeam.Modules.Files.FilesModule),
-        typeof(DreamTeam.Modules.Forms.Contracts.v1.ProcessTemplates.CreateProcessTemplate.CreateProcessTemplateCommand),
-        typeof(DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplateById.GetProcessTemplateByIdQueryHandler)];
+        typeof(DreamTeam.Modules.Forms.FormsModule)];
 });
 
 // MVP-1 modules: Identity, Multitenancy (dormant until v4), Files, Forms.

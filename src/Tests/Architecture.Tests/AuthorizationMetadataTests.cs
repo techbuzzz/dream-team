@@ -18,7 +18,7 @@ public class AuthorizationMetadataTests
     private const string ExpectedNamespace = "DreamTeam.Framework.Shared.Identity.Authorization";
 
     [Fact]
-    public void RequiredPermissionAttribute_Should_Exist_Exactly_Once_Across_All_FSH_Assemblies()
+    public void RequiredPermissionAttribute_Should_Exist_Exactly_Once_Across_All_DreamTeam_Assemblies()
     {
         var matches = GetAllDreamTeamAssemblies()
             .SelectMany(GetLoadableTypes)
@@ -26,11 +26,11 @@ public class AuthorizationMetadataTests
             .ToArray();
 
         matches.ShouldNotBeEmpty(
-            $"{AttributeName} was not found in any FSH assembly. " +
+            $"{AttributeName} was not found in any DreamTeam assembly. " +
             "The permission authorization pipeline depends on it.");
 
         matches.Length.ShouldBe(1,
-            $"Exactly one {AttributeName} must exist across all FSH assemblies. " +
+            $"Exactly one {AttributeName} must exist across all DreamTeam assemblies. " +
             "A duplicate that does not implement IRequiredPermissionMetadata silently disables " +
             $"every .RequirePermission() gate. Found: {string.Join(", ", matches.Select(t => $"{t.FullName} ({t.Assembly.GetName().Name})"))}");
 
@@ -51,7 +51,7 @@ public class AuthorizationMetadataTests
     }
 
     /// <summary>
-    /// Loads every FSH.* assembly deployed alongside the tests so the duplicate sweep covers
+    /// Loads every DreamTeam.* assembly deployed alongside the tests so the duplicate sweep covers
     /// BuildingBlocks, all modules (including Contracts), and host assemblies — not just the
     /// runtime module assemblies that ModuleAssemblyDiscovery returns.
     /// </summary>
@@ -61,7 +61,7 @@ public class AuthorizationMetadataTests
 
         var assemblies = new List<Assembly>();
 
-        foreach (var file in Directory.GetFiles(baseDir, "FSH.*.dll"))
+        foreach (var file in Directory.GetFiles(baseDir, "DreamTeam.*.dll"))
         {
             try
             {
@@ -71,13 +71,13 @@ public class AuthorizationMetadataTests
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception)
             {
-                // Skip if not a valid .NET assembly or other load error
+                // Skip if not a valid .NET assembly or other load error.
             }
 #pragma warning restore CA1031
         }
 
         assemblies.ShouldNotBeEmpty(
-            "No FSH.* assemblies were found in the test output directory; the duplicate sweep would be a no-op.");
+            "No DreamTeam.* assemblies were found in the test output directory; the duplicate sweep would be a no-op.");
 
         return [.. assemblies];
     }

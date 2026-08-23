@@ -5,15 +5,10 @@ using DreamTeam.Framework.Shared.Multitenancy;
 using DreamTeam.Framework.Web;
 using DreamTeam.Framework.Web.Modules;
 using DreamTeam.Modules.Identity;
-using DreamTeam.Modules.Identity.Contracts.v1.Tokens.TokenGeneration;
-using DreamTeam.Modules.Identity.Features.v1.Tokens.TokenGeneration;
 using DreamTeam.Modules.Multitenancy;
 using DreamTeam.Modules.Multitenancy.Contracts;
-using DreamTeam.Modules.Multitenancy.Contracts.v1.GetTenantStatus;
 using DreamTeam.Modules.Multitenancy.Data;
-using DreamTeam.Modules.Multitenancy.Features.v1.GetTenantStatus;
 using DreamTeam.Modules.Forms;
-using DreamTeam.Modules.Forms.Contracts;
 using DreamTeam.DbMigrator;
 using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.EntityFrameworkCore;
@@ -73,19 +68,17 @@ if (string.IsNullOrWhiteSpace(builder.Configuration["DatabaseOptions:ConnectionS
 
 // Mirror the API's mediator registration so module handlers wire correctly —
 // some module DbInitializers depend on services that mediator pipelines build.
+// List module types only — the source generator scans the assembly for
+// ICommand / IQuery / INotification and their handlers.
 builder.Services.AddMediator(o =>
 {
     o.ServiceLifetime = ServiceLifetime.Scoped;
     o.Assemblies =
     [
-        typeof(GenerateTokenCommand),
-        typeof(GenerateTokenCommandHandler),
-        typeof(GetTenantStatusQuery),
-        typeof(GetTenantStatusQueryHandler),
-        typeof(DreamTeam.Modules.Files.Contracts.v1.Commands.RequestUploadUrlCommand),
+        typeof(IdentityModule),
+        typeof(MultitenancyModule),
         typeof(DreamTeam.Modules.Files.FilesModule),
-        typeof(DreamTeam.Modules.Forms.Contracts.v1.ProcessTemplates.CreateProcessTemplate.CreateProcessTemplateCommand),
-        typeof(DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplateById.GetProcessTemplateByIdQueryHandler),
+        typeof(DreamTeam.Modules.Forms.FormsModule),
     ];
 });
 
