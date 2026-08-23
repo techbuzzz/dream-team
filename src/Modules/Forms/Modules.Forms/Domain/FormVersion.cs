@@ -16,27 +16,55 @@ namespace DreamTeam.Modules.Forms.Domain;
 /// mirrors the Zod schema the renderer uses.
 ///
 /// Audit fields are EF Core shadow properties (see
-/// AuditableEntitySaveChangesInterceptor). TenantId is a real
-/// property because Finbuckle's tenant filter uses the column
-/// directly.
+/// AuditableEntitySaveChangesInterceptor).
 /// </summary>
-public sealed class FormVersion : BaseEntity<Guid>, IAuditableEntity, IHasTenant
+public sealed class FormVersion : IAuditableEntity, IHasTenant
 {
-    public string TenantId { get; set; } = default!;
-    public Guid ProcessTemplateId { get; set; }
-    public int VersionNumber { get; set; }        // monotonic per template
-    public string Schema { get; set; } = default!; // jsonb — Form DSL
-    public string? Description { get; set; }       // changelog-style
-    public bool IsCurrent { get; set; }            // only one IsCurrent=true per template
-    public string PublishedById { get; set; } = default!;
-    public DateTime PublishedAt { get; set; }
+    public Guid Id { get; private set; } = default!;
+    public string TenantId { get; private set; } = default!;
+    public Guid ProcessTemplateId { get; private set; }
+    public int VersionNumber { get; private set; }
+    public string Schema { get; private set; } = default!;
+    public string? Description { get; private set; }
+    public bool IsCurrent { get; private set; }
+    public string PublishedById { get; private set; } = default!;
+    public DateTime PublishedAt { get; private set; }
 
-    // IAuditableEntity — shadow properties (see ProcessTemplate for rationale).
-    DateTimeOffset IAuditableEntity.CreatedOnUtc => default;
-    string? IAuditableEntity.CreatedBy => null;
-    DateTimeOffset? IAuditableEntity.LastModifiedOnUtc => null;
-    string? IAuditableEntity.LastModifiedBy => null;
+    // IAuditableEntity
+    public DateTimeOffset CreatedOnUtc { get; private set; }
+    public string? CreatedBy { get; private set; }
+    public DateTimeOffset? LastModifiedOnUtc { get; private set; }
+    public string? LastModifiedBy { get; private set; }
 
-    public ProcessTemplate? ProcessTemplate { get; set; }
-    public ICollection<ProcessInstance> ProcessInstances { get; set; } = new List<ProcessInstance>();
+    public ProcessTemplate? ProcessTemplate { get; private set; }
+    public ICollection<ProcessInstance> ProcessInstances { get; private set; } = new List<ProcessInstance>();
+
+    private FormVersion() { }
+
+    public static FormVersion Publish(
+        Guid processTemplateId,
+        string tenantId,
+        int versionNumber,
+        string schema,
+        string? description,
+        string publishedById)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(tenantId);
+        ArgumentException.ThrowIfNullOrWhiteSpace(schema);
+        ArgumentException.ThrowIfNullOrWhiteSpace(publishedById);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(versionNumber);
+
+        return new FormVersion
+        {
+            Id = Guid.NewGuid(),
+            TenantId = tenantId,
+            ProcessTemplateId = processTemplateId,
+            VersionNumber = versionNumber,
+            Schema = schema,
+            Description = description,
+            IsCurrent = true,
+            PublishedById = publishedById,
+            PublishedAt = DateTime.UtcNow,
+        };
+    }
 }

@@ -1,8 +1,10 @@
-﻿using DreamTeam.Framework.Persistence;
+﻿using Asp.Versioning;
+using DreamTeam.Framework.Persistence;
 using DreamTeam.Framework.Shared.Constants;
 using DreamTeam.Framework.Web.Modules;
 using DreamTeam.Modules.Forms.Contracts.Authorization;
 using DreamTeam.Modules.Forms.Data;
+using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.CreateProcessTemplate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,11 +17,9 @@ namespace DreamTeam.Modules.Forms;
 /// Forms module — the form engine per docs/architecture-v1.md §1-4. Owns
 /// ProcessTemplate, FormVersion, ProcessInstance, Submission.
 ///
-/// MVP-1 scaffolding only. The four entities are wired into the DbContext
-/// and migration system, but the read/write endpoints (E1.4-E1.6 in the
-/// roadmap — Builder, Renderer, 1-1 preset seed) land in follow-up
-/// workstreams against this module. The Mediator marker is included so
-/// handler discovery works once those endpoints are added.
+/// MVP-1 first vertical slice: CreateProcessTemplate. The Builder (E1.5),
+/// Renderer (E1.4), FormVersion publish, ProcessInstance generation, and
+/// Submission write land in follow-up workstreams against this module.
 /// </summary>
 public sealed class FormsModule : IModule
 {
@@ -44,7 +44,19 @@ public sealed class FormsModule : IModule
     public void MapEndpoints(IEndpointRouteBuilder endpoints)
     {
         ArgumentNullException.ThrowIfNull(endpoints);
-        // Endpoints land with the Builder (E1.5) and Renderer (E1.4) features.
-        // Kept empty in the MVP-1 scaffold so the module loads cleanly.
+
+        var versionSet = endpoints.NewApiVersionSet()
+            .HasApiVersion(new ApiVersion(1))
+            .ReportApiVersions()
+            .Build();
+
+        var group = endpoints
+            .MapGroup("api/v{version:apiVersion}/forms")
+            .WithApiVersionSet(versionSet)
+            .RequireAuthorization();
+
+        // MVP-1 first vertical slice. Additional endpoints (publish form version,
+        // generate process instance, submit response) land as follow-up workstreams.
+        group.MapCreateProcessTemplateEndpoint();
     }
 }

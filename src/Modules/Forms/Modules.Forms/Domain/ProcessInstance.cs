@@ -22,21 +22,43 @@ public enum ProcessStatus
 ///
 /// Audit fields are EF Core shadow properties (see ProcessTemplate).
 /// </summary>
-public sealed class ProcessInstance : BaseEntity<Guid>, IAuditableEntity, IHasTenant
+public sealed class ProcessInstance : IAuditableEntity, IHasTenant
 {
-    public string TenantId { get; set; } = default!;
-    public Guid FormVersionId { get; set; }
-    public string? PairUserId { get; set; }              // for 1-1; null for whole-team
-    public DateTime ScheduledAt { get; set; }
-    public ProcessStatus Status { get; set; }
-    public DateTime? CompletedAt { get; set; }
+    public Guid Id { get; private set; } = default!;
+    public string TenantId { get; private set; } = default!;
+    public Guid FormVersionId { get; private set; }
+    public string? PairUserId { get; private set; }
+    public DateTime ScheduledAt { get; private set; }
+    public ProcessStatus Status { get; private set; }
+    public DateTime? CompletedAt { get; private set; }
 
-    // IAuditableEntity — shadow properties.
-    DateTimeOffset IAuditableEntity.CreatedOnUtc => default;
-    string? IAuditableEntity.CreatedBy => null;
-    DateTimeOffset? IAuditableEntity.LastModifiedOnUtc => null;
-    string? IAuditableEntity.LastModifiedBy => null;
+    // IAuditableEntity
+    public DateTimeOffset CreatedOnUtc { get; private set; }
+    public string? CreatedBy { get; private set; }
+    public DateTimeOffset? LastModifiedOnUtc { get; private set; }
+    public string? LastModifiedBy { get; private set; }
 
-    public FormVersion? FormVersion { get; set; }
-    public ICollection<Submission> Submissions { get; set; } = new List<Submission>();
+    public FormVersion? FormVersion { get; private set; }
+    public ICollection<Submission> Submissions { get; private set; } = new List<Submission>();
+
+    private ProcessInstance() { }
+
+    public static ProcessInstance Schedule(
+        Guid formVersionId,
+        string tenantId,
+        DateTime scheduledAt,
+        string? pairUserId = null)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(tenantId);
+        return new ProcessInstance
+        {
+            Id = Guid.NewGuid(),
+            TenantId = tenantId,
+            FormVersionId = formVersionId,
+            PairUserId = pairUserId,
+            ScheduledAt = scheduledAt,
+            Status = ProcessStatus.Planned,
+            CompletedAt = null,
+        };
+    }
 }

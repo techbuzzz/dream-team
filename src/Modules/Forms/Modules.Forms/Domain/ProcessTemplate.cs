@@ -9,40 +9,66 @@ namespace DreamTeam.Modules.Forms.Domain;
 /// Per docs/architecture-v1.md §1.
 ///
 /// Audit fields (CreatedOnUtc, CreatedBy, LastModifiedOnUtc,
-/// LastModifiedBy) are EF Core SHADOW properties populated by
-/// DreamTeam.Framework.Persistence.Inteceptors.AuditableEntitySaveChangesInterceptor;
-/// explicit interface implementation here lets the type satisfy the
-/// <see cref="IAuditableEntity"/> contract without taking up
-/// class-internal slots (the interceptor writes via the property's
-/// metadata name, which is the full interface-qualified name).
+/// LastModifiedBy) are written by
+/// DreamTeam.Framework.Persistence.Inteceptors.AuditableEntitySaveChangesInterceptor
+/// before SaveChanges — they're real CLR properties here (not shadow
+/// properties) so other code can read them without metadata lookups.
 /// </summary>
-public sealed class ProcessTemplate : BaseEntity<Guid>, IAuditableEntity, IHasTenant, ISoftDeletable
+public sealed class ProcessTemplate : IAuditableEntity, IHasTenant, ISoftDeletable
 {
-    public string TenantId { get; set; } = default!;
-    public string Name { get; set; } = default!;
-    public string Slug { get; set; } = default!;
-    public string? Description { get; set; }
-    public string OwnerId { get; set; } = default!;
-    public string? Category { get; set; }          // e.g. "ONE_ON_ONE", "DAILY_SYNC", "RETRO" — see docs/processes.md
-    public bool IsArchived { get; set; }
+    public Guid Id { get; private set; } = default!;
+    public string TenantId { get; private set; } = default!;
+    public string Name { get; private set; } = default!;
+    public string Slug { get; private set; } = default!;
+    public string? Description { get; private set; }
+    public string OwnerId { get; private set; } = default!;
+    public string? Category { get; private set; }
+    public bool IsArchived { get; private set; }
 
-    // ISoftDeletable — IsDeleted is consumed by the BaseDbContext's
-    // AppendGlobalQueryFilter("SoftDelete") for tenant-wide hide-not-delete;
-    // DeletedOnUtc + DeletedBy are also shadow properties written by the
-    // AuditableEntitySaveChangesInterceptor (which is the same interceptor
-    // that handles ISoftDeletable).
-    public bool IsDeleted { get; set; }
-    public DateTimeOffset? DeletedOnUtc { get; set; }
-    public string? DeletedBy { get; set; }
+    // ISoftDeletable
+    public bool IsDeleted { get; private set; }
+    public DateTimeOffset? DeletedOnUtc { get; private set; }
+    public string? DeletedBy { get; private set; }
 
-    // IAuditableEntity — shadow properties, exposed via explicit
-    // interface implementation so the C# compiler is satisfied and EF
-    // Core still has the property names in the entity metadata.
-    DateTimeOffset IAuditableEntity.CreatedOnUtc => default;
-    string? IAuditableEntity.CreatedBy => null;
-    DateTimeOffset? IAuditableEntity.LastModifiedOnUtc => null;
-    string? IAuditableEntity.LastModifiedBy => null;
+    // IAuditableEntity — public properties with private set; the
+    // AuditableEntitySaveChangesInterceptor writes to these via
+    // entry.Property(...). The framework reads them when building
+    // the permission catalog and audit views.
+    public DateTimeOffset CreatedOnUtc { get; private set; }
+    public string? CreatedBy { get; private set; }
+    public DateTimeOffset? LastModifiedOnUtc { get; private set; }
+    public string? LastModifiedBy { get; private set; }
 
     // Navigation
-    public ICollection<FormVersion> FormVersions { get; set; } = new List<FormVersion>();
+    public ICollection<FormVersion> FormVersions { get; private set; } = new List<FormVersion>();
+
+    // EF Core
+    private ProcessTemplate() { }
+
+    public static ProcessTemplate Create(
+        string tenantId,
+        string name,
+        string slug,
+        string? description,
+        string ownerId,
+        string? category)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(tenantId);
+        ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        ArgumentException.ThrowIfNullOrWhiteSpace(slug);
+        ArgumentException.ThrowIfNullOrWhiteSpace(ownerId);
+
+        return new ProcessTemplate
+        {
+            Id = Guid.NewGuid(),
+            TenantId = tenantId,
+            Name = name,
+            Slug = slug,
+            Description = description,
+            OwnerId = ownerId,
+            Category = category,
+            IsArchived = false,
+            IsDeleted = false,
+        };
+    }
 }

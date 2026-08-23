@@ -3,7 +3,6 @@ using DreamTeam.Framework.Web;
 using DreamTeam.Framework.Web.Modules;
 using DreamTeam.Modules.Files;
 using DreamTeam.Modules.Forms;
-using DreamTeam.Modules.Forms.Contracts;
 using DreamTeam.Modules.Identity;
 using DreamTeam.Modules.Identity.Contracts.v1.Tokens.TokenGeneration;
 using DreamTeam.Modules.Identity.Features.v1.Tokens.TokenGeneration;
@@ -46,7 +45,9 @@ builder.Services.AddMediator(o =>
         typeof(GetTenantStatusQuery),
         typeof(GetTenantStatusQueryHandler),
         typeof(DreamTeam.Modules.Files.Contracts.v1.Commands.RequestUploadUrlCommand),
-        typeof(DreamTeam.Modules.Files.FilesModule)];
+        typeof(DreamTeam.Modules.Files.FilesModule),
+        typeof(DreamTeam.Modules.Forms.Contracts.v1.ProcessTemplates.CreateProcessTemplate.CreateProcessTemplateCommand),
+        typeof(DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.CreateProcessTemplate.CreateProcessTemplateCommandHandler)];
 });
 
 // MVP-1 modules: Identity, Multitenancy (dormant until v4), Files, Forms.

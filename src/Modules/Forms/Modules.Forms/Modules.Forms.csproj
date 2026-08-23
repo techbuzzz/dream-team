@@ -3,8 +3,13 @@
 	<PropertyGroup>
 		<RootNamespace>DreamTeam.Modules.Forms</RootNamespace>
 		<AssemblyName>DreamTeam.Modules.Forms</AssemblyName>
-		<NoWarn>$(NoWarn);CA1031;CA1812;CA1859;CA1002;CA2227;S3267;S125</NoWarn>
+		<NoWarn>$(NoWarn);CA1031;CA1812;CA1859;CA1002;CA2227;S3267;S125;S1144;S4581</NoWarn>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation" />
+		<PackageReference Include="Mediator.Abstractions" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\BuildingBlocks\Persistence\Persistence.csproj" />

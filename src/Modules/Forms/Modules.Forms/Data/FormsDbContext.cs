@@ -21,7 +21,7 @@ namespace DreamTeam.Modules.Forms.Data;
 /// the only one that would be marked IGlobalEntity in a future v4 if we add
 /// a marketplace of public forms.
 /// </summary>
-public sealed class FormsDbContext : BaseDbContext
+public class FormsDbContext : BaseDbContext
 {
     public const string Schema = "forms";
 

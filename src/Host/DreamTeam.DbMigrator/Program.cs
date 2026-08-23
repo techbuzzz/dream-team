@@ -84,6 +84,8 @@ builder.Services.AddMediator(o =>
         typeof(GetTenantStatusQueryHandler),
         typeof(DreamTeam.Modules.Files.Contracts.v1.Commands.RequestUploadUrlCommand),
         typeof(DreamTeam.Modules.Files.FilesModule),
+        typeof(DreamTeam.Modules.Forms.Contracts.v1.ProcessTemplates.CreateProcessTemplate.CreateProcessTemplateCommand),
+        typeof(DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.CreateProcessTemplate.CreateProcessTemplateCommandHandler),
     ];
 });
 
