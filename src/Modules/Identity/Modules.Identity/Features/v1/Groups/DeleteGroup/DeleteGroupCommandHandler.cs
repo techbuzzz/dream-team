@@ -1,12 +1,12 @@
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Groups.DeleteGroup;
-using FSH.Modules.Identity.Data;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Groups.DeleteGroup;
+using DreamTeam.Modules.Identity.Data;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSH.Modules.Identity.Features.v1.Groups.DeleteGroup;
+namespace DreamTeam.Modules.Identity.Features.v1.Groups.DeleteGroup;
 
 public sealed class DeleteGroupCommandHandler : ICommandHandler<DeleteGroupCommand, Unit>
 {

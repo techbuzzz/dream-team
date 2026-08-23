@@ -1,8 +1,8 @@
-using FSH.Framework.Core.Domain;
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Files.Contracts.v1.DTOs;
-using FSH.Modules.Files.Domain;
-using FSH.Modules.Files.Domain.Events;
+﻿using DreamTeam.Framework.Core.Domain;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Files.Contracts.v1.DTOs;
+using DreamTeam.Modules.Files.Domain;
+using DreamTeam.Modules.Files.Domain.Events;
 
 namespace Integration.Tests.Tests.Files;
 

@@ -1,13 +1,13 @@
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.v1.Groups.CreateGroup;
-using FSH.Modules.Identity.Data;
-using FSH.Modules.Identity.Domain;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.v1.Groups.CreateGroup;
+using DreamTeam.Modules.Identity.Data;
+using DreamTeam.Modules.Identity.Domain;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSH.Modules.Identity.Features.v1.Groups.CreateGroup;
+namespace DreamTeam.Modules.Identity.Features.v1.Groups.CreateGroup;
 
 public sealed class CreateGroupCommandHandler : ICommandHandler<CreateGroupCommand, GroupDto>
 {

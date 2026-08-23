@@ -1,24 +1,24 @@
-using Asp.Versioning;
+﻿using Asp.Versioning;
 using FluentValidation;
-using FSH.Framework.Persistence;
-using FSH.Framework.Shared.Constants;
-using FSH.Framework.Web.Modules;
-using FSH.Modules.Files.Authorization;
-using FSH.Modules.Files.Contracts;
-using FSH.Modules.Files.Contracts.Authorization;
-using FSH.Modules.Files.Data;
-using FSH.Modules.Files.Features.v1.ChangeVisibility;
-using FSH.Modules.Files.Features.v1.DeleteFile;
-using FSH.Modules.Files.Features.v1.FinalizeUpload;
-using FSH.Modules.Files.Features.v1.GetFileDownloadUrl;
-using FSH.Modules.Files.Features.v1.GetFileMetadata;
-using FSH.Modules.Files.Features.v1.ListMyFiles;
-using FSH.Modules.Files.Features.v1.ListSharedFiles;
-using FSH.Modules.Files.Features.v1.ListTrashedFiles;
-using FSH.Modules.Files.Features.v1.RequestUploadUrl;
-using FSH.Modules.Files.Features.v1.RestoreFile;
-using FSH.Modules.Files.Jobs;
-using FSH.Modules.Files.Services;
+using DreamTeam.Framework.Persistence;
+using DreamTeam.Framework.Shared.Constants;
+using DreamTeam.Framework.Web.Modules;
+using DreamTeam.Modules.Files.Authorization;
+using DreamTeam.Modules.Files.Contracts;
+using DreamTeam.Modules.Files.Contracts.Authorization;
+using DreamTeam.Modules.Files.Data;
+using DreamTeam.Modules.Files.Features.v1.ChangeVisibility;
+using DreamTeam.Modules.Files.Features.v1.DeleteFile;
+using DreamTeam.Modules.Files.Features.v1.FinalizeUpload;
+using DreamTeam.Modules.Files.Features.v1.GetFileDownloadUrl;
+using DreamTeam.Modules.Files.Features.v1.GetFileMetadata;
+using DreamTeam.Modules.Files.Features.v1.ListMyFiles;
+using DreamTeam.Modules.Files.Features.v1.ListSharedFiles;
+using DreamTeam.Modules.Files.Features.v1.ListTrashedFiles;
+using DreamTeam.Modules.Files.Features.v1.RequestUploadUrl;
+using DreamTeam.Modules.Files.Features.v1.RestoreFile;
+using DreamTeam.Modules.Files.Jobs;
+using DreamTeam.Modules.Files.Services;
 using Hangfire;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -27,9 +27,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 
-[assembly: FshModule(typeof(FSH.Modules.Files.FilesModule), 350)]
+[assembly: DreamTeamModule(typeof(DreamTeam.Modules.Files.FilesModule), 350)]
 
-namespace FSH.Modules.Files;
+namespace DreamTeam.Modules.Files;
 
 /// <summary>
 /// Files module: presigned-URL file lifecycle (upload, finalize, serve, delete) shared across the

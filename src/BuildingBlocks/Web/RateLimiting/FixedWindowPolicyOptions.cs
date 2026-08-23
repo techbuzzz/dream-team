@@ -1,4 +1,4 @@
-namespace FSH.Framework.Web.RateLimiting;
+﻿namespace DreamTeam.Framework.Web.RateLimiting;
 
 public sealed class FixedWindowPolicyOptions
 {

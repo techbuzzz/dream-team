@@ -1,6 +1,6 @@
-using FSH.Framework.Eventing.Abstractions;
+﻿using DreamTeam.Framework.Eventing.Abstractions;
 
-namespace FSH.Modules.Multitenancy.Contracts.Events;
+namespace DreamTeam.Modules.Multitenancy.Contracts.Events;
 
 /// <summary>
 /// Raised when a tenant is renewed (and possibly switched to a different plan). The Billing module

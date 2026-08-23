@@ -1,12 +1,12 @@
-using FSH.Modules.Identity.Contracts.Authorization;
-using FSH.Framework.Shared.Identity.Authorization;
-using FSH.Modules.Identity.Contracts.v1.Roles.DeleteRole;
+﻿using DreamTeam.Modules.Identity.Contracts.Authorization;
+using DreamTeam.Framework.Shared.Identity.Authorization;
+using DreamTeam.Modules.Identity.Contracts.v1.Roles.DeleteRole;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace FSH.Modules.Identity.Features.v1.Roles.DeleteRole;
+namespace DreamTeam.Modules.Identity.Features.v1.Roles.DeleteRole;
 
 public static class DeleteRoleEndpoint
 {

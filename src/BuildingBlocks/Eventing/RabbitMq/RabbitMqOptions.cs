@@ -1,4 +1,4 @@
-namespace FSH.Framework.Eventing.RabbitMq;
+﻿namespace DreamTeam.Framework.Eventing.RabbitMq;
 
 /// <summary>
 /// Configuration options for RabbitMQ event bus.
@@ -31,9 +31,9 @@ public sealed class RabbitMqOptions
     public string VirtualHost { get; set; } = "/";
 
     /// <summary>
-    /// Exchange name for publishing events. Default is "fsh.events".
+    /// Exchange name for publishing events. Default is "dreamteam.events".
     /// </summary>
-    public string ExchangeName { get; set; } = "fsh.events";
+    public string ExchangeName { get; set; } = "dreamteam.events";
 
     /// <summary>
     /// Queue name prefix for consuming events. Default is "fsh".

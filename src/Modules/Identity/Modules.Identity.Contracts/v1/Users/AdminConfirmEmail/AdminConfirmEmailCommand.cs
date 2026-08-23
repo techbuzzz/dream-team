@@ -1,6 +1,6 @@
-using Mediator;
+﻿using Mediator;
 
-namespace FSH.Modules.Identity.Contracts.v1.Users.AdminConfirmEmail;
+namespace DreamTeam.Modules.Identity.Contracts.v1.Users.AdminConfirmEmail;
 
 /// <summary>
 /// Administratively confirms a user's email (no confirmation token). Gated by

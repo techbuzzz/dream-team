@@ -1,19 +1,19 @@
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Identity.Contracts.v1.TwoFactor;
-using FSH.Modules.Identity.Domain;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Identity.Contracts.v1.TwoFactor;
+using DreamTeam.Modules.Identity.Domain;
 using Mediator;
 using Microsoft.AspNetCore.Identity;
 
-namespace FSH.Modules.Identity.Features.v1.TwoFactor.Disable;
+namespace DreamTeam.Modules.Identity.Features.v1.TwoFactor.Disable;
 
 public sealed class DisableTwoFactorCommandHandler
     : ICommandHandler<DisableTwoFactorCommand, bool>
 {
-    private readonly UserManager<FshUser> _userManager;
+    private readonly UserManager<DreamTeamUser> _userManager;
     private readonly ICurrentUser _currentUser;
 
-    public DisableTwoFactorCommandHandler(UserManager<FshUser> userManager, ICurrentUser currentUser)
+    public DisableTwoFactorCommandHandler(UserManager<DreamTeamUser> userManager, ICurrentUser currentUser)
     {
         _userManager = userManager;
         _currentUser = currentUser;

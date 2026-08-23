@@ -1,5 +1,5 @@
-using FSH.Framework.Eventing.Abstractions;
-using FSH.Framework.Eventing.Serialization;
+﻿using DreamTeam.Framework.Eventing.Abstractions;
+using DreamTeam.Framework.Eventing.Serialization;
 
 namespace Framework.Tests.Eventing;
 

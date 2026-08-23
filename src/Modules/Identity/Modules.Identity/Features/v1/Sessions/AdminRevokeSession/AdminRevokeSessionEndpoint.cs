@@ -1,13 +1,13 @@
-using FSH.Modules.Identity.Contracts.Authorization;
-using FSH.Framework.Shared.Identity.Authorization;
-using FSH.Modules.Identity.Contracts.v1.Sessions.AdminRevokeSession;
+﻿using DreamTeam.Modules.Identity.Contracts.Authorization;
+using DreamTeam.Framework.Shared.Identity.Authorization;
+using DreamTeam.Modules.Identity.Contracts.v1.Sessions.AdminRevokeSession;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Routing;
 
-namespace FSH.Modules.Identity.Features.v1.Sessions.AdminRevokeSession;
+namespace DreamTeam.Modules.Identity.Features.v1.Sessions.AdminRevokeSession;
 
 public static class AdminRevokeSessionEndpoint
 {

@@ -1,6 +1,6 @@
-using FSH.Framework.Eventing;
-using FSH.Framework.Eventing.Inbox;
-using FSH.Framework.Eventing.Outbox;
+﻿using DreamTeam.Framework.Eventing;
+using DreamTeam.Framework.Eventing.Inbox;
+using DreamTeam.Framework.Eventing.Outbox;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
@@ -22,7 +22,7 @@ public class EventingRegistrationTests
             {
                 ["DatabaseOptions:Provider"] = "postgresql",
                 ["DatabaseOptions:ConnectionString"] = "Host=arch;Database=arch;Username=arch;Password=arch",
-                ["DatabaseOptions:MigrationsAssembly"] = "FSH.Starter.Migrations.PostgreSQL",
+                ["DatabaseOptions:MigrationsAssembly"] = "DreamTeam.Migrations.PostgreSQL",
             })
             .Build();
     }

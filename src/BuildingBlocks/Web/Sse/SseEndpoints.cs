@@ -1,9 +1,9 @@
-using FSH.Framework.Core.Context;
+﻿using DreamTeam.Framework.Core.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace FSH.Framework.Web.Sse;
+namespace DreamTeam.Framework.Web.Sse;
 
 public static class SseEndpoints
 {

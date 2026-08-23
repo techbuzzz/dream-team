@@ -1,17 +1,17 @@
-using FSH.Framework.Eventing.Abstractions;
-using FSH.Framework.Eventing.Inbox;
-using FSH.Framework.Eventing.InMemory;
-using FSH.Framework.Eventing.Outbox;
-using FSH.Framework.Eventing.Persistence;
-using FSH.Framework.Eventing.RabbitMq;
-using FSH.Framework.Eventing.Serialization;
-using FSH.Framework.Persistence;
+﻿using DreamTeam.Framework.Eventing.Abstractions;
+using DreamTeam.Framework.Eventing.Inbox;
+using DreamTeam.Framework.Eventing.InMemory;
+using DreamTeam.Framework.Eventing.Outbox;
+using DreamTeam.Framework.Eventing.Persistence;
+using DreamTeam.Framework.Eventing.RabbitMq;
+using DreamTeam.Framework.Eventing.Serialization;
+using DreamTeam.Framework.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Reflection;
 
-namespace FSH.Framework.Eventing;
+namespace DreamTeam.Framework.Eventing;
 
 public static class ServiceCollectionExtensions
 {

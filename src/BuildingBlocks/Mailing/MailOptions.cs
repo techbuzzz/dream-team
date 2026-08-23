@@ -1,4 +1,4 @@
-﻿namespace FSH.Framework.Mailing;
+﻿namespace DreamTeam.Framework.Mailing;
 
 public sealed class MailOptions
 {

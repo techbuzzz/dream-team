@@ -1,5 +1,5 @@
-﻿namespace FSH.Framework.Core;
+﻿namespace DreamTeam.Framework.Core;
 
-public interface IFshCore
+public interface IDreamTeamCore
 {
 }

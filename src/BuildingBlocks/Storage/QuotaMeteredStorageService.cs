@@ -1,15 +1,15 @@
-using System.Net;
+﻿using System.Net;
 using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Quota;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Shared.Quota;
-using FSH.Framework.Shared.Storage;
-using FSH.Framework.Storage.DTOs;
-using FSH.Framework.Storage.Services;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Quota;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Quota;
+using DreamTeam.Framework.Shared.Storage;
+using DreamTeam.Framework.Storage.DTOs;
+using DreamTeam.Framework.Storage.Services;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.Framework.Storage;
+namespace DreamTeam.Framework.Storage;
 
 /// <summary>
 /// Decorates <see cref="IStorageService"/> so every upload charges the tenant's

@@ -1,16 +1,16 @@
-using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Data;
-using FSH.Modules.Identity.Domain;
+﻿using Finbuckle.MultiTenant.Abstractions;
+using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Data;
+using DreamTeam.Modules.Identity.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using UAParser;
 
-namespace FSH.Modules.Identity.Services;
+namespace DreamTeam.Modules.Identity.Services;
 
 public sealed class SessionService : ISessionService
 {

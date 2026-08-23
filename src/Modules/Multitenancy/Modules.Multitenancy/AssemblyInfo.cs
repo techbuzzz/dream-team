@@ -1,3 +1,3 @@
-using FSH.Framework.Web.Modules;
+﻿using DreamTeam.Framework.Web.Modules;
 
-[assembly: FshModule(typeof(FSH.Modules.Multitenancy.MultitenancyModule), 200)]
+[assembly: DreamTeamModule(typeof(DreamTeam.Modules.Multitenancy.MultitenancyModule), 200)]

@@ -1,16 +1,16 @@
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Shared.Constants;
-using FSH.Modules.Auditing.Contracts;
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Impersonation.EndImpersonation;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Shared.Constants;
+using DreamTeam.Framework.Shared.Identity;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Impersonation.EndImpersonation;
 using Mediator;
 using Microsoft.Extensions.Logging;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 
-namespace FSH.Modules.Identity.Features.v1.Impersonation.EndImpersonation;
+namespace DreamTeam.Modules.Identity.Features.v1.Impersonation.EndImpersonation;
 
 public sealed class EndImpersonationCommandHandler
     : ICommandHandler<EndImpersonationCommand, TokenResponse>
@@ -107,6 +107,9 @@ public sealed class EndImpersonationCommandHandler
             targetUserId: impersonatedUserId,
             targetTenantId: impersonatedTenantId,
             clientId: _requestContext.ClientId ?? "unknown",
+            ip: _requestContext.IpAddress ?? "unknown",
+            userAgent: _requestContext.UserAgent ?? "unknown",
+            reason: "EndImpersonation",
             ct: cancellationToken);
 
         if (_logger.IsEnabled(LogLevel.Information))

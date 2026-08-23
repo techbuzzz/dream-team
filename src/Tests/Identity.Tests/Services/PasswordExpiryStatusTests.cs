@@ -1,4 +1,4 @@
-using FSH.Modules.Identity.Contracts.DTOs;
+﻿using DreamTeam.Modules.Identity.Contracts.DTOs;
 
 namespace Identity.Tests.Services;
 

@@ -1,6 +1,6 @@
-using FSH.Modules.Multitenancy.Contracts.Dtos;
+﻿using DreamTeam.Modules.Multitenancy.Contracts.Dtos;
 
-namespace FSH.Modules.Multitenancy.Provisioning;
+namespace DreamTeam.Modules.Multitenancy.Provisioning;
 
 public interface ITenantProvisioningService
 {

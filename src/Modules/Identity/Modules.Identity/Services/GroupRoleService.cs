@@ -1,8 +1,8 @@
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Data;
+﻿using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSH.Modules.Identity.Services;
+namespace DreamTeam.Modules.Identity.Services;
 
 public sealed class GroupRoleService : IGroupRoleService
 {

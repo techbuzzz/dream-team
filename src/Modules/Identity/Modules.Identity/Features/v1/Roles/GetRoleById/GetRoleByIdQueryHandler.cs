@@ -1,9 +1,9 @@
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Roles.GetRole;
+﻿using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Roles.GetRole;
 using Mediator;
 
-namespace FSH.Modules.Identity.Features.v1.Roles.GetRoleById;
+namespace DreamTeam.Modules.Identity.Features.v1.Roles.GetRoleById;
 
 public sealed class GetRoleByIdQueryHandler : IQueryHandler<GetRoleQuery, RoleDto?>
 {

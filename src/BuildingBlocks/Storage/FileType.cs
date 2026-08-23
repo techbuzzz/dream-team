@@ -1,4 +1,4 @@
-﻿namespace FSH.Framework.Storage;
+﻿namespace DreamTeam.Framework.Storage;
 
 public enum FileType
 {

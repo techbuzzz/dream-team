@@ -1,13 +1,13 @@
-using FSH.Modules.Identity.Contracts.Authorization;
-using FSH.Framework.Shared.Identity.Authorization;
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.v1.Roles.GetRole;
+﻿using DreamTeam.Modules.Identity.Contracts.Authorization;
+using DreamTeam.Framework.Shared.Identity.Authorization;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.v1.Roles.GetRole;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace FSH.Modules.Identity.Features.v1.Roles.GetRoleById;
+namespace DreamTeam.Modules.Identity.Features.v1.Roles.GetRoleById;
 
 public static class GetRoleByIdEndpoint
 {

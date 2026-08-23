@@ -1,8 +1,8 @@
-using FSH.Modules.Identity.Domain;
+﻿using DreamTeam.Modules.Identity.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FSH.Modules.Identity.Data;
+namespace DreamTeam.Modules.Identity.Data;
 
 public class ImpersonationGrantConfig : IEntityTypeConfiguration<ImpersonationGrant>
 {

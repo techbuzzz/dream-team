@@ -1,20 +1,20 @@
-using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Caching;
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Shared.Storage;
-using FSH.Framework.Storage;
-using FSH.Framework.Storage.Services;
-using FSH.Modules.Multitenancy.Contracts;
-using FSH.Modules.Multitenancy.Contracts.Dtos;
-using FSH.Modules.Multitenancy.Data;
-using FSH.Modules.Multitenancy.Domain;
+﻿using Finbuckle.MultiTenant.Abstractions;
+using DreamTeam.Framework.Caching;
+using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Storage;
+using DreamTeam.Framework.Storage;
+using DreamTeam.Framework.Storage.Services;
+using DreamTeam.Modules.Multitenancy.Contracts;
+using DreamTeam.Modules.Multitenancy.Contracts.Dtos;
+using DreamTeam.Modules.Multitenancy.Data;
+using DreamTeam.Modules.Multitenancy.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.Modules.Multitenancy.Services;
+namespace DreamTeam.Modules.Multitenancy.Services;
 
 public sealed class TenantThemeService : ITenantThemeService
 {

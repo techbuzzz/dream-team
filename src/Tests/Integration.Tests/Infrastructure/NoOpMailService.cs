@@ -1,6 +1,6 @@
-using System.Collections.Concurrent;
-using FSH.Framework.Mailing;
-using FSH.Framework.Mailing.Services;
+﻿using System.Collections.Concurrent;
+using DreamTeam.Framework.Mailing;
+using DreamTeam.Framework.Mailing.Services;
 
 namespace Integration.Tests.Infrastructure;
 

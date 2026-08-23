@@ -1,8 +1,8 @@
-using AutoFixture;
-using FSH.Framework.Core.Context;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Users.ChangePassword;
-using FSH.Modules.Identity.Features.v1.Users.ChangePassword;
+﻿using AutoFixture;
+using DreamTeam.Framework.Core.Context;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.ChangePassword;
+using DreamTeam.Modules.Identity.Features.v1.Users.ChangePassword;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 

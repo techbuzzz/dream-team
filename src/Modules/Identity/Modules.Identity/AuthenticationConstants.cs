@@ -1,4 +1,4 @@
-﻿namespace FSH.Modules.Identity;
+﻿namespace DreamTeam.Modules.Identity;
 
 public static class AuthenticationConstants
 {

@@ -1,6 +1,6 @@
-using FSH.Framework.Shared.Quota;
+﻿using DreamTeam.Framework.Shared.Quota;
 
-namespace FSH.Framework.Quota;
+namespace DreamTeam.Framework.Quota;
 
 /// <summary>
 /// Quota plan catalog. Tenants reference a plan by name via <c>AppTenantInfo.Plan</c>; the limits

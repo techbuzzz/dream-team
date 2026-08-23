@@ -1,9 +1,9 @@
-﻿using FSH.Framework.Core.Domain;
+﻿using DreamTeam.Framework.Core.Domain;
 using Mediator;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.Framework.Persistence.Inteceptors;
+namespace DreamTeam.Framework.Persistence.Inteceptors;
 
 /// <summary>
 /// Entity Framework interceptor that automatically publishes domain events after saving changes.

@@ -1,4 +1,4 @@
-namespace FSH.Framework.Eventing.Abstractions;
+﻿namespace DreamTeam.Framework.Eventing.Abstractions;
 
 /// <summary>
 /// Enumerates the distinct databases holding outbox rows.

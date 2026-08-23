@@ -1,8 +1,8 @@
-using FSH.Framework.Core.Domain;
+﻿using DreamTeam.Framework.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FSH.Framework.Eventing.Outbox;
+namespace DreamTeam.Framework.Eventing.Outbox;
 
 /// <summary>
 /// Outbox message entity used to persist integration events alongside domain changes.

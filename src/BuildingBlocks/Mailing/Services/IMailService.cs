@@ -1,4 +1,4 @@
-﻿namespace FSH.Framework.Mailing.Services;
+﻿namespace DreamTeam.Framework.Mailing.Services;
 
 public interface IMailService
 {

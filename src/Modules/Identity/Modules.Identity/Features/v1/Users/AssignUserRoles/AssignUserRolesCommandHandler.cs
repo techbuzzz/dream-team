@@ -1,8 +1,8 @@
-﻿using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Users.AssignUserRoles;
+﻿using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.AssignUserRoles;
 using Mediator;
 
-namespace FSH.Modules.Identity.Features.v1.Users.AssignUserRoles;
+namespace DreamTeam.Modules.Identity.Features.v1.Users.AssignUserRoles;
 
 public sealed class AssignUserRolesCommandHandler(IUserService userService)
     : ICommandHandler<AssignUserRolesCommand, string>

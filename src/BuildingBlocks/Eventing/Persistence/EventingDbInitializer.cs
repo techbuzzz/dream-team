@@ -1,8 +1,8 @@
-using FSH.Framework.Persistence;
+﻿using DreamTeam.Framework.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.Framework.Eventing.Persistence;
+namespace DreamTeam.Framework.Eventing.Persistence;
 
 /// <summary>
 /// Migrates the framework eventing schema. Runs per tenant like every other

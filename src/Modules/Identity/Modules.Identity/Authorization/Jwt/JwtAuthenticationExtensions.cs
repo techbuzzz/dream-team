@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace FSH.Modules.Identity.Authorization.Jwt;
+namespace DreamTeam.Modules.Identity.Authorization.Jwt;
 
 internal static class JwtAuthenticationExtensions
 {

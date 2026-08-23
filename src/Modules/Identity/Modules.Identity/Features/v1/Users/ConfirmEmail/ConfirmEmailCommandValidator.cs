@@ -1,7 +1,7 @@
-using FluentValidation;
-using FSH.Modules.Identity.Contracts.v1.Users.ConfirmEmail;
+﻿using FluentValidation;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.ConfirmEmail;
 
-namespace FSH.Modules.Identity.Features.v1.Users.ConfirmEmail;
+namespace DreamTeam.Modules.Identity.Features.v1.Users.ConfirmEmail;
 
 public sealed class ConfirmEmailCommandValidator : AbstractValidator<ConfirmEmailCommand>
 {

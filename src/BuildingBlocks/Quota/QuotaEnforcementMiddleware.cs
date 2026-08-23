@@ -1,22 +1,21 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Shared.Auditing;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Shared.Quota;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Quota;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.Framework.Quota;
+namespace DreamTeam.Framework.Quota;
 
 /// <summary>
 /// Per-request quota enforcement for <see cref="QuotaResource.ApiCalls"/>. Runs after auth and the
 /// rate limiter so only authenticated, counted calls charge the meter. Skips health probes, the
 /// root tenant, and unresolved tenants. Rejects with HTTP 429 + RFC 9457 ProblemDetails and a
-/// <c>Retry-After</c> header; flags the request via <see cref="HttpContextItemKeys.QuotaRejected"/>
-/// so the audit middleware can tag the activity event with <c>AuditTag.OutOfQuota</c> without this
-/// middleware taking a dependency on the auditing module.
+/// <c>Retry-After</c> header; flags the request via the <c>DreamTeam.Quota.Rejected</c> HttpContext
+/// item so a future audit implementation can tag the activity event without this middleware taking
+/// a dependency on it.
 /// </summary>
 public sealed class QuotaEnforcementMiddleware : IMiddleware
 {
@@ -81,7 +80,10 @@ public sealed class QuotaEnforcementMiddleware : IMiddleware
 
     private async Task RejectAsync(HttpContext context, string tenantId, QuotaCheckResult result)
     {
-        context.Items[HttpContextItemKeys.QuotaRejected] = true;
+        // Quota-rejected flag — historically read by the audit middleware to tag the activity event
+        // with AuditTag.OutOfQuota. Audit module is removed in the FSH-strip; the flag is set here as
+        // a string constant so future audit implementations can pick it up without changes to this file.
+        context.Items["DreamTeam.Quota.Rejected"] = true;
 
         var retryAfterSeconds = CalculateRetryAfter(result.ResetAtUtc);
         if (retryAfterSeconds is > 0)

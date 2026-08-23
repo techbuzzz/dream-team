@@ -1,15 +1,15 @@
-using Integration.Tests.Infrastructure;
+﻿using Integration.Tests.Infrastructure;
 using Integration.Tests.Infrastructure.Extensions;
 
 namespace Integration.Tests.Tests.Roles;
 
-[Collection(FshCollectionDefinition.Name)]
+[Collection(DreamTeamCollectionDefinition.Name)]
 public sealed class RoleManagementTests
 {
-    private readonly FshWebApplicationFactory _factory;
+    private readonly DreamTeamWebApplicationFactory _factory;
     private readonly AuthHelper _auth;
 
-    public RoleManagementTests(FshWebApplicationFactory factory)
+    public RoleManagementTests(DreamTeamWebApplicationFactory factory)
     {
         _factory = factory;
         _auth = new AuthHelper(factory);

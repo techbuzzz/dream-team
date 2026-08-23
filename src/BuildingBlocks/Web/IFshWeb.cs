@@ -1,5 +1,5 @@
-﻿namespace FSH.Framework.Web;
+﻿namespace DreamTeam.Framework.Web;
 
-public interface IFshWeb
+public interface IDreamTeamWeb
 {
 }

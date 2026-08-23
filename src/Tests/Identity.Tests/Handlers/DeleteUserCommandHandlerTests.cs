@@ -1,7 +1,7 @@
-using AutoFixture;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Users.DeleteUser;
-using FSH.Modules.Identity.Features.v1.Users.DeleteUser;
+﻿using AutoFixture;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.DeleteUser;
+using DreamTeam.Modules.Identity.Features.v1.Users.DeleteUser;
 using NSubstitute;
 using Shouldly;
 using Xunit;

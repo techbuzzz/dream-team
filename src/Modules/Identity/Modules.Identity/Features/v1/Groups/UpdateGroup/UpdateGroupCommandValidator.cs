@@ -1,7 +1,7 @@
-using FluentValidation;
-using FSH.Modules.Identity.Contracts.v1.Groups.UpdateGroup;
+﻿using FluentValidation;
+using DreamTeam.Modules.Identity.Contracts.v1.Groups.UpdateGroup;
 
-namespace FSH.Modules.Identity.Features.v1.Groups.UpdateGroup;
+namespace DreamTeam.Modules.Identity.Features.v1.Groups.UpdateGroup;
 
 public sealed class UpdateGroupCommandValidator : AbstractValidator<UpdateGroupCommand>
 {

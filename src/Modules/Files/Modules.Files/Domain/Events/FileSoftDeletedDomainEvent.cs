@@ -1,6 +1,6 @@
-using FSH.Framework.Core.Domain;
+﻿using DreamTeam.Framework.Core.Domain;
 
-namespace FSH.Modules.Files.Domain.Events;
+namespace DreamTeam.Modules.Files.Domain.Events;
 
 public sealed record FileSoftDeletedDomainEvent(
     Guid FileAssetId,

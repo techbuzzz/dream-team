@@ -1,5 +1,5 @@
-using FSH.Modules.Files.Contracts;
-using FSH.Modules.Files.Services;
+﻿using DreamTeam.Modules.Files.Contracts;
+using DreamTeam.Modules.Files.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Integration.Tests.Tests.Files;

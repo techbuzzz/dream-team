@@ -1,4 +1,4 @@
-namespace FSH.Framework.Eventing.Abstractions;
+﻿namespace DreamTeam.Framework.Eventing.Abstractions;
 
 /// <summary>
 /// Serializes and deserializes integration events for transport and storage (outbox).

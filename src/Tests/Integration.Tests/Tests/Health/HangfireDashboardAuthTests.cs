@@ -1,18 +1,18 @@
-using System.Text;
+﻿using System.Text;
 using Integration.Tests.Infrastructure;
 
 namespace Integration.Tests.Tests.Health;
 
-[Collection(FshCollectionDefinition.Name)]
+[Collection(DreamTeamCollectionDefinition.Name)]
 public sealed class HangfireDashboardAuthTests
 {
     private const string DashboardPath = "/jobs";
     private const string TestUser = "admin";
     private const string TestPass = "integration-test-hangfire-pwd";
 
-    private readonly FshWebApplicationFactory _factory;
+    private readonly DreamTeamWebApplicationFactory _factory;
 
-    public HangfireDashboardAuthTests(FshWebApplicationFactory factory)
+    public HangfireDashboardAuthTests(DreamTeamWebApplicationFactory factory)
     {
         _factory = factory;
     }

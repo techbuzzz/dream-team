@@ -1,7 +1,7 @@
-using FSH.Modules.Auditing.Contracts;
-using FSH.Modules.Chat.Contracts;
-using FSH.Modules.Identity.Contracts;
-using FSH.Modules.Multitenancy.Contracts;
+﻿
+
+using DreamTeam.Modules.Identity.Contracts;
+using DreamTeam.Modules.Multitenancy.Contracts;
 using NetArchTest.Rules;
 using Shouldly;
 using System.Reflection;
@@ -17,10 +17,9 @@ public class ContractsPurityTests
 {
     private static readonly Assembly[] ContractsAssemblies =
     [
-        typeof(AuditingContractsMarker).Assembly,
-        typeof(ChatContractsMarker).Assembly,
         typeof(IdentityContractsMarker).Assembly,
-        typeof(MultitenancyContractsMarker).Assembly
+        typeof(MultitenancyContractsMarker).Assembly,
+        typeof(DreamTeam.Modules.Files.Contracts.v1.Commands.RequestUploadUrlCommand).Assembly
     ];
 
     [Fact]
@@ -87,18 +86,18 @@ public class ContractsPurityTests
     {
         string[] moduleImplementations =
         [
-            "FSH.Modules.Auditing.Features",
-            "FSH.Modules.Auditing.Data",
-            "FSH.Modules.Auditing.Persistence",
-            "FSH.Modules.Chat.Features",
-            "FSH.Modules.Chat.Data",
-            "FSH.Modules.Chat.Domain",
-            "FSH.Modules.Identity.Features",
-            "FSH.Modules.Identity.Data",
-            "FSH.Modules.Identity.Persistence",
-            "FSH.Modules.Multitenancy.Features",
-            "FSH.Modules.Multitenancy.Data",
-            "FSH.Modules.Multitenancy.Persistence"
+            "DreamTeam.Modules.Auditing.Features",
+            "DreamTeam.Modules.Auditing.Data",
+            "DreamTeam.Modules.Auditing.Persistence",
+            "DreamTeam.Modules.Chat.Features",
+            "DreamTeam.Modules.Chat.Data",
+            "DreamTeam.Modules.Chat.Domain",
+            "DreamTeam.Modules.Identity.Features",
+            "DreamTeam.Modules.Identity.Data",
+            "DreamTeam.Modules.Identity.Persistence",
+            "DreamTeam.Modules.Multitenancy.Features",
+            "DreamTeam.Modules.Multitenancy.Data",
+            "DreamTeam.Modules.Multitenancy.Persistence"
         ];
 
         foreach (var assembly in ContractsAssemblies)

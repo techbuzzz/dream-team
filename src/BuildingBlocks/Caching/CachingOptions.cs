@@ -1,4 +1,4 @@
-namespace FSH.Framework.Caching;
+﻿namespace DreamTeam.Framework.Caching;
 
 /// <summary>
 /// Configuration for the HybridCache-backed caching building block.

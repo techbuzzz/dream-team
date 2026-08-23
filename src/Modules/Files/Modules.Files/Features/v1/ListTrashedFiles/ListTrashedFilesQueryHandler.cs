@@ -1,12 +1,12 @@
-using FSH.Framework.Shared.Persistence;
-using FSH.Modules.Files.Contracts.v1.DTOs;
-using FSH.Modules.Files.Contracts.v1.Queries;
-using FSH.Modules.Files.Data;
-using FSH.Modules.Files.Features.v1.Internal;
+﻿using DreamTeam.Framework.Shared.Persistence;
+using DreamTeam.Modules.Files.Contracts.v1.DTOs;
+using DreamTeam.Modules.Files.Contracts.v1.Queries;
+using DreamTeam.Modules.Files.Data;
+using DreamTeam.Modules.Files.Features.v1.Internal;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSH.Modules.Files.Features.v1.ListTrashedFiles;
+namespace DreamTeam.Modules.Files.Features.v1.ListTrashedFiles;
 
 public sealed class ListTrashedFilesQueryHandler(FilesDbContext db)
     : IQueryHandler<ListTrashedFilesQuery, PagedResponse<FileAssetDto>>

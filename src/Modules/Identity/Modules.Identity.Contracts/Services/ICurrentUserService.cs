@@ -1,7 +1,7 @@
-using FSH.Framework.Core.Context;
+﻿using DreamTeam.Framework.Core.Context;
 using System.Security.Claims;
 
-namespace FSH.Modules.Identity.Contracts.Services;
+namespace DreamTeam.Modules.Identity.Contracts.Services;
 
 /// <summary>
 /// Service interface for managing the current user context.

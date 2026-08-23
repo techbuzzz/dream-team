@@ -1,8 +1,8 @@
-﻿using FSH.Framework.Shared.Storage;
-using FSH.Modules.Identity.Contracts.DTOs;
+﻿using DreamTeam.Framework.Shared.Storage;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
 using System.Security.Claims;
 
-namespace FSH.Modules.Identity.Contracts.Services;
+namespace DreamTeam.Modules.Identity.Contracts.Services;
 
 public interface IUserService
 {

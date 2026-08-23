@@ -1,26 +1,26 @@
-﻿using FSH.Framework.Caching;
-using FSH.Framework.Jobs;
-using FSH.Framework.Mailing;
-using FSH.Framework.Persistence;
-using FSH.Framework.Quota;
-using FSH.Framework.Shared.Constants;
-using FSH.Framework.Web.Auth;
-using FSH.Framework.Web.Cors;
-using FSH.Framework.Web.Exceptions;
-using FSH.Framework.Web.FeatureFlags;
-using FSH.Framework.Web.Idempotency;
-using FSH.Framework.Web.Sse;
-using FSH.Framework.Web.Health;
-using FSH.Framework.Web.Mediator.Behaviors;
-using FSH.Framework.Web.Modules;
-using FSH.Framework.Web.Observability.Logging.Serilog;
-using FSH.Framework.Web.Observability.OpenTelemetry;
-using FSH.Framework.Web.OpenApi;
-using FSH.Framework.Web.Origin;
-using FSH.Framework.Web.RateLimiting;
-using FSH.Framework.Web.Realtime;
-using FSH.Framework.Web.Security;
-using FSH.Framework.Web.Versioning;
+﻿using DreamTeam.Framework.Caching;
+using DreamTeam.Framework.Jobs;
+using DreamTeam.Framework.Mailing;
+using DreamTeam.Framework.Persistence;
+using DreamTeam.Framework.Quota;
+using DreamTeam.Framework.Shared.Constants;
+using DreamTeam.Framework.Web.Auth;
+using DreamTeam.Framework.Web.Cors;
+using DreamTeam.Framework.Web.Exceptions;
+using DreamTeam.Framework.Web.FeatureFlags;
+using DreamTeam.Framework.Web.Idempotency;
+using DreamTeam.Framework.Web.Sse;
+using DreamTeam.Framework.Web.Health;
+using DreamTeam.Framework.Web.Mediator.Behaviors;
+using DreamTeam.Framework.Web.Modules;
+using DreamTeam.Framework.Web.Observability.Logging.Serilog;
+using DreamTeam.Framework.Web.Observability.OpenTelemetry;
+using DreamTeam.Framework.Web.OpenApi;
+using DreamTeam.Framework.Web.Origin;
+using DreamTeam.Framework.Web.RateLimiting;
+using DreamTeam.Framework.Web.Realtime;
+using DreamTeam.Framework.Web.Security;
+using DreamTeam.Framework.Web.Versioning;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Caching.Distributed;
@@ -30,15 +30,15 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Mediator;
 
-namespace FSH.Framework.Web;
+namespace DreamTeam.Framework.Web;
 
 public static class Extensions
 {
-    public static IHostApplicationBuilder AddHeroPlatform(this IHostApplicationBuilder builder, Action<FshPlatformOptions>? configure = null)
+    public static IHostApplicationBuilder AddHeroPlatform(this IHostApplicationBuilder builder, Action<DreamTeamPlatformOptions>? configure = null)
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        var options = new FshPlatformOptions();
+        var options = new DreamTeamPlatformOptions();
         configure?.Invoke(options);
 
         PermissionConstants.Register(SystemPermissions.All);
@@ -139,11 +139,11 @@ public static class Extensions
     }
 
 
-    public static WebApplication UseHeroPlatform(this WebApplication app, Action<FshPipelineOptions>? configure = null)
+    public static WebApplication UseHeroPlatform(this WebApplication app, Action<DreamTeamPipelineOptions>? configure = null)
     {
         ArgumentNullException.ThrowIfNull(app);
 
-        var options = new FshPipelineOptions();
+        var options = new DreamTeamPipelineOptions();
         configure?.Invoke(options);
 
         var corsEnabled = options.UseCors && IsCorsEnabled(app.Configuration);
@@ -231,7 +231,7 @@ public static class Extensions
     }
 }
 
-public sealed class FshPlatformOptions
+public sealed class DreamTeamPlatformOptions
 {
     public bool EnableCors { get; set; } = true;
     public bool EnableOpenApi { get; set; } = true;
@@ -246,7 +246,7 @@ public sealed class FshPlatformOptions
     public bool EnableQuotas { get; set; } = false;
 }
 
-public sealed class FshPipelineOptions
+public sealed class DreamTeamPipelineOptions
 {
     public bool UseCors { get; set; } = true;
     public bool UseOpenApi { get; set; } = true;

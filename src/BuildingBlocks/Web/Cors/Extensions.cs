@@ -1,15 +1,15 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 using AspNetCorsOptions = Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions;
 
-namespace FSH.Framework.Web.Cors;
+namespace DreamTeam.Framework.Web.Cors;
 
 public static class Extensions
 {
-    private const string PolicyName = "FSHCorsPolicy";
+    private const string PolicyName = "DreamTeamCorsPolicy";
 
     public static IServiceCollection AddHeroCors(
         this IServiceCollection services,

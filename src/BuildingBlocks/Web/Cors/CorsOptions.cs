@@ -1,4 +1,4 @@
-﻿namespace FSH.Framework.Web.Cors;
+﻿namespace DreamTeam.Framework.Web.Cors;
 
 public sealed class CorsOptions
 {

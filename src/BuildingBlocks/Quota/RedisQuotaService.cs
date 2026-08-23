@@ -1,10 +1,10 @@
-using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Shared.Quota;
+﻿using Finbuckle.MultiTenant.Abstractions;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Quota;
 using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
 
-namespace FSH.Framework.Quota;
+namespace DreamTeam.Framework.Quota;
 
 /// <summary>
 /// Redis-backed quota counter. Counter-based resources use atomic <c>INCRBY</c> on a key of the

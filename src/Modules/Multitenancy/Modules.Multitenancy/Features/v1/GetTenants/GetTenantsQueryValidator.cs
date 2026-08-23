@@ -1,8 +1,8 @@
-using FluentValidation;
-using FSH.Framework.Web.Validation;
-using FSH.Modules.Multitenancy.Contracts.v1.GetTenants;
+﻿using FluentValidation;
+using DreamTeam.Framework.Web.Validation;
+using DreamTeam.Modules.Multitenancy.Contracts.v1.GetTenants;
 
-namespace FSH.Modules.Multitenancy.Features.v1.GetTenants;
+namespace DreamTeam.Modules.Multitenancy.Features.v1.GetTenants;
 
 public sealed class GetTenantsQueryValidator : AbstractValidator<GetTenantsQuery>
 {

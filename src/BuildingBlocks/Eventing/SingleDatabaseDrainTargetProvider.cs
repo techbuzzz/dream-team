@@ -1,6 +1,6 @@
-using FSH.Framework.Eventing.Abstractions;
+﻿using DreamTeam.Framework.Eventing.Abstractions;
 
-namespace FSH.Framework.Eventing;
+namespace DreamTeam.Framework.Eventing;
 
 /// <summary>
 /// Default provider for single-database deployments: one pass over the configured connection.

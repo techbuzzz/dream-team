@@ -1,9 +1,9 @@
-using FSH.Framework.Eventing;
-using FSH.Framework.Eventing.Inbox;
-using FSH.Framework.Eventing.Outbox;
-using FSH.Framework.Eventing.Persistence;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Shared.Persistence;
+﻿using DreamTeam.Framework.Eventing;
+using DreamTeam.Framework.Eventing.Inbox;
+using DreamTeam.Framework.Eventing.Outbox;
+using DreamTeam.Framework.Eventing.Persistence;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Persistence;
 using Finbuckle.MultiTenant;
 using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +30,7 @@ public class EventingDbContextModelTests
         {
             Provider = "postgresql",
             ConnectionString = string.Empty,
-            MigrationsAssembly = "FSH.Starter.Migrations.PostgreSQL",
+            MigrationsAssembly = "DreamTeam.Migrations.PostgreSQL",
         });
 
         var environment = Substitute.For<IHostEnvironment>();

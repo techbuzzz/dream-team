@@ -1,4 +1,4 @@
-namespace FSH.Framework.Shared.Persistence;
+﻿namespace DreamTeam.Framework.Shared.Persistence;
 
 public sealed class PagedResponse<T>
 {

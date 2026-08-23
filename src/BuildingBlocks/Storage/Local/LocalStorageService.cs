@@ -1,12 +1,12 @@
-using FSH.Framework.Shared.Storage;
-using FSH.Framework.Storage.DTOs;
-using FSH.Framework.Storage.Services;
+﻿using DreamTeam.Framework.Shared.Storage;
+using DreamTeam.Framework.Storage.DTOs;
+using DreamTeam.Framework.Storage.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.StaticFiles;
 using System.Text.RegularExpressions;
 using System.Threading;
 
-namespace FSH.Framework.Storage.Local;
+namespace DreamTeam.Framework.Storage.Local;
 
 public sealed partial class LocalStorageService : IStorageService
 {

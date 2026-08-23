@@ -1,5 +1,5 @@
-using FSH.Modules.Identity.Contracts.v1.Roles.UpdatePermissions;
-using FSH.Modules.Identity.Features.v1.Roles.UpdateRolePermissions;
+﻿using DreamTeam.Modules.Identity.Contracts.v1.Roles.UpdatePermissions;
+using DreamTeam.Modules.Identity.Features.v1.Roles.UpdateRolePermissions;
 
 namespace Identity.Tests.Validators;
 

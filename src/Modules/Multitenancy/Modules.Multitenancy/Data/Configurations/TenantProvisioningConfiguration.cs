@@ -1,9 +1,9 @@
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Modules.Multitenancy.Provisioning;
+﻿using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Modules.Multitenancy.Provisioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FSH.Modules.Multitenancy.Data.Configurations;
+namespace DreamTeam.Modules.Multitenancy.Data.Configurations;
 
 public class TenantProvisioningConfiguration : IEntityTypeConfiguration<TenantProvisioning>
 {

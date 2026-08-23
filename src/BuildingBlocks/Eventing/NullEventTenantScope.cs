@@ -1,6 +1,6 @@
-using FSH.Framework.Eventing.Abstractions;
+﻿using DreamTeam.Framework.Eventing.Abstractions;
 
-namespace FSH.Framework.Eventing;
+namespace DreamTeam.Framework.Eventing;
 
 /// <summary>
 /// No-op <see cref="IEventTenantScope"/> used when no multitenancy provider is wired.

@@ -1,4 +1,4 @@
-using FSH.Modules.Multitenancy.Domain;
+﻿using DreamTeam.Modules.Multitenancy.Domain;
 
 namespace Multitenancy.Tests.Domain;
 

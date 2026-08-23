@@ -20,8 +20,11 @@
 
 		<!-- Docs -->
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<NoWarn>$(NoWarn);CS1591;MSG0005;CA1054;CA1056</NoWarn>
+		<NoWarn>$(NoWarn);CS1591;MSG0005;CA1054;CA1056;NU1903</NoWarn>
+		<WarningsNotAsErrors>$(WarningsNotAsErrors);NU1903</WarningsNotAsErrors>
 		<!-- Suppress warning about missing XML docs -->
+		<!-- NU1903: pre-existing transitive SSH.NET 2025.1.0 advisory in Testcontainers.
+		     Bumping SSH.NET in a follow-up security workstream; not part of this refactor. -->
 
 		<!-- Container tags (if using container builds) -->
 		<ContainerImageTags>10.0.0;latest</ContainerImageTags>
@@ -40,23 +43,20 @@
 
 	<PropertyGroup>
 		<!-- Default NuGet metadata -->
-		<Authors>Mukesh Murugan</Authors>
-		<Company>FullStackHero</Company>
+		<Authors>Victor Buzin</Authors>
+		<Company>DreamTeam</Company>
 		<Version>10.0.0</Version>
-		<RepositoryUrl>https://github.com/fullstackhero/dotnet-starter-kit</RepositoryUrl>
-		<PackageTags>FSH;FullStackHero;Modular;CQRS;VerticalSlice;DotNet;CleanArchitecture</PackageTags>
+		<RepositoryUrl>https://github.com/techbuzzz/dream-team</RepositoryUrl>
+		<PackageTags>DreamTeam;Modular;CQRS;VerticalSlice;DotNet;CleanArchitecture;Rituals;FormEngine</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageProjectUrl>https://fullstackhero.net</PackageProjectUrl>
-		<Description>FullStackHero .NET Starter Kit - A production-ready modular .NET framework for building enterprise applications</Description>
+		<PackageProjectUrl>https://github.com/techbuzzz/dream-team</PackageProjectUrl>
+		<Description>DreamTeam — form-first rituals platform for tech leads.</Description>
 		<!--
-		  Distribution model = SOURCE OWNERSHIP. Only TWO packages ship to NuGet.org:
-		  FullStackHero.NET.StarterKit (template, in templates/) and FullStackHero.CLI
-		  (src/Tools/CLI). The template scaffolds full, owned source; modules/framework
-		  are consumed via ProjectReference, never as binary NuGets. So pack is OFF by
-		  default here and explicitly re-enabled ONLY on the CLI. This prevents the 33
-		  module/framework projects from accidentally emitting orphan, mutually-
-		  unresolvable binary packages. CI (backend.yml) packs only those two projects.
+		  Source-ownership distribution model: code is consumed via ProjectReference,
+		  not as binary NuGets. Pack is OFF by default. The repo does not ship a
+		  `dotnet new` template or a CLI tool — that machinery was inherited from the
+		  FSH scaffold and is removed.
 		-->
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>

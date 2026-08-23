@@ -1,7 +1,7 @@
-using FluentValidation;
-using FSH.Modules.Identity.Contracts.v1.Sessions.GetTenantSessions;
+﻿using FluentValidation;
+using DreamTeam.Modules.Identity.Contracts.v1.Sessions.GetTenantSessions;
 
-namespace FSH.Modules.Identity.Features.v1.Sessions.GetTenantSessions;
+namespace DreamTeam.Modules.Identity.Features.v1.Sessions.GetTenantSessions;
 
 public sealed class GetTenantSessionsValidator : AbstractValidator<GetTenantSessionsQuery>
 {

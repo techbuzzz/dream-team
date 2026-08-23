@@ -1,13 +1,13 @@
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Files.Contracts;
-using FSH.Modules.Files.Contracts.v1.Commands;
-using FSH.Modules.Files.Data;
-using FSH.Modules.Files.Services;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Files.Contracts;
+using DreamTeam.Modules.Files.Contracts.v1.Commands;
+using DreamTeam.Modules.Files.Data;
+using DreamTeam.Modules.Files.Services;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSH.Modules.Files.Features.v1.DeleteFile;
+namespace DreamTeam.Modules.Files.Features.v1.DeleteFile;
 
 public sealed class DeleteFileCommandHandler(
     FilesDbContext db,

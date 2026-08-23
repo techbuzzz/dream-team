@@ -1,6 +1,6 @@
-using FSH.Framework.Web.Idempotency;
-using FSH.Framework.Web.RateLimiting;
-using FSH.Framework.Web.Security;
+﻿using DreamTeam.Framework.Web.Idempotency;
+using DreamTeam.Framework.Web.RateLimiting;
+using DreamTeam.Framework.Web.Security;
 
 namespace Framework.Tests.Web;
 

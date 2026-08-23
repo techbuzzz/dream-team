@@ -1,9 +1,9 @@
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Shared.Persistence;
-using FSH.Modules.Multitenancy.Contracts.Dtos;
-using FSH.Modules.Multitenancy.Contracts.v1.GetTenants;
+﻿using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Persistence;
+using DreamTeam.Modules.Multitenancy.Contracts.Dtos;
+using DreamTeam.Modules.Multitenancy.Contracts.v1.GetTenants;
 
-namespace FSH.Modules.Multitenancy.Contracts;
+namespace DreamTeam.Modules.Multitenancy.Contracts;
 
 public interface ITenantService
 {

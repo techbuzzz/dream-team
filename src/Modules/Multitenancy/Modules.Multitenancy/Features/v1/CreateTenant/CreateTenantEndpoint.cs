@@ -1,15 +1,15 @@
-using FSH.Framework.Shared.Identity.Authorization;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Modules.Multitenancy.Contracts.Authorization;
-using FSH.Framework.Web.Idempotency;
-using FSH.Modules.Multitenancy.Contracts.v1.CreateTenant;
+﻿using DreamTeam.Framework.Shared.Identity.Authorization;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Modules.Multitenancy.Contracts.Authorization;
+using DreamTeam.Framework.Web.Idempotency;
+using DreamTeam.Modules.Multitenancy.Contracts.v1.CreateTenant;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace FSH.Modules.Multitenancy.Features.v1.CreateTenant;
+namespace DreamTeam.Modules.Multitenancy.Features.v1.CreateTenant;
 
 public static class CreateTenantEndpoint
 {

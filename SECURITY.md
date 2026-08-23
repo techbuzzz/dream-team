@@ -2,13 +2,13 @@
 
 ## Supported versions
 
-This is a starter kit. Only the current `main` branch receives security fixes from upstream. Forks, downstream projects, and tagged releases are owned by their maintainers — pull fixes in on your own cadence.
+DreamTeam is in active development. Only the current `main` branch receives security fixes.
 
 ## Reporting a vulnerability
 
 **Do not open a public issue.** Use GitHub's private vulnerability reporting:
 
-<https://github.com/fullstackhero/dotnet-starter-kit/security/advisories/new>
+<https://github.com/victorbuzin/dream-team/security/advisories/new>
 
 Please include:
 
@@ -27,10 +27,10 @@ Fixes ship as a patched commit on `main` plus a GitHub Security Advisory. Report
 
 ## Scope
 
-In scope: `src/` (BuildingBlocks, Modules, Host), default `appsettings.*.json`, the `FullStackHero.CLI`, and the `clients/` apps.
+In scope: `src/` (BuildingBlocks, Modules, Host), `infra/`, `clients/`, and default `appsettings.*.json`.
 
 Out of scope: third-party NuGet/npm packages (report upstream), the docs site, and issues in downstream forks (contact that fork's maintainer).
 
-## Production hardening
+## Production hardening (before deploying a fork)
 
-This kit ships with development-friendly defaults. Before deploying a fork, rotate JWT signing keys and seeded passwords, lock CORS, set strong Hangfire dashboard credentials, and persist DataProtection keys to a shared store for multi-instance hosting.
+This scaffold ships with development-friendly defaults. Before deploying, rotate JWT signing keys, rotate the seeded demo password, lock CORS, set strong Hangfire dashboard credentials, and persist DataProtection keys to a shared store for multi-instance hosting. See `infra/README.md` for the production-readiness checklist.

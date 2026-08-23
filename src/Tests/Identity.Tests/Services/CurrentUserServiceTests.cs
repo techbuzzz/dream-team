@@ -1,6 +1,6 @@
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Shared.Constants;
-using FSH.Modules.Identity.Services;
+﻿using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Shared.Constants;
+using DreamTeam.Modules.Identity.Services;
 using System.Security.Claims;
 
 namespace Identity.Tests.Services;

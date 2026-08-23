@@ -1,7 +1,7 @@
-using FluentValidation;
-using FSH.Modules.Identity.Contracts.v1.Groups.AddUsersToGroup;
+﻿using FluentValidation;
+using DreamTeam.Modules.Identity.Contracts.v1.Groups.AddUsersToGroup;
 
-namespace FSH.Modules.Identity.Features.v1.Groups.AddUsersToGroup;
+namespace DreamTeam.Modules.Identity.Features.v1.Groups.AddUsersToGroup;
 
 public sealed class AddUsersToGroupCommandValidator : AbstractValidator<AddUsersToGroupCommand>
 {

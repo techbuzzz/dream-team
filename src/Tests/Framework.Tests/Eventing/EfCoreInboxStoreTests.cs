@@ -1,4 +1,4 @@
-using FSH.Framework.Eventing.Inbox;
+﻿using DreamTeam.Framework.Eventing.Inbox;
 using Shouldly;
 using Xunit;
 

@@ -1,14 +1,14 @@
-using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Modules.Multitenancy.Contracts.Authorization;
-using FSH.Modules.Multitenancy.Contracts.Dtos;
-using FSH.Modules.Multitenancy.Contracts.v1.GetTenantMigrations;
-using FSH.Modules.Multitenancy.Data;
+﻿using Finbuckle.MultiTenant.Abstractions;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Modules.Multitenancy.Contracts.Authorization;
+using DreamTeam.Modules.Multitenancy.Contracts.Dtos;
+using DreamTeam.Modules.Multitenancy.Contracts.v1.GetTenantMigrations;
+using DreamTeam.Modules.Multitenancy.Data;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FSH.Modules.Multitenancy.Features.v1.GetTenantMigrations;
+namespace DreamTeam.Modules.Multitenancy.Features.v1.GetTenantMigrations;
 
 public sealed class GetTenantMigrationsQueryHandler
     : IQueryHandler<GetTenantMigrationsQuery, IReadOnlyCollection<TenantMigrationStatusDto>>

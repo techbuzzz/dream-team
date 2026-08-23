@@ -1,10 +1,10 @@
-using FSH.Framework.Shared.Identity.Authorization;
-using FSH.Framework.Shared.Identity.Claims;
-using FSH.Modules.Identity.Contracts.Services;
+﻿using DreamTeam.Framework.Shared.Identity.Authorization;
+using DreamTeam.Framework.Shared.Identity.Claims;
+using DreamTeam.Modules.Identity.Contracts.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 
-namespace FSH.Modules.Identity.Authorization;
+namespace DreamTeam.Modules.Identity.Authorization;
 
 public sealed class RequiredPermissionAuthorizationHandler(IUserService userService) : AuthorizationHandler<PermissionAuthorizationRequirement>
 {
@@ -21,7 +21,7 @@ public sealed class RequiredPermissionAuthorizationHandler(IUserService userServ
             _ => null,
         };
 
-        // IMPORTANT: resolve IRequiredPermissionMetadata from FSH.Framework.Shared.Identity.Authorization (the
+        // IMPORTANT: resolve IRequiredPermissionMetadata from DreamTeam.Framework.Shared.Identity.Authorization (the
         // interface the attribute implements) — a duplicate would silently fail-open every .RequirePermission().
         var requiredPermissions = endpoint?.Metadata.GetMetadata<IRequiredPermissionMetadata>()?.RequiredPermissions;
         if (requiredPermissions == null)

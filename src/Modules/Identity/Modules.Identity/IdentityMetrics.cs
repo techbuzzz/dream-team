@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics.Metrics;
 
-namespace FSH.Modules.Identity;
+namespace DreamTeam.Modules.Identity;
 
 public sealed class IdentityMetrics : IDisposable
 {
-    public const string MeterName = "FSH.Modules.Identity";
+    public const string MeterName = "DreamTeam.Modules.Identity";
     private readonly Counter<long> _tokensGenerated;
     private readonly Meter _meter;
 

@@ -1,5 +1,5 @@
-using FSH.Modules.Files.Authorization;
-using FSH.Modules.Files.Contracts;
+﻿using DreamTeam.Modules.Files.Authorization;
+using DreamTeam.Modules.Files.Contracts;
 
 namespace Files.Tests.Authorization;
 

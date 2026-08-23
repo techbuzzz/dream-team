@@ -1,8 +1,8 @@
-using FSH.Framework.Shared.Persistence;
-using FSH.Modules.Identity.Contracts.DTOs;
+﻿using DreamTeam.Framework.Shared.Persistence;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
 using Mediator;
 
-namespace FSH.Modules.Identity.Contracts.v1.Users.SearchUsers;
+namespace DreamTeam.Modules.Identity.Contracts.v1.Users.SearchUsers;
 
 public sealed class SearchUsersQuery : IPagedQuery, IQuery<PagedResponse<UserDto>>
 {

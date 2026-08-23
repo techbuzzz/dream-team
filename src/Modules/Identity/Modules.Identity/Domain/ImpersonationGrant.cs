@@ -1,6 +1,6 @@
-using FSH.Framework.Core.Domain;
+﻿using DreamTeam.Framework.Core.Domain;
 
-namespace FSH.Modules.Identity.Domain;
+namespace DreamTeam.Modules.Identity.Domain;
 
 /// <summary>
 /// Server-side record of a single impersonation session. Created on Start, mutated

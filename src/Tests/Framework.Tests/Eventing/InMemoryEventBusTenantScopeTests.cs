@@ -1,5 +1,5 @@
-using FSH.Framework.Eventing.Abstractions;
-using FSH.Framework.Eventing.InMemory;
+﻿using DreamTeam.Framework.Eventing.Abstractions;
+using DreamTeam.Framework.Eventing.InMemory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
 

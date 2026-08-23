@@ -1,4 +1,4 @@
-namespace FSH.Modules.Files;
+﻿namespace DreamTeam.Modules.Files;
 
 /// <summary>
 /// Configuration for the Files module. Bound from the <c>Files</c> section of appsettings.json.

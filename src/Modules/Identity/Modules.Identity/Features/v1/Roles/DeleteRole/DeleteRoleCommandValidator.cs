@@ -1,7 +1,7 @@
-using FluentValidation;
-using FSH.Modules.Identity.Contracts.v1.Roles.DeleteRole;
+﻿using FluentValidation;
+using DreamTeam.Modules.Identity.Contracts.v1.Roles.DeleteRole;
 
-namespace FSH.Modules.Identity.Features.v1.Roles.DeleteRole;
+namespace DreamTeam.Modules.Identity.Features.v1.Roles.DeleteRole;
 
 public sealed class DeleteRoleCommandValidator : AbstractValidator<DeleteRoleCommand>
 {

@@ -1,9 +1,9 @@
-using FSH.Framework.Shared.Persistence;
+﻿using DreamTeam.Framework.Shared.Persistence;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace FSH.Framework.Persistence;
+namespace DreamTeam.Framework.Persistence;
 
 /// <summary>
 /// Hosted service that logs database configuration options during application startup.
@@ -37,7 +37,7 @@ public sealed class DatabaseOptionsStartupLogger : IHostedService
         if (_logger.IsEnabled(LogLevel.Information))
         {
             _logger.LogInformation("current db provider: {Provider}", options.Provider);
-            _logger.LogInformation("for docs: https://www.fullstackhero.net");
+            _logger.LogInformation("for docs: https://github.com/victorbuzin/dream-team");
             _logger.LogInformation("sponsor: https://opencollective.com/fullstackhero");
         }
         return Task.CompletedTask;

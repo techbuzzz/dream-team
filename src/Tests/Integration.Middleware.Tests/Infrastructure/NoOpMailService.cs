@@ -1,5 +1,5 @@
-using FSH.Framework.Mailing;
-using FSH.Framework.Mailing.Services;
+﻿using DreamTeam.Framework.Mailing;
+using DreamTeam.Framework.Mailing.Services;
 
 namespace Integration.Middleware.Tests.Infrastructure;
 

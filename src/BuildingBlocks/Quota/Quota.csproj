@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<RootNamespace>FSH.Framework.Quota</RootNamespace>
-		<AssemblyName>FSH.Framework.Quota</AssemblyName>
+		<RootNamespace>DreamTeam.Framework.Quota</RootNamespace>
+		<AssemblyName>DreamTeam.Framework.Quota</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>

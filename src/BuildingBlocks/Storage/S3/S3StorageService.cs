@@ -1,14 +1,14 @@
-using Amazon.S3;
+﻿using Amazon.S3;
 using Amazon.S3.Model;
-using FSH.Framework.Shared.Storage;
-using FSH.Framework.Storage.DTOs;
-using FSH.Framework.Storage.Services;
+using DreamTeam.Framework.Shared.Storage;
+using DreamTeam.Framework.Storage.DTOs;
+using DreamTeam.Framework.Storage.Services;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Text.RegularExpressions;
 
-namespace FSH.Framework.Storage.S3;
+namespace DreamTeam.Framework.Storage.S3;
 
 internal sealed partial class S3StorageService : IStorageService
 {

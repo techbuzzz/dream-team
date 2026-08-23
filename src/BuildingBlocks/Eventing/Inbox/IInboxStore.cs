@@ -1,4 +1,4 @@
-namespace FSH.Framework.Eventing.Inbox;
+﻿namespace DreamTeam.Framework.Eventing.Inbox;
 
 /// <summary>
 /// Abstraction for idempotent consumer tracking.

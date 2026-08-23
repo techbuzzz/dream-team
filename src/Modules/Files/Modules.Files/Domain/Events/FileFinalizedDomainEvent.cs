@@ -1,7 +1,7 @@
-using FSH.Framework.Core.Domain;
-using FSH.Modules.Files.Contracts.v1.DTOs;
+﻿using DreamTeam.Framework.Core.Domain;
+using DreamTeam.Modules.Files.Contracts.v1.DTOs;
 
-namespace FSH.Modules.Files.Domain.Events;
+namespace DreamTeam.Modules.Files.Domain.Events;
 
 public sealed record FileFinalizedDomainEvent(
     Guid FileAssetId,

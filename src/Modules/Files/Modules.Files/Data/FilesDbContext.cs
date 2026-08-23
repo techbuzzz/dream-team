@@ -1,13 +1,13 @@
-using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Persistence.Context;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Shared.Persistence;
-using FSH.Modules.Files.Domain;
+﻿using Finbuckle.MultiTenant.Abstractions;
+using DreamTeam.Framework.Persistence.Context;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Persistence;
+using DreamTeam.Modules.Files.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
-namespace FSH.Modules.Files.Data;
+namespace DreamTeam.Modules.Files.Data;
 
 public sealed class FilesDbContext : BaseDbContext
 {

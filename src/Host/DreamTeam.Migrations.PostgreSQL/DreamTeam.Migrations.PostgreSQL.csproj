@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>DreamTeam.Migrations.PostgreSQL</RootNamespace>
+		<AssemblyName>DreamTeam.Migrations.PostgreSQL</AssemblyName>
+		<IsPackable>false</IsPackable>
+		<!-- Suppress analyzer warnings for EF Core auto-generated migration files -->
+		<NoWarn>$(NoWarn);CA1062;CA1861</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\BuildingBlocks\Persistence\Persistence.csproj" />
+	  <ProjectReference Include="..\..\Modules\Identity\Modules.Identity\Modules.Identity.csproj" />
+	  <ProjectReference Include="..\..\Modules\Multitenancy\Modules.Multitenancy\Modules.Multitenancy.csproj" />
+	  <ProjectReference Include="..\..\Modules\Files\Modules.Files\Modules.Files.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="MultiTenancy\" />
+	  <Folder Include="Files\" />
+	</ItemGroup>
+
+</Project>

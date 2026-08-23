@@ -1,4 +1,4 @@
-namespace FSH.Modules.Multitenancy.Contracts.Dtos;
+﻿namespace DreamTeam.Modules.Multitenancy.Contracts.Dtos;
 
 public sealed class TenantStatusDto
 {

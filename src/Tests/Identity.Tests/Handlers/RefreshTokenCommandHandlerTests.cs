@@ -1,17 +1,17 @@
-using AutoFixture;
-using FSH.Framework.Core.Context;
-using FSH.Modules.Auditing.Contracts;
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Tokens.RefreshToken;
-using FSH.Modules.Identity.Features.v1.Tokens.RefreshToken;
+﻿using AutoFixture;
+using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Shared.Identity;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Tokens.RefreshToken;
+using DreamTeam.Modules.Identity.Features.v1.Tokens.RefreshToken;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using NSubstitute;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using FSH.Framework.Core.Exceptions;
+using DreamTeam.Framework.Core.Exceptions;
 
 namespace Identity.Tests.Handlers;
 

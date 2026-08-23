@@ -1,38 +1,31 @@
-using FSH.Framework.Eventing.Abstractions;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Modules.Billing.Contracts.v1.Plans;
-using FSH.Modules.Multitenancy.Contracts;
-using FSH.Modules.Multitenancy.Contracts.Events;
-using FSH.Modules.Multitenancy.Contracts.v1.CreateTenant;
-using FSH.Modules.Multitenancy.Provisioning;
+﻿using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Modules.Multitenancy.Contracts;
+using DreamTeam.Modules.Multitenancy.Contracts.v1.CreateTenant;
+using DreamTeam.Modules.Multitenancy.Provisioning;
 using Mediator;
-using Microsoft.Extensions.Options;
 
-namespace FSH.Modules.Multitenancy.Features.v1.CreateTenant;
+namespace DreamTeam.Modules.Multitenancy.Features.v1.CreateTenant;
 
 public sealed class CreateTenantCommandHandler(
     ITenantService tenantService,
     ITenantProvisioningService provisioningService,
     ITenantInitialPasswordBuffer passwordBuffer,
-    IMediator mediator,
-    IOutboxWriter outbox,
-    IOptions<TenantBillingOptions> billingOptions,
     TimeProvider timeProvider)
     : ICommandHandler<CreateTenantCommand, CreateTenantCommandResponse>
 {
+    // MVP-1: default tenant validity is 12 months from creation. The FDS calls for
+    // a billing integration to set the term via the Billing module's plan; that
+    // integration is removed with the FSH Billing module and will be reintroduced
+    // in v4 (or earlier if a DreamTeam billing surface is added).
+    private const int DefaultTermMonths = 12;
+    private const string DefaultPlanKey = "default";
+
     public async ValueTask<CreateTenantCommandResponse> Handle(CreateTenantCommand command, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(command);
 
-        // Resolve the plan (falls back to trial) and read its term to set the tenant validity
-        // window. A bad plan key throws NotFound (400) before any tenant is created.
-        var planKey = string.IsNullOrWhiteSpace(command.PlanKey)
-            ? billingOptions.Value.DefaultPlanKey
-            : command.PlanKey!;
-        var term = await mediator.Send(new GetPlanTermQuery(planKey), cancellationToken).ConfigureAwait(false);
-
         var periodStart = timeProvider.GetUtcNow().UtcDateTime;
-        var periodEnd = periodStart.AddMonths(term.TermMonths);
+        var periodEnd = periodStart.AddMonths(DefaultTermMonths);
 
         var tenantId = await tenantService.CreateAsync(
             command.Id,
@@ -40,7 +33,7 @@ public sealed class CreateTenantCommandHandler(
             command.ConnectionString,
             command.AdminEmail,
             command.Issuer,
-            term.Key,
+            DefaultPlanKey,
             periodEnd,
             cancellationToken).ConfigureAwait(false);
 
@@ -49,19 +42,6 @@ public sealed class CreateTenantCommandHandler(
         passwordBuffer.Store(tenantId, command.AdminPassword);
 
         var provisioning = await provisioningService.StartAsync(tenantId, cancellationToken).ConfigureAwait(false);
-
-        // Drive the billing side-effects (subscription + term invoice) via an integration event so
-        // Multitenancy stays decoupled from the Billing runtime.
-        await outbox.AddAsync(new TenantSubscribedIntegrationEvent(
-            Id: Guid.NewGuid(),
-            OccurredOnUtc: periodStart,
-            TenantId: tenantId,
-            CorrelationId: provisioning.CorrelationId,
-            Source: "Multitenancy",
-            PlanId: term.PlanId,
-            PlanKey: term.Key,
-            PeriodStartUtc: periodStart,
-            PeriodEndUtc: periodEnd), cancellationToken).ConfigureAwait(false);
 
         return new CreateTenantCommandResponse(
             tenantId,

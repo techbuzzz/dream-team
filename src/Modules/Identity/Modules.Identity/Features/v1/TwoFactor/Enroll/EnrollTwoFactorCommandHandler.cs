@@ -1,23 +1,23 @@
-using System.Text.Encodings.Web;
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.v1.TwoFactor;
-using FSH.Modules.Identity.Domain;
+﻿using System.Text.Encodings.Web;
+using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.v1.TwoFactor;
+using DreamTeam.Modules.Identity.Domain;
 using Mediator;
 using Microsoft.AspNetCore.Identity;
 
-namespace FSH.Modules.Identity.Features.v1.TwoFactor.Enroll;
+namespace DreamTeam.Modules.Identity.Features.v1.TwoFactor.Enroll;
 
 public sealed class EnrollTwoFactorCommandHandler
     : ICommandHandler<EnrollTwoFactorCommand, TwoFactorEnrollmentResponse>
 {
-    private const string IssuerName = "FullStackHero";
+    private const string IssuerName = "DreamTeam";
 
-    private readonly UserManager<FshUser> _userManager;
+    private readonly UserManager<DreamTeamUser> _userManager;
     private readonly ICurrentUser _currentUser;
 
-    public EnrollTwoFactorCommandHandler(UserManager<FshUser> userManager, ICurrentUser currentUser)
+    public EnrollTwoFactorCommandHandler(UserManager<DreamTeamUser> userManager, ICurrentUser currentUser)
     {
         _userManager = userManager;
         _currentUser = currentUser;

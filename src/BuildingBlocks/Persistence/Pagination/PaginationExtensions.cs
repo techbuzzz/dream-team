@@ -1,8 +1,8 @@
-using FSH.Framework.Shared.Persistence;
+﻿using DreamTeam.Framework.Shared.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace FSH.Framework.Persistence;
+namespace DreamTeam.Framework.Persistence;
 
 /// <summary>
 /// Extension methods for converting IQueryable results to paginated responses.

@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 
-namespace FSH.Framework.Web.Security;
+namespace DreamTeam.Framework.Web.Security;
 
 public static class SecurityExtensions
 {

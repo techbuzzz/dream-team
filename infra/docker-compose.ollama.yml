@@ -1,0 +1,48 @@
+# DreamTeam — optional Ollama service for the AI digest (MVP-2).
+#
+# Stack the ollama service on top of the base infra:
+#   docker compose -f infra/docker-compose.yml -f infra/docker-compose.ollama.yml up -d
+#
+# First-time startup pulls llama3.1:8b-instruct (~4.7 GB) into the named volume.
+# In prod, swap the ollama service for a vLLM deployment or an OpenAI-compatible
+# cloud provider; the backend's `IDigestLlm` interface is the seam.
+
+name: dreamteam
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: dreamteam-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - dreamteam-ollama-data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # One-shot pull on first start. Sleeps so Ollama has a chance to come up.
+  ollama-pull:
+    image: curlimages/curl:latest
+    container_name: dreamteam-ollama-pull
+    depends_on:
+      ollama:
+        condition: service_started
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        sleep 5
+        echo "Pulling llama3.1:8b-instruct (~4.7 GB)..."
+        # Use the host's port to reach the ollama container
+        for i in $$(seq 1 30); do
+          if curl -sf http://ollama:11434/api/tags > /dev/null; then break; fi
+          sleep 2
+        done
+        curl -X POST http://ollama:11434/api/pull -d '{"name":"llama3.1:8b-instruct"}'
+    restart: "no"
+
+volumes:
+  dreamteam-ollama-data:

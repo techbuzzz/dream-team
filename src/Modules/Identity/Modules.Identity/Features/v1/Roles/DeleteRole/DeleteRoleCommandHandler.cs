@@ -1,8 +1,8 @@
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Roles.DeleteRole;
+﻿using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Roles.DeleteRole;
 using Mediator;
 
-namespace FSH.Modules.Identity.Features.v1.Roles.DeleteRole;
+namespace DreamTeam.Modules.Identity.Features.v1.Roles.DeleteRole;
 
 public sealed class DeleteRoleCommandHandler : ICommandHandler<DeleteRoleCommand, Unit>
 {

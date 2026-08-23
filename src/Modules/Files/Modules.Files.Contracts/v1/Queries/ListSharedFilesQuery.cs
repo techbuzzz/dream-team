@@ -1,8 +1,8 @@
-using System.Collections.ObjectModel;
-using FSH.Modules.Files.Contracts.v1.DTOs;
+﻿using System.Collections.ObjectModel;
+using DreamTeam.Modules.Files.Contracts.v1.DTOs;
 using Mediator;
 
-namespace FSH.Modules.Files.Contracts.v1.Queries;
+namespace DreamTeam.Modules.Files.Contracts.v1.Queries;
 
 /// <summary>
 /// List files marked Public and tagged with the built-in tenant-wide owner types

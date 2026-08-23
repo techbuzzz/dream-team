@@ -1,9 +1,9 @@
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Roles.GetRoleWithPermissions;
+﻿using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Roles.GetRoleWithPermissions;
 using Mediator;
 
-namespace FSH.Modules.Identity.Features.v1.Roles.GetRoleWithPermissions;
+namespace DreamTeam.Modules.Identity.Features.v1.Roles.GetRoleWithPermissions;
 
 public sealed class GetRoleWithPermissionsQueryHandler : IQueryHandler<GetRoleWithPermissionsQuery, RoleDto>
 {

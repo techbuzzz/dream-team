@@ -1,4 +1,4 @@
-﻿namespace FSH.Framework.Core.Domain;
+﻿namespace DreamTeam.Framework.Core.Domain;
 
 /// <summary>
 /// Associates an entity with a tenant.

@@ -1,4 +1,4 @@
-namespace FSH.Framework.Eventing.Abstractions;
+﻿namespace DreamTeam.Framework.Eventing.Abstractions;
 
 /// <summary>
 /// Handles a single integration event type.

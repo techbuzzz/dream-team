@@ -1,4 +1,4 @@
-namespace FSH.Framework.Eventing.Abstractions;
+﻿namespace DreamTeam.Framework.Eventing.Abstractions;
 
 /// <summary>
 /// Installs the ambient tenant context — including the dedicated connection string — for the

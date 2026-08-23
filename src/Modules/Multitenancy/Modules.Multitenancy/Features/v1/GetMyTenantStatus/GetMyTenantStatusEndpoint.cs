@@ -1,12 +1,12 @@
-using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Modules.Multitenancy.Contracts;
-using FSH.Modules.Multitenancy.Contracts.Dtos;
+﻿using Finbuckle.MultiTenant.Abstractions;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Modules.Multitenancy.Contracts;
+using DreamTeam.Modules.Multitenancy.Contracts.Dtos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace FSH.Modules.Multitenancy.Features.v1.GetMyTenantStatus;
+namespace DreamTeam.Modules.Multitenancy.Features.v1.GetMyTenantStatus;
 
 public static class GetMyTenantStatusEndpoint
 {

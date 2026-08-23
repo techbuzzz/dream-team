@@ -1,6 +1,6 @@
-using FSH.Framework.Shared.Quota;
+﻿using DreamTeam.Framework.Shared.Quota;
 
-namespace FSH.Framework.Quota;
+namespace DreamTeam.Framework.Quota;
 
 /// <summary>
 /// Outcome of a quota check. <see cref="Allowed"/> is false when the requested amount would

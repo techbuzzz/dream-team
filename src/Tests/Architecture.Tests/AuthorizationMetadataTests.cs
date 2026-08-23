@@ -1,4 +1,4 @@
-using FSH.Framework.Shared.Identity.Authorization;
+﻿using DreamTeam.Framework.Shared.Identity.Authorization;
 using Shouldly;
 using System.Reflection;
 using Xunit;
@@ -15,12 +15,12 @@ namespace Architecture.Tests;
 public class AuthorizationMetadataTests
 {
     private const string AttributeName = "RequiredPermissionAttribute";
-    private const string ExpectedNamespace = "FSH.Framework.Shared.Identity.Authorization";
+    private const string ExpectedNamespace = "DreamTeam.Framework.Shared.Identity.Authorization";
 
     [Fact]
     public void RequiredPermissionAttribute_Should_Exist_Exactly_Once_Across_All_FSH_Assemblies()
     {
-        var matches = GetAllFshAssemblies()
+        var matches = GetAllDreamTeamAssemblies()
             .SelectMany(GetLoadableTypes)
             .Where(t => string.Equals(t.Name, AttributeName, StringComparison.Ordinal))
             .ToArray();
@@ -55,7 +55,7 @@ public class AuthorizationMetadataTests
     /// BuildingBlocks, all modules (including Contracts), and host assemblies — not just the
     /// runtime module assemblies that ModuleAssemblyDiscovery returns.
     /// </summary>
-    private static Assembly[] GetAllFshAssemblies()
+    private static Assembly[] GetAllDreamTeamAssemblies()
     {
         string baseDir = AppContext.BaseDirectory;
 

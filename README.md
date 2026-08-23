@@ -1,193 +1,129 @@
-<div align="center">
+# DreamTeam
 
-# ⚡ FullStackHero .NET 10 Starter Kit
+> **Form-first rituals platform для ТимЛида / ТехЛида / СквадЛида.**
+> Сделал форму один раз — система сама рассылает её команде по расписанию, агрегирует ответы, рисует дашборд и формирует weekly digest через локальный LLM.
 
-**A production-ready, modular .NET 10 monolith + two React 19 apps — the fastest way to ship a multi-tenant SaaS.**
+## Что это
 
-Identity, multitenancy, billing, auditing, webhooks, files, chat, real-time, caching, jobs, storage, OpenAPI and OpenTelemetry — already wired, fully tested, and **100% yours as source** (no black-box packages).
+DreamTeam — это «армейский нож» для тимлида. В основе лежит **form engine** как runtime-среда: 1-1, daily, retro, OKR check-in, skill wheel review — это не отдельные страницы, которые разработчик пишет месяцами, а **preset-формы**, которые лид копирует и настраивает под себя за минуты.
 
-[![fsh CLI](https://img.shields.io/nuget/v/FullStackHero.CLI?label=fsh%20cli&color=512BD4)](https://www.nuget.org/packages/FullStackHero.CLI)
-[![template](https://img.shields.io/nuget/v/FullStackHero.NET.StarterKit?label=dotnet%20new%20fsh&color=512BD4)](https://www.nuget.org/packages/FullStackHero.NET.StarterKit)
-[![.NET 10](https://img.shields.io/badge/.NET-10-512BD4)](https://dotnet.microsoft.com/download)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Docs](https://img.shields.io/badge/docs-fullstackhero.net-2563eb)](https://fullstackhero.net)
-[![Stars](https://img.shields.io/github/stars/fullstackhero/dotnet-starter-kit?style=social)](https://github.com/fullstackhero/dotnet-starter-kit)
+Поверх form engine — три модуля:
+- **Ritual Scheduler** — расписание с cron + timezone + audience, авто-инстансы
+- **Notification Pipeline** — email + in-app + retry, templates в БД
+- **Team Dashboard** — 7 виджетов поверх submissions
+- **AI Digest** (киллер-фича) — weekly summary через self-hosted LLM
 
-### [📖 Documentation](https://fullstackhero.net) · [🚀 Get Started](https://fullstackhero.net/docs/getting-started/introduction/) · [🧩 Modules](https://fullstackhero.net/docs/modules/) · [🏗️ Architecture](https://fullstackhero.net/docs/architecture/) · [📦 Changelog](https://fullstackhero.net/docs/changelog/)
+## Стек
 
-</div>
-
----
-
-## Why FullStackHero?
-
-Most starter kits give you a login page and a TODO list. This one gives you the **boring, hard parts already done right** — multitenancy, auth, billing, auditing, background jobs, real-time, file storage, observability — across a clean **Vertical Slice** backend *and* two polished **React 19** front-ends, orchestrated locally with one command via **.NET Aspire**, and deployable to Docker or AWS.
-
-You scaffold with the `fsh` CLI and get the **complete, detached source** — every BuildingBlock, Module, and Host project with real project references. No hidden NuGet runtime, nothing to "eject" later. Own it, read it, change it.
-
-```bash
-dotnet tool install -g FullStackHero.CLI
-fsh new MyApp
-cd MyApp
-dotnet run --project src/Host/MyApp.AppHost   # 🎉 whole stack up: API + 2 React apps + Postgres + Valkey + MinIO
-```
-
-> Then open the **Aspire dashboard** at `https://localhost:15888`, the **API + Scalar docs** at `https://localhost:7030/scalar`, the **admin** app at `http://localhost:5173`, and the **dashboard** app at `http://localhost:5174`. Sign in with a seeded demo account (e.g. `admin@acme.com` / `Password123!`).
-
----
-
-## ✨ What's inside
-
-### Backend — modular monolith, vertical slices
-- **.NET 10 · C# latest · Minimal APIs · [Mediator](https://github.com/martinothamar/Mediator) (source-generated CQRS) · FluentValidation**
-- **EF Core 10** on **PostgreSQL** (Npgsql), with domain events, the specification pattern, soft-delete + audit interceptors, and tenant-isolated `DbContext`s.
-- **JWT auth + ASP.NET Identity** — issuance/refresh, roles & fine-grained permissions, rate-limited auth, password policies, sessions, impersonation.
-- **Multitenancy** via [Finbuckle](https://www.finbuckle.com/) — tenant resolution, provisioning, per-tenant migrations & seeding, isolation enforced by default.
-- **Cross-cutting**: HybridCache on **Valkey** (Redis-compatible), **Hangfire** jobs, presigned S3/**MinIO** storage, mailing, idempotency, quotas, rate limiting, API versioning, RFC 9457 `ProblemDetails`.
-- **Observability**: Serilog structured logging + **OpenTelemetry** traces/metrics/logs, health probes, security/exception auditing.
-- **Docs**: **OpenAPI** + the **Scalar** API reference UI.
-
-### Front-ends — two React 19 apps
-- **`clients/admin`** (operator console) and **`clients/dashboard`** (tenant app): **React 19 + Vite 7 + TypeScript**, **TanStack Query v5**, **React Router 7**, **Radix + Tailwind v4** (shadcn-style), real-time via **SignalR**/**SSE**.
-- Runtime config (`/config.json`, no rebuild per environment), hand-written typed API client, and **Playwright** E2E suites.
-
-### Modules (bounded contexts)
-**Identity · Multitenancy · Billing · Catalog · Tickets · Chat · Files · Webhooks · Auditing · Notifications** — each a runtime project plus a `.Contracts` project (its only public surface), boundaries enforced by architecture tests.
-
-### Cloud-native & DevOps
-- **.NET Aspire** orchestrates the entire stack locally with one command (Postgres + pgAdmin, Valkey + RedisInsight, MinIO, migrator, demo-seeder, API, and both React apps).
-- **Docker Compose** production stack (`deploy/docker`) and **Terraform** for AWS (`deploy/terraform`); API image published to GHCR.
-- A one-shot **DbMigrator** (migrations are never run at API startup), and the **`fsh` CLI** + `dotnet new` template for distribution.
-
-### Quality
-**1,600+ backend tests** (xUnit, Shouldly, NSubstitute, AutoFixture, **NetArchTest** boundaries, **Testcontainers** integration) and **200+ front-end E2E tests** (Playwright). Path-scoped CI for backend and frontend; warnings-as-errors.
-
----
-
-## 🚀 Getting started
-
-### Option 1 — the `fsh` CLI (recommended)
-
-```bash
-dotnet tool install -g FullStackHero.CLI
-fsh doctor          # verify your environment (SDK, Docker, Aspire, ports)
-fsh new MyApp       # interactive wizard
-```
-
-The wizard asks what to include (Aspire AppHost, the React apps). Non-interactive:
-
-```bash
-fsh new MyApp --non-interactive          # full stack, Postgres
-fsh new MyApp --no-frontend              # backend-only
-fsh new MyApp --no-aspire --no-frontend  # minimal API + migrator
-```
-
-### Option 2 — the `dotnet new` template
-
-```bash
-dotnet new install FullStackHero.NET.StarterKit
-dotnet new fsh -n MyApp
-```
-
-### Option 3 — clone the repo
-
-```bash
-git clone https://github.com/fullstackhero/dotnet-starter-kit.git MyApp && cd MyApp
-dotnet run --project src/Host/FSH.Starter.AppHost
-```
-
-> **Prerequisites:** [.NET 10 SDK](https://dotnet.microsoft.com/download) · [Docker](https://www.docker.com/) (Postgres/Valkey/MinIO via Aspire) · [Node 20+](https://nodejs.org/) (for the React apps).
-
-**`fsh` commands:** `new` · `doctor` · `info` · `update` · `--version`. Full reference → [fullstackhero.net/docs/cli](https://fullstackhero.net/docs/cli/).
-
----
-
-## 🧱 Tech stack
-
-| Backend | | Frontend | |
-|---|---|---|---|
-| Runtime | .NET 10 / C# latest | Framework | React 19 + Vite 7 + TS 5 |
-| API | Minimal APIs + Mediator (CQRS) | Data | TanStack Query v5 |
-| Validation | FluentValidation | Routing | React Router 7 |
-| ORM / DB | EF Core 10 / PostgreSQL | UI | Radix + Tailwind v4 (shadcn) |
-| Auth | JWT + ASP.NET Identity | Realtime | SignalR · SSE |
-| Multitenancy | Finbuckle 10 | Tests | Playwright |
-| Cache / Jobs | Valkey · Hangfire | | |
-| Storage | S3 / MinIO (presigned) | **Infra** | |
-| Docs | OpenAPI + Scalar | Orchestration | .NET Aspire |
-| Observability | Serilog + OpenTelemetry | Deploy | Docker Compose · Terraform |
-| Testing | xUnit · Testcontainers · NetArchTest | | |
-
----
-
-## 🗺️ Repository layout
-
-| Path | What |
+| Слой | Технология |
 |---|---|
-| `src/BuildingBlocks/` | Shared framework libraries (Core, Persistence, Web, Caching, Eventing, Storage, Quota…) |
-| `src/Modules/{Name}/` | Bounded contexts — each with a runtime project + a `.Contracts` project (its public API) |
-| `src/Host/FSH.Starter.Api` | Composition-root Web API host |
-| `src/Host/FSH.Starter.AppHost` | .NET Aspire orchestrator (Postgres, Valkey, MinIO, migrator, API, both React apps) |
-| `src/Host/FSH.Starter.DbMigrator` | One-shot migrate/seed runner (DB is **not** migrated at API startup) |
-| `src/Tools/CLI` | The `fsh` CLI (Spectre.Console) |
-| `clients/admin`, `clients/dashboard` | The two React apps |
-| `deploy/` | Docker Compose, Terraform (AWS), Dokploy |
-| `src/Tests/` | Unit, Architecture (NetArchTest), Integration (Testcontainers) |
+| Backend | .NET 10 (LTS до 14.11.2028) + Minimal APIs + EF Core 10 |
+| Frontend | Nuxt 4 (стабилен с 16.07.2025) + Vue 3 + VeeValidate + Zod |
+| Database | PostgreSQL 16 + JSONB |
+| Auth | ASP.NET Core Identity + JWT + refresh rotation |
+| Scheduler | Hangfire |
+| Email | MailKit + FluentEmail |
+| Realtime | SSE (MVP) → SignalR + Redis (v4) |
+| Attachments | MinIO (S3-compatible) |
+| LLM | Ollama (llama3.1:8b) → vLLM (prod scale) |
+| Background jobs | Hangfire |
 
-Architecture deep-dive → [fullstackhero.net/docs/architecture](https://fullstackhero.net/docs/architecture/).
+## Структура репозитория
 
----
-
-## ☁️ Deploy
-
-**Single-host via Docker Compose:**
-
-```bash
-cd deploy/docker
-cp .env.example .env   # fsh new pre-generates this with strong secrets
-docker compose up -d --build
+```
+dreamteam/
+├── apps/
+│   ├── api/         # .NET 10 backend (Minimal APIs + EF Core)
+│   └── web/         # Nuxt 4 frontend
+├── packages/
+│   └── shared/      # Form DSL + Zod schemas (TS, для client+server)
+├── infra/
+│   ├── docker-compose.yml          # api + web + postgres + minio + mailhog
+│   ├── docker-compose.ollama.yml   # + Ollama (optional, для AI digest)
+│   └── Makefile
+└── docs/
+    ├── README.md           # ← вы здесь
+    ├── architecture.md     # v2: полная архитектура (form engine + rituals + notif + dashboard + digest)
+    ├── architecture-v1.md  # v1: только form engine (зафиксированная история)
+    ├── roadmap.md          # Спринтовое планирование, MVP-1..v4
+    └── processes.md        # Каталог пресетов процессов (1-1, Daily, Retro, Skill Wheel, OKR)
 ```
 
-**AWS via Terraform** (ECS Fargate + RDS + ElastiCache + S3/CloudFront) lives in `deploy/terraform`.
+## Документация
 
-Guides → [Local orchestration](https://fullstackhero.net/docs/deployment/aspire/) · [Docker](https://fullstackhero.net/docs/deployment/) · [AWS / Terraform](https://fullstackhero.net/docs/deployment/aws-terraform/) · [Database migrations](https://fullstackhero.net/docs/deployment/database-migrations/).
+- **[`docs/architecture.md`](docs/architecture.md)** — v2 архитектура (читай первым)
+- [`docs/architecture-v1.md`](docs/architecture-v1.md) — v1 form engine (исторический)
+- [`docs/roadmap.md`](docs/roadmap.md) — спринтовое планирование, MVP-cut, метрики
+- [`docs/processes.md`](docs/processes.md) — каталог пресетов
 
----
-
-## 🧪 Testing
+## Быстрый старт (когда код будет готов)
 
 ```bash
-dotnet test src/FSH.Starter.slnx        # backend: unit + architecture + Testcontainers integration
-cd clients/admin     && npm run test:e2e # Playwright (operator app)
-cd clients/dashboard && npm run test:e2e # Playwright (tenant app)
+# 1. Клонировать
+git clone <repo>
+cd dreamteam
+
+# 2. Запустить инфраструктуру
+cd infra
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+
+# 3. Запустить миграции + seed
+cd ../apps/api
+dotnet ef database update
+# seed создаёт 2 команды, 6 пользователей, дефолтные пресеты
+
+# 4. Запустить API
+dotnet run --project DreamTeam.Api
+# → http://localhost:3001
+
+# 5. В другом терминале — frontend
+cd ../web
+pnpm install
+pnpm dev
+# → http://localhost:3000
+
+# 6. (Опционально) AI digest через локальный LLM
+cd ../../infra
+docker compose -f docker-compose.ollama.yml up -d
+# Ollama тянет llama3.1:8b-instruct при первом старте
 ```
 
-> Integration tests require Docker (Testcontainers spins real Postgres). Architecture tests enforce module boundaries.
+## Архитектурные принципы
 
----
+1. **Form is data, not code** — форма = JSON, рендерер generic.
+2. **Snapshot-on-publish** — `ProcessInstance` всегда указывает на конкретную `FormVersion`.
+3. **Append-only submissions** — исправления = новые строки, никогда `UPDATE`.
+4. **Field registry** — новые типы полей через регистрацию компонента + схемы.
+5. **Preset-as-form** — 1-1, Daily, Retro, Skill Wheel, OKR = копируемые пресеты.
+6. **Schedules are first-class** — `RitualSchedule` отделён от `ProcessTemplate`.
+7. **Notifications are intents, not sends** — `Notification` отделён от `NotificationDelivery`.
+8. **AI is pluggable, data is sovereign** — digest через `IDigestLlm` интерфейс, данные не покидают БД.
 
-## 📖 Documentation
+## Позиционирование
 
-Full guides, module references, and architecture decisions live at **[fullstackhero.net](https://fullstackhero.net)**:
+| Конкурент | Что делает | Наш дифференциатор |
+|---|---|---|
+| Standuply / Geekbot | Standup-боты в Slack/Teams | Web-app, не бот. Self-hostable. AI digest |
+| monday.com Daily Standup | Standup внутри monday | Form-first, любая структура, не привязан к JIRA |
+| Typeform / Tally / Form.io | Form-builder, нет rituals | Scheduling + audience + digest. Не просто форма |
+| Range / Lattice / 15Five | Performance + rituals | Army knife, не performance tool |
+| Notion + Zapier | DIY rituals | Коробочное решение с правильными дефолтами |
 
-- [Getting started](https://fullstackhero.net/docs/getting-started/introduction/) — scaffold, run, and the default credentials
-- [Architecture](https://fullstackhero.net/docs/architecture/) — modular monolith + vertical slices, multitenancy deep-dive
-- [Modules](https://fullstackhero.net/docs/modules/) — Identity, Catalog, Tickets, Chat, and more
-- [Local orchestration with Aspire](https://fullstackhero.net/docs/deployment/aspire/)
-- [CLI reference](https://fullstackhero.net/docs/cli/) · [Changelog](https://fullstackhero.net/docs/changelog/)
+**Одним предложением:** *«Army knife для ТимЛида: сделал форму один раз — система сама рассылает её команде по расписанию, агрегирует ответы, рисует дашборд и формирует weekly digest через локальный LLM»*.
 
----
+## Roadmap
 
-## 🤝 Contributing
+- **MVP-1** (4-6 нед) — Form engine + 1-1 preset + auth + builder/renderer
+- **MVP-2** (+6-8 нед) — Ritual Scheduler + Notification Pipeline + Team Dashboard + AI Digest
+- **MVP-3** (+4 нед) — Polish: visual conditional logic, computed fields, calendar integration, PWA, multi-lang
+- **v4** (+3+ мес) — Enterprise: SignalR cluster, OpenIddict, multi-tenant, Slack/Teams, vLLM
 
-Issues and PRs are welcome — see [`CONTRIBUTING.md`](CONTRIBUTING.md). Branch from and target **`main`**; CI runs path-scoped backend + frontend pipelines, and stable releases are cut from `v*` tags.
+См. [`docs/roadmap.md`](docs/roadmap.md) для деталей.
 
-## 📄 License
+## Лицензия
 
-MIT — see [`LICENSE`](LICENSE). Built and maintained by [**Mukesh Murugan**](https://codewithmukesh.com) and the FullStackHero community, for teams that want to ship fast without sacrificing architectural discipline.
+TBD (предположительно AGPLv3 + commercial dual-license, по модели SurveyJS / Form.io).
 
-<div align="center">
+## Контрибуция
 
-**[⭐ Star us on GitHub](https://github.com/fullstackhero/dotnet-starter-kit)** if this saves you time — it genuinely helps.
-
-</div>
+TBD.

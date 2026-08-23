@@ -1,19 +1,19 @@
-using FSH.Framework.Caching;
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Shared.Constants;
-using FSH.Modules.Identity.Caching;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Data;
-using FSH.Modules.Identity.Domain;
+﻿using DreamTeam.Framework.Caching;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Shared.Constants;
+using DreamTeam.Modules.Identity.Caching;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Data;
+using DreamTeam.Modules.Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Hybrid;
 
-namespace FSH.Modules.Identity.Services;
+namespace DreamTeam.Modules.Identity.Services;
 
 internal sealed class UserPermissionService(
-    UserManager<FshUser> userManager,
-    RoleManager<FshRole> roleManager,
+    UserManager<DreamTeamUser> userManager,
+    RoleManager<DreamTeamRole> roleManager,
     IdentityDbContext db,
     HybridCache cache) : IUserPermissionService
 {
@@ -108,8 +108,8 @@ internal sealed class UserPermissionService(
 
     // Struct state flows through HybridCache's TState parameter — avoids closure allocation.
     private readonly record struct FactoryState(
-        UserManager<FshUser> UserManager,
-        RoleManager<FshRole> RoleManager,
+        UserManager<DreamTeamUser> UserManager,
+        RoleManager<DreamTeamRole> RoleManager,
         IdentityDbContext Db,
         string UserId);
 }

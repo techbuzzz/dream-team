@@ -1,5 +1,5 @@
-using FSH.Framework.Quota;
-using FSH.Framework.Shared.Quota;
+﻿using DreamTeam.Framework.Quota;
+using DreamTeam.Framework.Shared.Quota;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

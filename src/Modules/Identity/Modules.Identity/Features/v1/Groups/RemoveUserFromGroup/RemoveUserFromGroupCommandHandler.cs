@@ -1,11 +1,11 @@
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Groups.RemoveUserFromGroup;
-using FSH.Modules.Identity.Data;
+﻿using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Groups.RemoveUserFromGroup;
+using DreamTeam.Modules.Identity.Data;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSH.Modules.Identity.Features.v1.Groups.RemoveUserFromGroup;
+namespace DreamTeam.Modules.Identity.Features.v1.Groups.RemoveUserFromGroup;
 
 public sealed class RemoveUserFromGroupCommandHandler : ICommandHandler<RemoveUserFromGroupCommand, Unit>
 {

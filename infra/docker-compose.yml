@@ -1,0 +1,163 @@
+# DreamTeam — local development infra (non-Aspire path).
+#
+# This Compose file is the Docker-only counterpart to the Aspire AppHost
+# (src/Host/DreamTeam.AppHost). Use it when:
+#   - You don't have .NET Aspire tooling installed but have Docker.
+#   - You want a closer-to-production stack (no Aspire sidecars).
+#   - You're deploying to a non-dev environment.
+#
+# The relationship to the .NET API host (DreamTeam.Api) is:
+#   - API reads DatabaseOptions__ConnectionString, CachingOptions__Redis, Storage__S3__*
+#     from env (or appsettings).
+#   - API talks to Postgres (5432), Valkey/Redis (6379), MinIO (9000), MailHog SMTP (1025).
+#   - Web is the future Nuxt 4 SPA (apps/web, not yet built) — `dreamteam-web-stub` is
+#     a placeholder that returns 200 OK so the api's `/config.json` can be served.
+#
+# Usage:
+#   docker compose -f infra/docker-compose.yml up -d
+#   docker compose -f infra/docker-compose.yml logs -f api
+#   docker compose -f infra/docker-compose.yml down
+#
+# For the ollama (AI digest) service, see docker-compose.ollama.yml.
+
+name: dreamteam
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dreamteam-postgres
+    environment:
+      POSTGRES_USER: dreamteam
+      POSTGRES_PASSWORD: dreamteam_dev
+      POSTGRES_DB: dreamteam
+    ports:
+      - "5432:5432"
+    volumes:
+      - dreamteam-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dreamteam -d dreamteam"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  valkey:
+    image: valkey/valkey:9.1.0-alpine
+    container_name: dreamteam-valkey
+    ports:
+      - "6379:6379"
+    volumes:
+      - dreamteam-valkey-data:/data
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  minio:
+    image: minio/minio:latest
+    container_name: dreamteam-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin_dev
+      # CORS so the React clients (admin :5173, dashboard :5174) can do presigned PUTs
+      # during dev. In prod, set this to the apps/web origin.
+      MINIO_API_CORS_ALLOW_ORIGIN: "http://localhost:5173,http://localhost:5174"
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # web console
+    volumes:
+      - dreamteam-minio-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # Bucket init: create the uploads bucket on first start, then exit.
+  # Pure shell script, LF line endings (minio/mc /bin/sh on Windows).
+  minio-init:
+    image: minio/mc:latest
+    container_name: dreamteam-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        until mc alias set local http://minio:9000 "$$MINIO_USER" "$$MINIO_PASS"; do
+          echo "waiting for minio..."; sleep 2;
+        done
+        mc mb --ignore-existing local/dreamteam-uploads
+        mc anonymous set download local/dreamteam-uploads
+    environment:
+      MINIO_USER: minioadmin
+      MINIO_PASS: minioadmin_dev
+    restart: "no"
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: dreamteam-mailhog
+    ports:
+      - "1025:1025"   # SMTP
+      - "8025:8025"   # web UI for inspecting outbound email
+
+  # The renamed .NET API. Built from src/Host/DreamTeam.Api in the same repo.
+  # For first-time setup:
+  #   1. dotnet publish src/Host/DreamTeam.Api -c Release -o ./publish/api
+  #   2. update image: below to a published image, or use `dotnet run` instead
+  # For dev iteration, run `dotnet run --project src/Host/DreamTeam.Api` on the host
+  # and skip this service.
+  api:
+    image: dreamteam-api:dev
+    container_name: dreamteam-api
+    profiles: ["full"]   # opt-in; default `up` starts only infra so the host can run dotnet
+    depends_on:
+      postgres:
+        condition: service_healthy
+      valkey:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DatabaseOptions__Provider: POSTGRESQL
+      DatabaseOptions__ConnectionString: "Host=postgres;Port=5432;Database=dreamteam;Username=dreamteam;Password=dreamteam_dev;Minimum Pool Size=5"
+      DatabaseOptions__MigrationsAssembly: DreamTeam.Migrations.PostgreSQL
+      CachingOptions__Redis: "valkey:6379"
+      CachingOptions__EnableSsl: "false"
+      Storage__Provider: s3
+      Storage__S3__Bucket: dreamteam-uploads
+      Storage__S3__Region: us-east-1
+      Storage__S3__ServiceUrl: "http://minio:9000"
+      Storage__S3__AccessKey: minioadmin
+      Storage__S3__SecretKey: minioadmin_dev
+      Storage__S3__ForcePathStyle: "true"
+      Storage__S3__PublicBaseUrl: "http://localhost:9000/dreamteam-uploads"
+      MailOptions__UseSendGrid: "false"
+      MailOptions__From: "noreply@dreamteam.local"
+      MailOptions__DisplayName: "DreamTeam"
+      MailOptions__Smtp__Host: mailhog
+      MailOptions__Smtp__Port: "1025"
+      MailOptions__Smtp__UserName: ""
+      MailOptions__Smtp__Password: ""
+    ports:
+      - "7030:8080"   # https:7030 → http:8080 in container
+
+  # Placeholder for the future Nuxt 4 SPA (apps/web). Returns 200 OK so the API's
+  # /config.json can be fetched during dev. Replace with the real image when
+  # apps/web lands.
+  web-stub:
+    image: nginx:alpine
+    container_name: dreamteam-web-stub
+    profiles: ["full"]
+    volumes:
+      - ./web-stub/index.html:/usr/share/nginx/html/index.html:ro
+    ports:
+      - "3000:80"
+
+volumes:
+  dreamteam-postgres-data:
+  dreamteam-valkey-data:
+  dreamteam-minio-data:

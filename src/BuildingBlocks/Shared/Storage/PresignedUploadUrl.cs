@@ -1,4 +1,4 @@
-namespace FSH.Framework.Shared.Storage;
+﻿namespace DreamTeam.Framework.Shared.Storage;
 
 /// <summary>
 /// A short-lived presigned URL the browser can use to PUT bytes directly to S3-compatible storage,

@@ -1,9 +1,9 @@
-using FSH.Framework.Core.Context;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Sessions.AdminRevokeAllSessions;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Sessions.AdminRevokeAllSessions;
 using Mediator;
 
-namespace FSH.Modules.Identity.Features.v1.Sessions.AdminRevokeAllSessions;
+namespace DreamTeam.Modules.Identity.Features.v1.Sessions.AdminRevokeAllSessions;
 
 public sealed class AdminRevokeAllSessionsCommandHandler : ICommandHandler<AdminRevokeAllSessionsCommand, int>
 {

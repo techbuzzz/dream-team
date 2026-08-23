@@ -1,10 +1,10 @@
-using FSH.Framework.Shared.Persistence;
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Roles.GetRoles;
+﻿using DreamTeam.Framework.Shared.Persistence;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Roles.GetRoles;
 using Mediator;
 
-namespace FSH.Modules.Identity.Features.v1.Roles.GetRoles;
+namespace DreamTeam.Modules.Identity.Features.v1.Roles.GetRoles;
 
 public sealed class GetRolesQueryHandler : IQueryHandler<GetRolesQuery, PagedResponse<RoleDto>>
 {

@@ -1,4 +1,4 @@
-namespace FSH.Framework.Eventing.Abstractions;
+﻿namespace DreamTeam.Framework.Eventing.Abstractions;
 
 /// <summary>
 /// Abstraction over an event bus. The initial provider is in-memory; additional providers

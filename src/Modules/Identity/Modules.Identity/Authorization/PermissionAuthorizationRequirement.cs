@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace FSH.Modules.Identity.Authorization;
+namespace DreamTeam.Modules.Identity.Authorization;
 
 public class PermissionAuthorizationRequirement : IAuthorizationRequirement;

@@ -1,5 +1,5 @@
-using System.Net;
-using FSH.Framework.Core.Exceptions;
+﻿using System.Net;
+using DreamTeam.Framework.Core.Exceptions;
 
 namespace Framework.Tests.Core;
 

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using FSH.Modules.Identity.Contracts.v1.Users.ForgotPassword;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.ForgotPassword;
 
-namespace FSH.Modules.Identity.Features.v1.Users.ForgotPassword;
+namespace DreamTeam.Modules.Identity.Features.v1.Users.ForgotPassword;
 
 public sealed class ForgotPasswordCommandValidator : AbstractValidator<ForgotPasswordCommand>
 {

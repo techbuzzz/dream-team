@@ -1,6 +1,6 @@
-using FSH.Framework.Core.Domain;
+﻿using DreamTeam.Framework.Core.Domain;
 
-namespace FSH.Modules.Identity.Domain;
+namespace DreamTeam.Modules.Identity.Domain;
 
 public class Group : IAuditableEntity, ISoftDeletable
 {

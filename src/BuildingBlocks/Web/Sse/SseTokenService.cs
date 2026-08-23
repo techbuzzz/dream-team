@@ -1,7 +1,7 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace FSH.Framework.Web.Sse;
+namespace DreamTeam.Framework.Web.Sse;
 
 public sealed record SsePrincipal(string UserId, string? TenantId);
 

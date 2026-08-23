@@ -1,8 +1,8 @@
-using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Shared.Persistence;
-using FSH.Modules.Multitenancy;
-using FSH.Modules.Multitenancy.Services;
+﻿using Finbuckle.MultiTenant.Abstractions;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Persistence;
+using DreamTeam.Modules.Multitenancy;
+using DreamTeam.Modules.Multitenancy.Services;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using NSubstitute;

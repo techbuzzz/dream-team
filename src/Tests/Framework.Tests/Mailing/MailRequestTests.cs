@@ -1,5 +1,5 @@
-using System.Collections.ObjectModel;
-using FSH.Framework.Mailing;
+﻿using System.Collections.ObjectModel;
+using DreamTeam.Framework.Mailing;
 
 namespace Framework.Tests.Mailing;
 

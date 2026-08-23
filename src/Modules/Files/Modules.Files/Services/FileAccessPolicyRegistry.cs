@@ -1,6 +1,6 @@
-using FSH.Modules.Files.Contracts;
+﻿using DreamTeam.Modules.Files.Contracts;
 
-namespace FSH.Modules.Files.Services;
+namespace DreamTeam.Modules.Files.Services;
 
 /// <summary>
 /// Resolves an <see cref="IFileAccessPolicy"/> for a given OwnerType. Owning modules register their

@@ -1,8 +1,8 @@
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Users.GetUserPermissions;
+﻿using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.GetUserPermissions;
 using Mediator;
 
-namespace FSH.Modules.Identity.Features.v1.Users.GetUserPermissions;
+namespace DreamTeam.Modules.Identity.Features.v1.Users.GetUserPermissions;
 
 public sealed class GetCurrentUserPermissionsQueryHandler : IQueryHandler<GetCurrentUserPermissionsQuery, List<string>?>
 {

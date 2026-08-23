@@ -1,10 +1,10 @@
-﻿using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Shared.Identity.Claims;
-using FSH.Modules.Identity.Contracts.Services;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Shared.Identity.Claims;
+using DreamTeam.Modules.Identity.Contracts.Services;
 using System.Security.Claims;
 
-namespace FSH.Modules.Identity.Services;
+namespace DreamTeam.Modules.Identity.Services;
 
 internal sealed class CurrentUserService : ICurrentUserService
 {

@@ -1,70 +1,70 @@
 ﻿using Asp.Versioning;
-using FSH.Framework.Core.Context;
-using FSH.Framework.Eventing;
-using FSH.Framework.Persistence;
-using FSH.Framework.Quota;
-using FSH.Framework.Storage;
-using FSH.Framework.Storage.Local;
-using FSH.Framework.Storage.Services;
-using FSH.Framework.Web.Modules;
-using FSH.Modules.Identity.Authorization;
-using FSH.Modules.Identity.Authorization.Jwt;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Data;
-using FSH.Modules.Identity.Domain;
-using FSH.Modules.Identity.Features.v1.Groups.AddUsersToGroup;
-using FSH.Modules.Identity.Features.v1.Groups.CreateGroup;
-using FSH.Modules.Identity.Features.v1.Groups.DeleteGroup;
-using FSH.Modules.Identity.Features.v1.Groups.GetGroupById;
-using FSH.Modules.Identity.Features.v1.Groups.GetGroupMembers;
-using FSH.Modules.Identity.Features.v1.Groups.GetGroups;
-using FSH.Modules.Identity.Features.v1.Groups.RemoveUserFromGroup;
-using FSH.Modules.Identity.Features.v1.Groups.UpdateGroup;
-using FSH.Modules.Identity.Features.v1.Impersonation.EndImpersonation;
-using FSH.Modules.Identity.Features.v1.Impersonation.GetImpersonationGrants;
-using FSH.Modules.Identity.Features.v1.Impersonation.RevokeImpersonationGrant;
-using FSH.Modules.Identity.Features.v1.Impersonation.StartImpersonation;
-using FSH.Modules.Identity.Features.v1.Permissions.GetPermissionCatalog;
-using FSH.Modules.Identity.Features.v1.Roles;
-using FSH.Modules.Identity.Features.v1.Roles.DeleteRole;
-using FSH.Modules.Identity.Features.v1.Roles.GetRoleById;
-using FSH.Modules.Identity.Features.v1.Roles.GetRoles;
-using FSH.Modules.Identity.Features.v1.Roles.GetRoleWithPermissions;
-using FSH.Modules.Identity.Features.v1.Roles.UpdateRolePermissions;
-using FSH.Modules.Identity.Features.v1.Roles.UpsertRole;
-using FSH.Modules.Identity.Features.v1.Sessions.AdminRevokeAllSessions;
-using FSH.Modules.Identity.Features.v1.Sessions.AdminRevokeSession;
-using FSH.Modules.Identity.Features.v1.Sessions.GetMySessions;
-using FSH.Modules.Identity.Features.v1.Sessions.GetTenantSessions;
-using FSH.Modules.Identity.Features.v1.Sessions.GetUserSessions;
-using FSH.Modules.Identity.Features.v1.Sessions.RevokeAllSessions;
-using FSH.Modules.Identity.Features.v1.Sessions.RevokeSession;
-using FSH.Modules.Identity.Features.v1.Tokens.RefreshToken;
-using FSH.Modules.Identity.Features.v1.Tokens.TokenGeneration;
-using FSH.Modules.Identity.Features.v1.TwoFactor.Disable;
-using FSH.Modules.Identity.Features.v1.TwoFactor.Enroll;
-using FSH.Modules.Identity.Features.v1.TwoFactor.VerifyEnroll;
-using FSH.Modules.Identity.Features.v1.Users.AssignUserRoles;
-using FSH.Modules.Identity.Features.v1.Users.ChangePassword;
-using FSH.Modules.Identity.Features.v1.Users.AdminConfirmEmail;
-using FSH.Modules.Identity.Features.v1.Users.ConfirmEmail;
-using FSH.Modules.Identity.Features.v1.Users.ResendConfirmationEmail;
-using FSH.Modules.Identity.Features.v1.Users.DeleteUser;
-using FSH.Modules.Identity.Features.v1.Users.ForgotPassword;
-using FSH.Modules.Identity.Features.v1.Users.GetUserById;
-using FSH.Modules.Identity.Features.v1.Users.GetUserGroups;
-using FSH.Modules.Identity.Features.v1.Users.GetUserPermissions;
-using FSH.Modules.Identity.Features.v1.Users.GetUserProfile;
-using FSH.Modules.Identity.Features.v1.Users.GetUserRoles;
-using FSH.Modules.Identity.Features.v1.Users.GetUsers;
-using FSH.Modules.Identity.Features.v1.Users.RegisterUser;
-using FSH.Modules.Identity.Features.v1.Users.ResetPassword;
-using FSH.Modules.Identity.Features.v1.Users.SearchUsers;
-using FSH.Modules.Identity.Features.v1.Users.SelfRegistration;
-using FSH.Modules.Identity.Features.v1.Users.SetProfileImage;
-using FSH.Modules.Identity.Features.v1.Users.ToggleUserStatus;
-using FSH.Modules.Identity.Features.v1.Users.UpdateUser;
-using FSH.Modules.Identity.Services;
+using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Eventing;
+using DreamTeam.Framework.Persistence;
+using DreamTeam.Framework.Quota;
+using DreamTeam.Framework.Storage;
+using DreamTeam.Framework.Storage.Local;
+using DreamTeam.Framework.Storage.Services;
+using DreamTeam.Framework.Web.Modules;
+using DreamTeam.Modules.Identity.Authorization;
+using DreamTeam.Modules.Identity.Authorization.Jwt;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Data;
+using DreamTeam.Modules.Identity.Domain;
+using DreamTeam.Modules.Identity.Features.v1.Groups.AddUsersToGroup;
+using DreamTeam.Modules.Identity.Features.v1.Groups.CreateGroup;
+using DreamTeam.Modules.Identity.Features.v1.Groups.DeleteGroup;
+using DreamTeam.Modules.Identity.Features.v1.Groups.GetGroupById;
+using DreamTeam.Modules.Identity.Features.v1.Groups.GetGroupMembers;
+using DreamTeam.Modules.Identity.Features.v1.Groups.GetGroups;
+using DreamTeam.Modules.Identity.Features.v1.Groups.RemoveUserFromGroup;
+using DreamTeam.Modules.Identity.Features.v1.Groups.UpdateGroup;
+using DreamTeam.Modules.Identity.Features.v1.Impersonation.EndImpersonation;
+using DreamTeam.Modules.Identity.Features.v1.Impersonation.GetImpersonationGrants;
+using DreamTeam.Modules.Identity.Features.v1.Impersonation.RevokeImpersonationGrant;
+using DreamTeam.Modules.Identity.Features.v1.Impersonation.StartImpersonation;
+using DreamTeam.Modules.Identity.Features.v1.Permissions.GetPermissionCatalog;
+using DreamTeam.Modules.Identity.Features.v1.Roles;
+using DreamTeam.Modules.Identity.Features.v1.Roles.DeleteRole;
+using DreamTeam.Modules.Identity.Features.v1.Roles.GetRoleById;
+using DreamTeam.Modules.Identity.Features.v1.Roles.GetRoles;
+using DreamTeam.Modules.Identity.Features.v1.Roles.GetRoleWithPermissions;
+using DreamTeam.Modules.Identity.Features.v1.Roles.UpdateRolePermissions;
+using DreamTeam.Modules.Identity.Features.v1.Roles.UpsertRole;
+using DreamTeam.Modules.Identity.Features.v1.Sessions.AdminRevokeAllSessions;
+using DreamTeam.Modules.Identity.Features.v1.Sessions.AdminRevokeSession;
+using DreamTeam.Modules.Identity.Features.v1.Sessions.GetMySessions;
+using DreamTeam.Modules.Identity.Features.v1.Sessions.GetTenantSessions;
+using DreamTeam.Modules.Identity.Features.v1.Sessions.GetUserSessions;
+using DreamTeam.Modules.Identity.Features.v1.Sessions.RevokeAllSessions;
+using DreamTeam.Modules.Identity.Features.v1.Sessions.RevokeSession;
+using DreamTeam.Modules.Identity.Features.v1.Tokens.RefreshToken;
+using DreamTeam.Modules.Identity.Features.v1.Tokens.TokenGeneration;
+using DreamTeam.Modules.Identity.Features.v1.TwoFactor.Disable;
+using DreamTeam.Modules.Identity.Features.v1.TwoFactor.Enroll;
+using DreamTeam.Modules.Identity.Features.v1.TwoFactor.VerifyEnroll;
+using DreamTeam.Modules.Identity.Features.v1.Users.AssignUserRoles;
+using DreamTeam.Modules.Identity.Features.v1.Users.ChangePassword;
+using DreamTeam.Modules.Identity.Features.v1.Users.AdminConfirmEmail;
+using DreamTeam.Modules.Identity.Features.v1.Users.ConfirmEmail;
+using DreamTeam.Modules.Identity.Features.v1.Users.ResendConfirmationEmail;
+using DreamTeam.Modules.Identity.Features.v1.Users.DeleteUser;
+using DreamTeam.Modules.Identity.Features.v1.Users.ForgotPassword;
+using DreamTeam.Modules.Identity.Features.v1.Users.GetUserById;
+using DreamTeam.Modules.Identity.Features.v1.Users.GetUserGroups;
+using DreamTeam.Modules.Identity.Features.v1.Users.GetUserPermissions;
+using DreamTeam.Modules.Identity.Features.v1.Users.GetUserProfile;
+using DreamTeam.Modules.Identity.Features.v1.Users.GetUserRoles;
+using DreamTeam.Modules.Identity.Features.v1.Users.GetUsers;
+using DreamTeam.Modules.Identity.Features.v1.Users.RegisterUser;
+using DreamTeam.Modules.Identity.Features.v1.Users.ResetPassword;
+using DreamTeam.Modules.Identity.Features.v1.Users.SearchUsers;
+using DreamTeam.Modules.Identity.Features.v1.Users.SelfRegistration;
+using DreamTeam.Modules.Identity.Features.v1.Users.SetProfileImage;
+using DreamTeam.Modules.Identity.Features.v1.Users.ToggleUserStatus;
+using DreamTeam.Modules.Identity.Features.v1.Users.UpdateUser;
+using DreamTeam.Modules.Identity.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -75,7 +75,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 
-namespace FSH.Modules.Identity;
+namespace DreamTeam.Modules.Identity;
 
 public class IdentityModule : IModule
 {
@@ -83,8 +83,8 @@ public class IdentityModule : IModule
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        FSH.Framework.Shared.Constants.PermissionConstants.Register(
-            FSH.Modules.Identity.Contracts.Authorization.IdentityPermissions.All);
+        DreamTeam.Framework.Shared.Constants.PermissionConstants.Register(
+            DreamTeam.Modules.Identity.Contracts.Authorization.IdentityPermissions.All);
 
         var services = builder.Services;
         services.AddScoped<RolePermissionSyncer>();
@@ -144,7 +144,7 @@ public class IdentityModule : IModule
         // Quota gauge: reports live user count per tenant for the Users quota.
         services.AddScoped<IQuotaGaugeProvider, UserCountQuotaGaugeProvider>();
 
-        services.AddIdentity<FshUser, FshRole>(options =>
+        services.AddIdentity<DreamTeamUser, DreamTeamRole>(options =>
         {
             options.Password.RequiredLength = IdentityModuleConstants.PasswordLength;
             options.Password.RequireDigit = true;

@@ -1,7 +1,7 @@
-using FluentValidation;
-using FSH.Modules.Identity.Contracts.v1.Roles.GetRoles;
+﻿using FluentValidation;
+using DreamTeam.Modules.Identity.Contracts.v1.Roles.GetRoles;
 
-namespace FSH.Modules.Identity.Features.v1.Roles.GetRoles;
+namespace DreamTeam.Modules.Identity.Features.v1.Roles.GetRoles;
 
 public sealed class GetRolesQueryValidator : AbstractValidator<GetRolesQuery>
 {

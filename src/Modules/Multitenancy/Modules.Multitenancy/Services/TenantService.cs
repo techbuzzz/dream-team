@@ -1,21 +1,21 @@
-using Finbuckle.MultiTenant.Abstractions;
+﻿using Finbuckle.MultiTenant.Abstractions;
 using Finbuckle.MultiTenant.Stores;
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Persistence;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Shared.Persistence;
-using FSH.Modules.Multitenancy.Contracts;
-using FSH.Modules.Multitenancy.Contracts.Dtos;
-using FSH.Modules.Multitenancy.Contracts.v1.GetTenants;
-using FSH.Modules.Multitenancy.Data;
-using FSH.Modules.Multitenancy.Features.v1.GetTenants;
-using FSH.Modules.Multitenancy.Provisioning;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Persistence;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Persistence;
+using DreamTeam.Modules.Multitenancy.Contracts;
+using DreamTeam.Modules.Multitenancy.Contracts.Dtos;
+using DreamTeam.Modules.Multitenancy.Contracts.v1.GetTenants;
+using DreamTeam.Modules.Multitenancy.Data;
+using DreamTeam.Modules.Multitenancy.Features.v1.GetTenants;
+using DreamTeam.Modules.Multitenancy.Provisioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace FSH.Modules.Multitenancy.Services;
+namespace DreamTeam.Modules.Multitenancy.Services;
 
 public sealed class TenantService : ITenantService
 {

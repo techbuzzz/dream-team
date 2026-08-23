@@ -1,7 +1,7 @@
-using FSH.Framework.Shared.Persistence;
-using FSH.Modules.Identity.Contracts.DTOs;
+﻿using DreamTeam.Framework.Shared.Persistence;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
 
-namespace FSH.Modules.Identity.Contracts.Services;
+namespace DreamTeam.Modules.Identity.Contracts.Services;
 
 public interface IRoleService
 {

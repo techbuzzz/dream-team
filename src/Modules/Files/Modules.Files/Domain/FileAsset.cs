@@ -1,10 +1,10 @@
-using System.Net;
-using FSH.Framework.Core.Domain;
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Files.Contracts.v1.DTOs;
-using FSH.Modules.Files.Domain.Events;
+﻿using System.Net;
+using DreamTeam.Framework.Core.Domain;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Files.Contracts.v1.DTOs;
+using DreamTeam.Modules.Files.Domain.Events;
 
-namespace FSH.Modules.Files.Domain;
+namespace DreamTeam.Modules.Files.Domain;
 
 /// <summary>
 /// A file asset tracked by the Files module. Owns a presigned upload lifecycle (PendingUpload →

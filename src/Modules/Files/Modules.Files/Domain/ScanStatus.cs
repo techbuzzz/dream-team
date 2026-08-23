@@ -1,4 +1,4 @@
-namespace FSH.Modules.Files.Domain;
+﻿namespace DreamTeam.Modules.Files.Domain;
 
 public enum ScanStatus
 {

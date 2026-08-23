@@ -1,7 +1,7 @@
-using FSH.Framework.Mailing.Services;
-using FSH.Modules.Multitenancy.Data;
-using FSH.Modules.Multitenancy.Domain;
-using FSH.Modules.Multitenancy.Services;
+﻿using DreamTeam.Framework.Mailing.Services;
+using DreamTeam.Modules.Multitenancy.Data;
+using DreamTeam.Modules.Multitenancy.Domain;
+using DreamTeam.Modules.Multitenancy.Services;
 using Integration.Tests.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,15 +13,15 @@ namespace Integration.Tests.Tests.Multitenancy;
 /// publishes the matching event (which emails the tenant admin), and re-running the scan does not
 /// re-notify the same state for the same validity period. Also covers the invoice-issued email.
 /// </summary>
-[Collection(FshCollectionDefinition.Name)]
+[Collection(DreamTeamCollectionDefinition.Name)]
 public sealed class TenantExpiryScanJobTests
 {
     private const string BillingBasePath = "/api/v1/billing";
 
-    private readonly FshWebApplicationFactory _factory;
+    private readonly DreamTeamWebApplicationFactory _factory;
     private readonly AuthHelper _auth;
 
-    public TenantExpiryScanJobTests(FshWebApplicationFactory factory)
+    public TenantExpiryScanJobTests(DreamTeamWebApplicationFactory factory)
     {
         _factory = factory;
         _auth = new AuthHelper(factory);

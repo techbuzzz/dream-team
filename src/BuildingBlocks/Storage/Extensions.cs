@@ -1,18 +1,18 @@
-using Amazon;
+﻿using Amazon;
 using Amazon.Runtime;
 using Amazon.S3;
 using Finbuckle.MultiTenant.Abstractions;
-using FSH.Framework.Quota;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Framework.Storage.Local;
-using FSH.Framework.Storage.S3;
-using FSH.Framework.Storage.Services;
+using DreamTeam.Framework.Quota;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Storage.Local;
+using DreamTeam.Framework.Storage.S3;
+using DreamTeam.Framework.Storage.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace FSH.Framework.Storage;
+namespace DreamTeam.Framework.Storage;
 
 public static class Extensions
 {

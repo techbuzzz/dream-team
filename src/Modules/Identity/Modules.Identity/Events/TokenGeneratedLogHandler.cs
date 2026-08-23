@@ -1,8 +1,8 @@
-using FSH.Framework.Eventing.Abstractions;
-using FSH.Modules.Identity.Contracts.Events;
+﻿using DreamTeam.Framework.Eventing.Abstractions;
+using DreamTeam.Modules.Identity.Contracts.Events;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.Modules.Identity.Events;
+namespace DreamTeam.Modules.Identity.Events;
 
 /// <summary>
 /// Example handler that logs when a token is generated.

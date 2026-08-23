@@ -1,4 +1,4 @@
-namespace FSH.Modules.Identity.Domain;
+﻿namespace DreamTeam.Modules.Identity.Domain;
 
 public class GroupRole
 {
@@ -7,7 +7,7 @@ public class GroupRole
 
     // Navigation properties (init for EF Core materialization)
     public virtual Group? Group { get; init; }
-    public virtual FshRole? Role { get; init; }
+    public virtual DreamTeamRole? Role { get; init; }
 
     private GroupRole() { } // EF Core
 

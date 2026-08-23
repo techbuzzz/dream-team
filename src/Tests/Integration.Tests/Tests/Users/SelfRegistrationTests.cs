@@ -1,14 +1,14 @@
-using Integration.Tests.Infrastructure;
+﻿using Integration.Tests.Infrastructure;
 using Integration.Tests.Infrastructure.Extensions;
 
 namespace Integration.Tests.Tests.Users;
 
-[Collection(FshCollectionDefinition.Name)]
+[Collection(DreamTeamCollectionDefinition.Name)]
 public sealed class SelfRegistrationTests
 {
-    private readonly FshWebApplicationFactory _factory;
+    private readonly DreamTeamWebApplicationFactory _factory;
 
-    public SelfRegistrationTests(FshWebApplicationFactory factory)
+    public SelfRegistrationTests(DreamTeamWebApplicationFactory factory)
     {
         _factory = factory;
     }

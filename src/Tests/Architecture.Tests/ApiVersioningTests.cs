@@ -1,6 +1,6 @@
-using FSH.Modules.Auditing;
-using FSH.Modules.Identity;
-using FSH.Modules.Multitenancy;
+﻿
+using DreamTeam.Modules.Identity;
+using DreamTeam.Modules.Multitenancy;
 using NetArchTest.Rules;
 using Shouldly;
 using System.Reflection;
@@ -16,9 +16,9 @@ public partial class ApiVersioningTests
 {
     private static readonly Assembly[] ModuleAssemblies =
     [
-        typeof(AuditingModule).Assembly,
         typeof(IdentityModule).Assembly,
-        typeof(MultitenancyModule).Assembly
+        typeof(MultitenancyModule).Assembly,
+        typeof(DreamTeam.Modules.Files.FilesModule).Assembly
     ];
 
     private static readonly string SolutionRoot = ModuleArchitectureTestsFixture.SolutionRoot;

@@ -1,8 +1,8 @@
-using FSH.Framework.Persistence;
+﻿using DreamTeam.Framework.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.Modules.Files.Data;
+namespace DreamTeam.Modules.Files.Data;
 
 public sealed class FilesDbInitializer(
     FilesDbContext dbContext,

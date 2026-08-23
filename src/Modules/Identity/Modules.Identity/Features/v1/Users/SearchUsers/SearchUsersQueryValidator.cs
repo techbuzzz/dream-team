@@ -1,8 +1,8 @@
-using FluentValidation;
-using FSH.Framework.Web.Validation;
-using FSH.Modules.Identity.Contracts.v1.Users.SearchUsers;
+﻿using FluentValidation;
+using DreamTeam.Framework.Web.Validation;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.SearchUsers;
 
-namespace FSH.Modules.Identity.Features.v1.Users.SearchUsers;
+namespace DreamTeam.Modules.Identity.Features.v1.Users.SearchUsers;
 
 public sealed class SearchUsersQueryValidator : AbstractValidator<SearchUsersQuery>
 {

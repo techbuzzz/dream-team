@@ -1,14 +1,14 @@
-using Integration.Tests.Infrastructure;
+﻿using Integration.Tests.Infrastructure;
 using Integration.Tests.Infrastructure.Extensions;
 
 namespace Integration.Tests.Tests.Users;
 
-[Collection(FshCollectionDefinition.Name)]
+[Collection(DreamTeamCollectionDefinition.Name)]
 public sealed class UserManagementGuardTests
 {
     private readonly AuthHelper _auth;
 
-    public UserManagementGuardTests(FshWebApplicationFactory factory)
+    public UserManagementGuardTests(DreamTeamWebApplicationFactory factory)
     {
         _auth = new AuthHelper(factory);
     }

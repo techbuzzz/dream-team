@@ -1,10 +1,10 @@
-using FSH.Framework.Core.Context;
-using FSH.Framework.Web.Origin;
-using FSH.Modules.Identity.Contracts.Services;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Web.Origin;
+using DreamTeam.Modules.Identity.Contracts.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
-namespace FSH.Modules.Identity.Services;
+namespace DreamTeam.Modules.Identity.Services;
 
 /// <summary>
 /// Provides HTTP request context information through an abstraction.

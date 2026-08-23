@@ -1,7 +1,7 @@
-using FluentValidation;
-using FSH.Modules.Identity.Contracts.v1.Impersonation.StartImpersonation;
+﻿using FluentValidation;
+using DreamTeam.Modules.Identity.Contracts.v1.Impersonation.StartImpersonation;
 
-namespace FSH.Modules.Identity.Features.v1.Impersonation.StartImpersonation;
+namespace DreamTeam.Modules.Identity.Features.v1.Impersonation.StartImpersonation;
 
 public sealed class StartImpersonationCommandValidator : AbstractValidator<StartImpersonationCommand>
 {

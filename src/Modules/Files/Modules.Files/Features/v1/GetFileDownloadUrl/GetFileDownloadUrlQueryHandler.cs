@@ -1,16 +1,16 @@
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Storage.Services;
-using FSH.Modules.Files.Contracts;
-using FSH.Modules.Files.Contracts.v1.DTOs;
-using FSH.Modules.Files.Contracts.v1.Queries;
-using FSH.Modules.Files.Data;
-using FSH.Modules.Files.Services;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Storage.Services;
+using DreamTeam.Modules.Files.Contracts;
+using DreamTeam.Modules.Files.Contracts.v1.DTOs;
+using DreamTeam.Modules.Files.Contracts.v1.Queries;
+using DreamTeam.Modules.Files.Data;
+using DreamTeam.Modules.Files.Services;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace FSH.Modules.Files.Features.v1.GetFileDownloadUrl;
+namespace DreamTeam.Modules.Files.Features.v1.GetFileDownloadUrl;
 
 public sealed class GetFileDownloadUrlQueryHandler(
     FilesDbContext db,

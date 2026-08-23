@@ -1,14 +1,14 @@
-using Integration.Tests.Infrastructure;
+﻿using Integration.Tests.Infrastructure;
 using Integration.Tests.Infrastructure.Extensions;
 
 namespace Integration.Tests.Tests.Groups;
 
-[Collection(FshCollectionDefinition.Name)]
+[Collection(DreamTeamCollectionDefinition.Name)]
 public sealed class GroupMembershipTests
 {
     private readonly AuthHelper _auth;
 
-    public GroupMembershipTests(FshWebApplicationFactory factory)
+    public GroupMembershipTests(DreamTeamWebApplicationFactory factory)
     {
         _auth = new AuthHelper(factory);
     }

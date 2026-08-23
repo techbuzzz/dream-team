@@ -1,15 +1,15 @@
-using FSH.Framework.Shared.Identity.Authorization;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Modules.Multitenancy.Contracts.Authorization;
-using FSH.Modules.Multitenancy.Contracts.Dtos;
-using FSH.Modules.Multitenancy.Contracts.v1.TenantProvisioning;
+﻿using DreamTeam.Framework.Shared.Identity.Authorization;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Modules.Multitenancy.Contracts.Authorization;
+using DreamTeam.Modules.Multitenancy.Contracts.Dtos;
+using DreamTeam.Modules.Multitenancy.Contracts.v1.TenantProvisioning;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace FSH.Modules.Multitenancy.Features.v1.TenantProvisioning.RetryTenantProvisioning;
+namespace DreamTeam.Modules.Multitenancy.Features.v1.TenantProvisioning.RetryTenantProvisioning;
 
 public static class RetryTenantProvisioningEndpoint
 {

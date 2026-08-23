@@ -1,8 +1,8 @@
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Users.UpdateUser;
+﻿using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.UpdateUser;
 using Mediator;
 
-namespace FSH.Modules.Identity.Features.v1.Users.UpdateUser;
+namespace DreamTeam.Modules.Identity.Features.v1.Users.UpdateUser;
 
 public sealed class UpdateUserCommandHandler : ICommandHandler<UpdateUserCommand, Unit>
 {

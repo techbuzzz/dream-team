@@ -1,6 +1,6 @@
-using FSH.Modules.Identity.Contracts.DTOs;
+﻿using DreamTeam.Modules.Identity.Contracts.DTOs;
 
-namespace FSH.Modules.Identity.Contracts.Services;
+namespace DreamTeam.Modules.Identity.Contracts.Services;
 
 /// <summary>
 /// Service for user role management.

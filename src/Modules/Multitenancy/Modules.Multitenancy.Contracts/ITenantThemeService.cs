@@ -1,6 +1,6 @@
-using FSH.Modules.Multitenancy.Contracts.Dtos;
+﻿using DreamTeam.Modules.Multitenancy.Contracts.Dtos;
 
-namespace FSH.Modules.Multitenancy.Contracts;
+namespace DreamTeam.Modules.Multitenancy.Contracts;
 
 public interface ITenantThemeService
 {

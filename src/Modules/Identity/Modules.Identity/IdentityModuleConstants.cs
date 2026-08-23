@@ -1,6 +1,6 @@
-﻿using FSH.Framework.Web.Modules;
+﻿using DreamTeam.Framework.Web.Modules;
 
-namespace FSH.Modules.Identity;
+namespace DreamTeam.Modules.Identity;
 
 public sealed class IdentityModuleConstants : IModuleConstants
 {

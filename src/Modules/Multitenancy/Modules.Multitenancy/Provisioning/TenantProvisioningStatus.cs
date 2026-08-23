@@ -1,4 +1,4 @@
-namespace FSH.Modules.Multitenancy.Provisioning;
+﻿namespace DreamTeam.Modules.Multitenancy.Provisioning;
 
 public enum TenantProvisioningStatus
 {

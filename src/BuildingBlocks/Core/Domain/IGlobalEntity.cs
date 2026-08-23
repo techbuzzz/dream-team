@@ -1,4 +1,4 @@
-namespace FSH.Framework.Core.Domain;
+﻿namespace DreamTeam.Framework.Core.Domain;
 
 /// <summary>
 /// Marker interface — entities that intentionally OPT OUT of automatic

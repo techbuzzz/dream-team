@@ -1,13 +1,13 @@
-using FSH.Framework.Shared.Identity.Authorization;
-using FSH.Modules.Multitenancy.Contracts.Authorization;
-using FSH.Modules.Multitenancy.Contracts.v1.AdjustTenantValidity;
+﻿using DreamTeam.Framework.Shared.Identity.Authorization;
+using DreamTeam.Modules.Multitenancy.Contracts.Authorization;
+using DreamTeam.Modules.Multitenancy.Contracts.v1.AdjustTenantValidity;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Routing;
 
-namespace FSH.Modules.Multitenancy.Features.v1.AdjustTenantValidity;
+namespace DreamTeam.Modules.Multitenancy.Features.v1.AdjustTenantValidity;
 
 public static class AdjustTenantValidityEndpoint
 {

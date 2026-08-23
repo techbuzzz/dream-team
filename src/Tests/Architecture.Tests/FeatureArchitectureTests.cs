@@ -1,6 +1,6 @@
-using FSH.Modules.Auditing;
-using FSH.Modules.Identity;
-using FSH.Modules.Multitenancy;
+﻿
+using DreamTeam.Modules.Identity;
+using DreamTeam.Modules.Multitenancy;
 using NetArchTest.Rules;
 using Shouldly;
 using Xunit;
@@ -16,9 +16,9 @@ public class FeatureArchitectureTests
         // a safety net to prevent accidental cross-version feature coupling.
         var modules = new[]
         {
-            typeof(AuditingModule).Assembly,
             typeof(IdentityModule).Assembly,
-            typeof(MultitenancyModule).Assembly
+            typeof(MultitenancyModule).Assembly,
+            typeof(DreamTeam.Modules.Files.FilesModule).Assembly
         };
 
         foreach (var module in modules)

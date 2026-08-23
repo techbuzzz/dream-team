@@ -1,8 +1,8 @@
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Users.DeleteUser;
+﻿using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.DeleteUser;
 using Mediator;
 
-namespace FSH.Modules.Identity.Features.v1.Users.DeleteUser;
+namespace DreamTeam.Modules.Identity.Features.v1.Users.DeleteUser;
 
 public sealed class DeleteUserCommandHandler : ICommandHandler<DeleteUserCommand, Unit>
 {

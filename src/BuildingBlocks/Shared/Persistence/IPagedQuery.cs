@@ -1,4 +1,4 @@
-namespace FSH.Framework.Shared.Persistence;
+﻿namespace DreamTeam.Framework.Shared.Persistence;
 
 /// <summary>
 /// Shared pagination and sorting contract that can be implemented

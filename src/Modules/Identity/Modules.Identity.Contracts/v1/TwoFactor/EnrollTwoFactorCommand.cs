@@ -1,7 +1,7 @@
-using FSH.Modules.Identity.Contracts.DTOs;
+﻿using DreamTeam.Modules.Identity.Contracts.DTOs;
 using Mediator;
 
-namespace FSH.Modules.Identity.Contracts.v1.TwoFactor;
+namespace DreamTeam.Modules.Identity.Contracts.v1.TwoFactor;
 
 /// <summary>
 /// Begin TOTP enrollment for the current user. Generates (or replaces) the user's

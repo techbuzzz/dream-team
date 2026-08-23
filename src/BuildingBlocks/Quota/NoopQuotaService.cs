@@ -1,6 +1,6 @@
-using FSH.Framework.Shared.Quota;
+﻿using DreamTeam.Framework.Shared.Quota;
 
-namespace FSH.Framework.Quota;
+namespace DreamTeam.Framework.Quota;
 
 /// <summary>
 /// Used when quota enforcement is disabled via configuration. Every check returns allowed with

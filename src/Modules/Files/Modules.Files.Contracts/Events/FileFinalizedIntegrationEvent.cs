@@ -1,6 +1,6 @@
-using FSH.Framework.Eventing.Abstractions;
+﻿using DreamTeam.Framework.Eventing.Abstractions;
 
-namespace FSH.Modules.Files.Contracts.Events;
+namespace DreamTeam.Modules.Files.Contracts.Events;
 
 /// <summary>
 /// Raised when a FileAsset transitions from PendingUpload to Available (or Quarantined). Owning

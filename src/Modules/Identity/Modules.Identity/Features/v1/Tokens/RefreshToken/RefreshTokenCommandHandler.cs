@@ -1,14 +1,14 @@
-using FSH.Framework.Core.Context;
-using FSH.Modules.Auditing.Contracts;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Identity.Contracts.v1.Tokens.RefreshToken;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Shared.Identity;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Identity.Contracts.v1.Tokens.RefreshToken;
 using Mediator;
 using Microsoft.Extensions.Logging;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace FSH.Modules.Identity.Features.v1.Tokens.RefreshToken;
+namespace DreamTeam.Modules.Identity.Features.v1.Tokens.RefreshToken;
 
 public sealed class RefreshTokenCommandHandler
     : ICommandHandler<RefreshTokenCommand, RefreshTokenCommandResponse>

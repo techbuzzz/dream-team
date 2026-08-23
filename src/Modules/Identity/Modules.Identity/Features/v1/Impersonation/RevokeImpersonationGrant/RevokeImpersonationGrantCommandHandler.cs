@@ -1,14 +1,14 @@
-using FSH.Framework.Core.Context;
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Modules.Auditing.Contracts;
-using FSH.Modules.Identity.Contracts.Services;
-using FSH.Modules.Identity.Contracts.v1.Impersonation;
-using FSH.Modules.Identity.Contracts.v1.Impersonation.RevokeImpersonationGrant;
+﻿using DreamTeam.Framework.Core.Context;
+using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Framework.Shared.Identity;
+using DreamTeam.Modules.Identity.Contracts.Services;
+using DreamTeam.Modules.Identity.Contracts.v1.Impersonation;
+using DreamTeam.Modules.Identity.Contracts.v1.Impersonation.RevokeImpersonationGrant;
 using Mediator;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.Modules.Identity.Features.v1.Impersonation.RevokeImpersonationGrant;
+namespace DreamTeam.Modules.Identity.Features.v1.Impersonation.RevokeImpersonationGrant;
 
 public sealed class RevokeImpersonationGrantCommandHandler(
     IImpersonationGrantService grantService,
@@ -62,6 +62,9 @@ public sealed class RevokeImpersonationGrantCommandHandler(
             targetUserId: grant.ImpersonatedUserId,
             targetTenantId: grant.ImpersonatedTenantId,
             clientId: requestContext.ClientId ?? "unknown",
+            ip: requestContext.IpAddress ?? "unknown",
+            userAgent: requestContext.UserAgent ?? "unknown",
+            reason: request.Reason ?? "RevokeImpersonationGrant",
             ct: cancellationToken).ConfigureAwait(false);
 
         logger.LogWarning(

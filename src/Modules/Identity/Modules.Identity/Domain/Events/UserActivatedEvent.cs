@@ -1,6 +1,6 @@
-using FSH.Framework.Core.Domain;
+﻿using DreamTeam.Framework.Core.Domain;
 
-namespace FSH.Modules.Identity.Domain.Events;
+namespace DreamTeam.Modules.Identity.Domain.Events;
 
 /// <summary>Raised when a user account is activated.</summary>
 public sealed record UserActivatedEvent(

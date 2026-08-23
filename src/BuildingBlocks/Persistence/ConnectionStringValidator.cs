@@ -1,10 +1,10 @@
-﻿using FSH.Framework.Shared.Persistence;
+﻿using DreamTeam.Framework.Shared.Persistence;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Npgsql;
 
-namespace FSH.Framework.Persistence;
+namespace DreamTeam.Framework.Persistence;
 
 /// <summary>
 /// Validates database connection strings for supported providers (PostgreSQL, SQL Server).

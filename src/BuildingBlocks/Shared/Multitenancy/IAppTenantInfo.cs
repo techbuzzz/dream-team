@@ -1,6 +1,6 @@
-﻿using FSH.Framework.Shared.Quota;
+﻿using DreamTeam.Framework.Shared.Quota;
 
-namespace FSH.Framework.Shared.Multitenancy;
+namespace DreamTeam.Framework.Shared.Multitenancy;
 
 public interface IAppTenantInfo
 {

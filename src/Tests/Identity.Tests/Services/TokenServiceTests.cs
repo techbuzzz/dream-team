@@ -1,10 +1,10 @@
-using System.Diagnostics.Metrics;
+﻿using System.Diagnostics.Metrics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using FSH.Modules.Identity;
-using FSH.Modules.Identity.Authorization.Jwt;
-using FSH.Modules.Identity.Services;
+using DreamTeam.Modules.Identity;
+using DreamTeam.Modules.Identity.Authorization.Jwt;
+using DreamTeam.Modules.Identity.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -18,8 +18,8 @@ namespace Identity.Tests.Services;
 public sealed class TokenServiceTests : IDisposable
 {
     private const string SigningKey = "this-is-a-very-long-signing-key-32!!";
-    private const string Issuer = "fsh-issuer";
-    private const string Audience = "fsh-audience";
+    private const string Issuer = "dreamteam-issuer";
+    private const string Audience = "dreamteam-audience";
 
     private static readonly DateTimeOffset FixedNow =
         new(2026, 1, 15, 10, 0, 0, TimeSpan.Zero);

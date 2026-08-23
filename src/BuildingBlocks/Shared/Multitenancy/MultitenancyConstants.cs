@@ -1,4 +1,4 @@
-﻿namespace FSH.Framework.Shared.Multitenancy;
+﻿namespace DreamTeam.Framework.Shared.Multitenancy;
 
 public static class MultitenancyConstants
 {

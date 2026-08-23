@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DreamTeam.DbMigrator</RootNamespace>
+    <AssemblyName>DreamTeam.DbMigrator</AssemblyName>
+    <IsPackable>false</IsPackable>
+
+    <ContainerUser>1654</ContainerUser>
+    <ContainerFamily>noble</ContainerFamily>
+    <ContainerRepository>dreamteam-db-migrator</ContainerRepository>
+
+    <NoWarn>$(NoWarn);CA1303</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mediator.Abstractions" />
+    <PackageReference Include="Mediator.SourceGenerator">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\Web\Web.csproj" />
+    <ProjectReference Include="..\..\Modules\Files\Modules.Files\Modules.Files.csproj" />
+    <ProjectReference Include="..\..\Modules\Files\Modules.Files.Contracts\Modules.Files.Contracts.csproj" />
+    <ProjectReference Include="..\..\Modules\Identity\Modules.Identity\Modules.Identity.csproj" />
+    <ProjectReference Include="..\..\Modules\Multitenancy\Modules.Multitenancy\Modules.Multitenancy.csproj" />
+    <ProjectReference Include="..\DreamTeam.Migrations.PostgreSQL\DreamTeam.Migrations.PostgreSQL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\DreamTeam.Api\appsettings.json"
+          Link="appsettings.json"
+          CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\DreamTeam.Api\appsettings.Development.json"
+          Link="appsettings.Development.json"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

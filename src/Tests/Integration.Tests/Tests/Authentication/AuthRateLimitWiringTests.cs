@@ -1,11 +1,11 @@
-using Integration.Tests.Infrastructure;
+﻿using Integration.Tests.Infrastructure;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Integration.Tests.Tests.Authentication;
 
-[Collection(FshCollectionDefinition.Name)]
+[Collection(DreamTeamCollectionDefinition.Name)]
 public sealed class AuthRateLimitWiringTests
 {
     private const string AuthPolicy = "auth";
@@ -21,9 +21,9 @@ public sealed class AuthRateLimitWiringTests
         "self-register"
     };
 
-    private readonly FshWebApplicationFactory _factory;
+    private readonly DreamTeamWebApplicationFactory _factory;
 
-    public AuthRateLimitWiringTests(FshWebApplicationFactory factory)
+    public AuthRateLimitWiringTests(DreamTeamWebApplicationFactory factory)
     {
         _factory = factory;
     }

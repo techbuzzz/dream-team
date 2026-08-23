@@ -1,13 +1,13 @@
-using Integration.Tests.Infrastructure;
+﻿using Integration.Tests.Infrastructure;
 
 namespace Integration.Tests.Tests.Health;
 
-[Collection(FshCollectionDefinition.Name)]
+[Collection(DreamTeamCollectionDefinition.Name)]
 public sealed class HealthProbesTests
 {
-    private readonly FshWebApplicationFactory _factory;
+    private readonly DreamTeamWebApplicationFactory _factory;
 
-    public HealthProbesTests(FshWebApplicationFactory factory)
+    public HealthProbesTests(DreamTeamWebApplicationFactory factory)
     {
         _factory = factory;
     }

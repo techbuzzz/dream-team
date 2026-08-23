@@ -1,11 +1,11 @@
-using FSH.Framework.Core.Exceptions;
-using FSH.Modules.Identity.Contracts.DTOs;
-using FSH.Modules.Identity.Contracts.v1.Users.GetUserGroups;
-using FSH.Modules.Identity.Data;
+﻿using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Modules.Identity.Contracts.DTOs;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.GetUserGroups;
+using DreamTeam.Modules.Identity.Data;
 using Mediator;
 using Microsoft.EntityFrameworkCore;
 
-namespace FSH.Modules.Identity.Features.v1.Users.GetUserGroups;
+namespace DreamTeam.Modules.Identity.Features.v1.Users.GetUserGroups;
 
 public sealed class GetUserGroupsQueryHandler : IQueryHandler<GetUserGroupsQuery, IEnumerable<GroupDto>>
 {

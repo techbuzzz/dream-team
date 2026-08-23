@@ -1,16 +1,16 @@
-using FSH.Framework.Caching;
-using FSH.Framework.Shared.Constants;
-using FSH.Framework.Shared.Identity.Claims;
-using FSH.Framework.Shared.Multitenancy;
-using FSH.Modules.Identity.Data;
-using FSH.Modules.Identity.Domain;
+﻿using DreamTeam.Framework.Caching;
+using DreamTeam.Framework.Shared.Constants;
+using DreamTeam.Framework.Shared.Identity.Claims;
+using DreamTeam.Framework.Shared.Multitenancy;
+using DreamTeam.Modules.Identity.Data;
+using DreamTeam.Modules.Identity.Domain;
 using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 
-namespace FSH.Modules.Identity.Authorization;
+namespace DreamTeam.Modules.Identity.Authorization;
 
 /// <summary>
 /// Adds missing permission claims to the built-in roles (<see cref="RoleConstants.Admin"/>,
@@ -19,7 +19,7 @@ namespace FSH.Modules.Identity.Authorization;
 /// </summary>
 public sealed class RolePermissionSyncer(
     IdentityDbContext context,
-    RoleManager<FshRole> roleManager,
+    RoleManager<DreamTeamRole> roleManager,
     IMultiTenantContextAccessor<AppTenantInfo> tenantAccessor,
     HybridCache cache,
     TimeProvider timeProvider,
@@ -46,7 +46,7 @@ public sealed class RolePermissionSyncer(
         }
     }
 
-    private async Task<int> SyncRoleAsync(string roleName, IReadOnlyList<FshPermission> targetPermissions, CancellationToken cancellationToken)
+    private async Task<int> SyncRoleAsync(string roleName, IReadOnlyList<DreamTeamPermission> targetPermissions, CancellationToken cancellationToken)
     {
         var role = await roleManager.Roles
             .SingleOrDefaultAsync(r => r.Name == roleName, cancellationToken)
@@ -66,7 +66,7 @@ public sealed class RolePermissionSyncer(
 
         var toAdd = targetPermissions
             .Where(p => !existingSet.Contains(p.Name))
-            .Select(p => new FshRoleClaim
+            .Select(p => new DreamTeamRoleClaim
             {
                 RoleId = role.Id,
                 ClaimType = ClaimConstants.Permission,

@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Policy;
 using Microsoft.AspNetCore.Http;
 
-namespace FSH.Modules.Identity.Authorization;
+namespace DreamTeam.Modules.Identity.Authorization;
 
 public class PathAwareAuthorizationHandler : IAuthorizationMiddlewareResultHandler
 {

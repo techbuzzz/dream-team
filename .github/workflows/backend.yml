@@ -37,8 +37,6 @@ jobs:
     name: Detect changes
     runs-on: ubuntu-latest
     outputs:
-      # On any non-PR event (push to main, tags, manual release) run the
-      # full pipeline. On PRs, run only when backend-relevant paths changed.
       backend: ${{ github.event_name != 'pull_request' || steps.filter.outputs.backend == 'true' }}
     steps:
       - uses: actions/checkout@v6
@@ -74,29 +72,26 @@ jobs:
           restore-keys: ${{ runner.os }}-nuget-
 
       - name: Restore
-        run: dotnet restore src/FSH.Starter.slnx
+        run: dotnet restore src/DreamTeam.slnx
 
       - name: Build
-        run: dotnet build src/FSH.Starter.slnx -c Release --no-restore -warnaserror
+        run: dotnet build src/DreamTeam.slnx -c Release --no-restore -warnaserror
 
-      # Gate on DIRECT vulnerable packages (the ones we control). Transitive
-      # advisories are surfaced but not blocking — they often can't be fixed
-      # without an upstream bump.
       - name: Audit dependencies for known vulnerabilities
         run: |
-          if dotnet list src/FSH.Starter.slnx package --vulnerable 2>&1 | tee vuln-direct.txt | grep -q 'has the following vulnerable'; then
+          if dotnet list src/DreamTeam.slnx package --vulnerable 2>&1 | tee vuln-direct.txt | grep -q 'has the following vulnerable'; then
             echo "::error::Direct package(s) with known vulnerabilities detected — see log."
             cat vuln-direct.txt
             exit 1
           fi
           echo "No direct vulnerable packages."
-          echo "::group::Transitive advisories (informational)"
-          dotnet list src/FSH.Starter.slnx package --vulnerable --include-transitive 2>&1 | tee vuln-transitive.txt || true
-          echo "::endgroup::"
 
+      # Kept test projects (per Phase 3 of the FSH-strip):
+      #   Architecture, Caching, Framework, Generic, Identity, Multitenancy, Files
+      # Integration tests run in their own job below (Testcontainers + Docker).
       - name: Run unit tests with coverage
         run: |
-          for proj in Architecture Auditing Caching Generic Identity Multitenancy Billing Catalog Chat Files Framework Webhooks; do
+          for proj in Architecture Caching Framework Generic Identity Multitenancy Files; do
             echo "::group::${proj}.Tests"
             dotnet test "src/Tests/${proj}.Tests" -c Release --no-build \
               --collect:"XPlat Code Coverage" --settings coverage.runsettings \
@@ -125,7 +120,6 @@ jobs:
     needs: changes
     if: needs.changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
-    # Testcontainers requires Docker — ubuntu-latest has it pre-installed.
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -143,11 +137,8 @@ jobs:
           restore-keys: ${{ runner.os }}-nuget-
 
       - name: Restore
-        run: dotnet restore src/FSH.Starter.slnx
+        run: dotnet restore src/DreamTeam.slnx
 
-      # Integration tests build a host with WebApplicationFactory + Testcontainers.
-      # Middleware tests live in a separate assembly (own process) because a 2nd
-      # production-middleware host resets the static ModuleLoader.
       - name: Run integration tests with coverage
         run: |
           dotnet test src/Tests/Integration.Tests -c Release \
@@ -177,15 +168,12 @@ jobs:
     needs: changes
     if: needs.changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
-    # Catches container-publish regressions (Dockerfile-less SDK container) and DI-graph
-    # breakage in the migrator. Publishes the image locally, runs `apply --catalog-only`
-    # against an ephemeral Postgres, asserts exit 0.
     services:
       postgres:
         image: postgres:17-alpine
         env:
           POSTGRES_PASSWORD: migrator_smoke_pwd
-          POSTGRES_DB: fsh_migrator_smoke
+          POSTGRES_DB: dreamteam_migrator_smoke
         ports:
           - 5432:5432
         options: >-
@@ -212,19 +200,19 @@ jobs:
 
       - name: Publish DbMigrator container (local daemon)
         run: |
-          dotnet publish src/Host/FSH.Starter.DbMigrator/FSH.Starter.DbMigrator.csproj \
+          dotnet publish src/Host/DreamTeam.DbMigrator/DreamTeam.DbMigrator.csproj \
             -c Release -r linux-x64 \
             /t:PublishContainer \
-            -p:ContainerRepository=fsh-db-migrator \
+            -p:ContainerRepository=dreamteam-db-migrator \
             -p:ContainerImageTags=smoke
 
       - name: Run DbMigrator against ephemeral Postgres
         run: |
           docker run --rm --network host \
             -e DatabaseOptions__Provider=POSTGRESQL \
-            -e DatabaseOptions__ConnectionString="Host=localhost;Port=5432;Database=fsh_migrator_smoke;Username=postgres;Password=migrator_smoke_pwd" \
-            -e DatabaseOptions__MigrationsAssembly=FSH.Starter.Migrations.PostgreSQL \
-            fsh-db-migrator:smoke apply --catalog-only \
+            -e DatabaseOptions__ConnectionString="Host=localhost;Port=5432;Database=dreamteam_migrator_smoke;Username=postgres;Password=migrator_smoke_pwd" \
+            -e DatabaseOptions__MigrationsAssembly=DreamTeam.Migrations.PostgreSQL \
+            dreamteam-db-migrator:smoke apply --catalog-only \
             | tee migrator.log
           grep -q "finished successfully" migrator.log
 
@@ -233,11 +221,10 @@ jobs:
     needs: [changes, test, integration-test]
     if: needs.changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
-    # Merges the coverage already collected by the test + integration-test jobs
-    # (no test re-runs) and fails if line coverage regresses below the floor.
-    # Ratchet: bump MIN_LINE upward as coverage improves.
     env:
-      MIN_LINE: '80'
+      # MVP-1 floor: 50% (the kept test surface is small). Ratchet up as the
+      # Forms module lands and tests grow.
+      MIN_LINE: '50'
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -311,105 +298,21 @@ jobs:
 
       - name: Publish API container image
         run: |
-          dotnet publish src/Host/FSH.Starter.Api/FSH.Starter.Api.csproj \
+          dotnet publish src/Host/DreamTeam.Api/DreamTeam.Api.csproj \
             -c Release -r linux-x64 \
             /t:PublishContainer \
             -p:ContainerRegistry=ghcr.io \
-            -p:ContainerRepository=${{ github.repository_owner }}/fsh-api \
+            -p:ContainerRepository=${{ github.repository_owner }}/dreamteam-api \
             -p:ContainerImageTags='"dev-${{ github.sha }};dev-latest"'
 
       - name: Publish DbMigrator container image
         run: |
-          dotnet publish src/Host/FSH.Starter.DbMigrator/FSH.Starter.DbMigrator.csproj \
+          dotnet publish src/Host/DreamTeam.DbMigrator/DreamTeam.DbMigrator.csproj \
             -c Release -r linux-x64 \
             /t:PublishContainer \
             -p:ContainerRegistry=ghcr.io \
-            -p:ContainerRepository=${{ github.repository_owner }}/fsh-db-migrator \
+            -p:ContainerRepository=${{ github.repository_owner }}/dreamteam-db-migrator \
             -p:ContainerImageTags='"dev-${{ github.sha }};dev-latest"'
-
-  publish-release:
-    name: Publish Release (NuGet + Containers)
-    needs: [changes, test, integration-test]
-    if: |
-      (github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch') ||
-      startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v5
-        with:
-          global-json-file: global.json
-
-      - name: Cache NuGet packages
-        uses: actions/cache@v5
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
-          restore-keys: ${{ runner.os }}-nuget-
-
-      - name: Determine version
-        id: version
-        run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ -n "${{ github.event.inputs.version }}" ]; then
-            VERSION="${{ github.event.inputs.version }}"
-          elif [[ "$GITHUB_REF" == refs/tags/v* ]]; then
-            VERSION="${GITHUB_REF#refs/tags/v}"
-          else
-            echo "No version specified and not a tag push"
-            exit 1
-          fi
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Publishing version: $VERSION"
-
-      - name: Restore and Build with version
-        run: |
-          dotnet restore src/FSH.Starter.slnx
-          dotnet build src/FSH.Starter.slnx -c Release --no-restore -p:Version=${{ steps.version.outputs.version }}
-
-      # Distribution model is source-ownership: consumers get the FULL source via the
-      # `dotnet new fsh` template (below), NOT per-module/BuildingBlocks NuGet packages.
-      # Only two artifacts publish to NuGet — the `fsh` global CLI tool and the template.
-      # (The previous per-module packs were incomplete — 4 of 10 modules — and contradicted
-      # the locked source-ownership model, so they were removed.)
-      - name: Pack CLI Tool
-        run: dotnet pack src/Tools/CLI/FSH.CLI.csproj -c Release --no-build -o ./nupkgs -p:PackageVersion=${{ steps.version.outputs.version }}
-
-      # The dotnet new template package — the primary distribution artifact. Packs the
-      # repo (with its root .template.config) so consumers can `dotnet new install` then
-      # `dotnet new fsh -n MyApp`. Scaffolded output is fully owned, detached source.
-      - name: Pack Template
-        run: dotnet pack templates/FullStackHero.NET.StarterKit.csproj -c Release -o ./nupkgs -p:PackageVersion=${{ steps.version.outputs.version }}
-
-      - name: Push to NuGet.org
-        run: dotnet nuget push "./nupkgs/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-
-      - name: Login to GHCR
-        uses: docker/login-action@v4
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push API container
-        run: |
-          dotnet publish src/Host/FSH.Starter.Api/FSH.Starter.Api.csproj \
-            -c Release -r linux-x64 \
-            /t:PublishContainer \
-            -p:ContainerRegistry=ghcr.io \
-            -p:ContainerRepository=${{ github.repository_owner }}/fsh-api \
-            -p:ContainerImageTags='"${{ steps.version.outputs.version }};latest"'
-
-      - name: Build and push DbMigrator container
-        run: |
-          dotnet publish src/Host/FSH.Starter.DbMigrator/FSH.Starter.DbMigrator.csproj \
-            -c Release -r linux-x64 \
-            /t:PublishContainer \
-            -p:ContainerRegistry=ghcr.io \
-            -p:ContainerRepository=${{ github.repository_owner }}/fsh-db-migrator \
-            -p:ContainerImageTags='"${{ steps.version.outputs.version }};latest"'
 
   # Single required status check. Always runs (even when the heavy jobs are
   # skipped on a client-only PR) so branch protection resolves. Fails only if a

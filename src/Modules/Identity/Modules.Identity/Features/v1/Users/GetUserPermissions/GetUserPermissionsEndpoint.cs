@@ -1,13 +1,13 @@
-using FSH.Framework.Core.Exceptions;
-using FSH.Framework.Shared.Identity.Claims;
-using FSH.Modules.Identity.Contracts.v1.Users.GetUserPermissions;
+﻿using DreamTeam.Framework.Core.Exceptions;
+using DreamTeam.Framework.Shared.Identity.Claims;
+using DreamTeam.Modules.Identity.Contracts.v1.Users.GetUserPermissions;
 using Mediator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using System.Security.Claims;
 
-namespace FSH.Modules.Identity.Features.v1.Users.GetUserPermissions;
+namespace DreamTeam.Modules.Identity.Features.v1.Users.GetUserPermissions;
 
 public static class GetUserPermissionsEndpoint
 {

@@ -1,5 +1,5 @@
-using FSH.Modules.Identity.Contracts.v1.Users.ForgotPassword;
-using FSH.Modules.Identity.Features.v1.Users.ForgotPassword;
+﻿using DreamTeam.Modules.Identity.Contracts.v1.Users.ForgotPassword;
+using DreamTeam.Modules.Identity.Features.v1.Users.ForgotPassword;
 using Shouldly;
 using Xunit;
 

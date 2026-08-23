@@ -1,4 +1,4 @@
-namespace FSH.Framework.Web.Realtime;
+﻿namespace DreamTeam.Framework.Web.Realtime;
 
 /// <summary>
 /// Realtime hub asks this whether a user may broadcast or receive on a given channel. Implemented

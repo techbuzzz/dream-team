@@ -1,6 +1,6 @@
-# Architecture Tests
+﻿# Architecture Tests
 
-This folder contains solution-wide architecture tests for the FullStackHero .NET 10 Starter Kit. The goal is to automatically enforce layering, dependency, and naming rules as the codebase evolves.
+This folder contains solution-wide architecture tests for the DreamTeam .NET 10 Starter Kit. The goal is to automatically enforce layering, dependency, and naming rules as the codebase evolves.
 
 ## Project
 
@@ -16,7 +16,7 @@ This folder contains solution-wide architecture tests for the FullStackHero .NET
 
 ## Running the Tests
 
-- Run all tests (including architecture tests): `dotnet test src/FSH.Starter.slnx`.
+- Run all tests (including architecture tests): `dotnet test src/DreamTeam.slnx`.
 - Architecture tests are lightweight and rely only on project and file structure; they do not require any external services or databases.
 
 ## Extending the Rules

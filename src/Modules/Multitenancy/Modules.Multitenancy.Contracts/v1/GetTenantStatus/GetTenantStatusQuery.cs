@@ -1,6 +1,6 @@
-using FSH.Modules.Multitenancy.Contracts.Dtos;
+﻿using DreamTeam.Modules.Multitenancy.Contracts.Dtos;
 using Mediator;
 
-namespace FSH.Modules.Multitenancy.Contracts.v1.GetTenantStatus;
+namespace DreamTeam.Modules.Multitenancy.Contracts.v1.GetTenantStatus;
 
 public sealed record GetTenantStatusQuery(string TenantId) : IQuery<TenantStatusDto>;

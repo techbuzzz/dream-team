@@ -1,7 +1,7 @@
-using FSH.Framework.Shared.Storage;
-using FSH.Framework.Storage.DTOs;
+﻿using DreamTeam.Framework.Shared.Storage;
+using DreamTeam.Framework.Storage.DTOs;
 
-namespace FSH.Framework.Storage.Services;
+namespace DreamTeam.Framework.Storage.Services;
 
 public interface IStorageService
 {
