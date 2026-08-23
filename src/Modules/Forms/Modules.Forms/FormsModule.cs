@@ -5,6 +5,8 @@ using DreamTeam.Framework.Web.Modules;
 using DreamTeam.Modules.Forms.Contracts.Authorization;
 using DreamTeam.Modules.Forms.Data;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.CreateProcessTemplate;
+using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplateById;
+using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplates;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -58,5 +60,7 @@ public sealed class FormsModule : IModule
         // MVP-1 first vertical slice. Additional endpoints (publish form version,
         // generate process instance, submit response) land as follow-up workstreams.
         group.MapCreateProcessTemplateEndpoint();
+        group.MapGetProcessTemplateByIdEndpoint();
+        group.MapGetProcessTemplatesEndpoint();
     }
 }

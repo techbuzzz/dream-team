@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<RootNamespace>DreamTeam.Framework.Web</RootNamespace>
 		<AssemblyName>DreamTeam.Framework.Web</AssemblyName>
-		<NoWarn>$(NoWarn);CA1805;CA1307;CA1308;S1854;CA1812;CA1305;CA2000</NoWarn>
+		<NoWarn>$(NoWarn);CA1805;CA1307;CA1308;S1854;CA1812;CA1305;CA2000;AV0029;AV0030</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
