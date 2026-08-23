@@ -25,6 +25,8 @@
     <ProjectReference Include="..\..\BuildingBlocks\Web\Web.csproj" />
     <ProjectReference Include="..\..\Modules\Files\Modules.Files\Modules.Files.csproj" />
     <ProjectReference Include="..\..\Modules\Files\Modules.Files.Contracts\Modules.Files.Contracts.csproj" />
+    <ProjectReference Include="..\..\Modules\Forms\Modules.Forms\Modules.Forms.csproj" />
+    <ProjectReference Include="..\..\Modules\Forms\Modules.Forms.Contracts\Modules.Forms.Contracts.csproj" />
     <ProjectReference Include="..\..\Modules\Identity\Modules.Identity\Modules.Identity.csproj" />
     <ProjectReference Include="..\..\Modules\Multitenancy\Modules.Multitenancy\Modules.Multitenancy.csproj" />
     <ProjectReference Include="..\DreamTeam.Migrations.PostgreSQL\DreamTeam.Migrations.PostgreSQL.csproj" />

@@ -13,11 +13,13 @@
 	  <ProjectReference Include="..\..\Modules\Identity\Modules.Identity\Modules.Identity.csproj" />
 	  <ProjectReference Include="..\..\Modules\Multitenancy\Modules.Multitenancy\Modules.Multitenancy.csproj" />
 	  <ProjectReference Include="..\..\Modules\Files\Modules.Files\Modules.Files.csproj" />
+	  <ProjectReference Include="..\..\Modules\Forms\Modules.Forms\Modules.Forms.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="MultiTenancy\" />
 	  <Folder Include="Files\" />
+	  <Folder Include="Forms\" />
 	</ItemGroup>
 
 </Project>

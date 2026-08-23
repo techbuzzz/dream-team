@@ -1,6 +1,9 @@
 ﻿using DreamTeam.Framework.Eventing;
 using DreamTeam.Framework.Web;
 using DreamTeam.Framework.Web.Modules;
+using DreamTeam.Modules.Files;
+using DreamTeam.Modules.Forms;
+using DreamTeam.Modules.Forms.Contracts;
 using DreamTeam.Modules.Identity;
 using DreamTeam.Modules.Identity.Contracts.v1.Tokens.TokenGeneration;
 using DreamTeam.Modules.Identity.Features.v1.Tokens.TokenGeneration;
@@ -46,13 +49,15 @@ builder.Services.AddMediator(o =>
         typeof(DreamTeam.Modules.Files.FilesModule)];
 });
 
-// MVP-1: kept modules are Identity, Multitenancy (dormant, v4), and Files.
-// The Forms module lands as a separate workstream; Rituals/Notifications/Dashboard/Digest land in MVP-2.
+// MVP-1 modules: Identity, Multitenancy (dormant until v4), Files, Forms.
+// Forms is the form engine (ProcessTemplate/FormVersion/ProcessInstance/Submission).
+// Rituals/Notifications/Dashboard/Digest land in MVP-2.
 var moduleAssemblies = new Assembly[]
 {
     typeof(IdentityModule).Assembly,
     typeof(MultitenancyModule).Assembly,
     typeof(DreamTeam.Modules.Files.FilesModule).Assembly,
+    typeof(DreamTeam.Modules.Forms.FormsModule).Assembly,
 };
 
 builder.AddHeroPlatform(o =>

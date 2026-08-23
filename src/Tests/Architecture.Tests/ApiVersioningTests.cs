@@ -18,7 +18,8 @@ public partial class ApiVersioningTests
     [
         typeof(IdentityModule).Assembly,
         typeof(MultitenancyModule).Assembly,
-        typeof(DreamTeam.Modules.Files.FilesModule).Assembly
+        typeof(DreamTeam.Modules.Files.FilesModule).Assembly,
+        typeof(DreamTeam.Modules.Forms.FormsModule).Assembly
     ];
 
     private static readonly string SolutionRoot = ModuleArchitectureTestsFixture.SolutionRoot;

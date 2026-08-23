@@ -12,6 +12,8 @@ using DreamTeam.Modules.Multitenancy.Contracts;
 using DreamTeam.Modules.Multitenancy.Contracts.v1.GetTenantStatus;
 using DreamTeam.Modules.Multitenancy.Data;
 using DreamTeam.Modules.Multitenancy.Features.v1.GetTenantStatus;
+using DreamTeam.Modules.Forms;
+using DreamTeam.Modules.Forms.Contracts;
 using DreamTeam.DbMigrator;
 using Finbuckle.MultiTenant.Abstractions;
 using Microsoft.EntityFrameworkCore;
@@ -90,6 +92,7 @@ var moduleAssemblies = new Assembly[]
     typeof(IdentityModule).Assembly,
     typeof(MultitenancyModule).Assembly,
     typeof(DreamTeam.Modules.Files.FilesModule).Assembly,
+    typeof(DreamTeam.Modules.Forms.FormsModule).Assembly,
 };
 
 // Disable runtime-only concerns; persistence + multitenancy stay on so DbInitializers resolve. Caching

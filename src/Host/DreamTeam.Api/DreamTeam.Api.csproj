@@ -33,6 +33,8 @@
     <ProjectReference Include="..\DreamTeam.Migrations.PostgreSQL\DreamTeam.Migrations.PostgreSQL.csproj" />
     <ProjectReference Include="..\..\Modules\Files\Modules.Files\Modules.Files.csproj" />
     <ProjectReference Include="..\..\Modules\Files\Modules.Files.Contracts\Modules.Files.Contracts.csproj" />
+    <ProjectReference Include="..\..\Modules\Forms\Modules.Forms\Modules.Forms.csproj" />
+    <ProjectReference Include="..\..\Modules\Forms\Modules.Forms.Contracts\Modules.Forms.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

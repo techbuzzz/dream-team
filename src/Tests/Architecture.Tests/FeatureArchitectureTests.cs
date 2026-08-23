@@ -18,7 +18,8 @@ public class FeatureArchitectureTests
         {
             typeof(IdentityModule).Assembly,
             typeof(MultitenancyModule).Assembly,
-            typeof(DreamTeam.Modules.Files.FilesModule).Assembly
+            typeof(DreamTeam.Modules.Files.FilesModule).Assembly,
+            typeof(DreamTeam.Modules.Forms.FormsModule).Assembly
         };
 
         foreach (var module in modules)
