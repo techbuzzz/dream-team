@@ -1,8 +1,8 @@
-# Frontend — dashboard app (`clients/dashboard`)
+﻿# Frontend — dashboard app (`clients/dashboard`)
 
 Tenant-facing application. Read `frontend/shared.md` first; this file is only the divergences.
 
-- **Port** 5174 · dev proxy target `https://localhost:7030` (HTTPS, with `ws: true` for the SignalR hub) · localStorage prefix `fsh.dashboard.*` · login header `X-FSH-App: dashboard`.
+- **Port** 5174 · dev proxy target `https://localhost:7030` (HTTPS, with `ws: true` for the SignalR hub) · localStorage prefix `fsh.dashboard.*` · login header `X-DreamTeam-App: dashboard`.
 - **Env** (`src/env.ts`): `{ apiBase, defaultTenant, demoMode }`.
 - Dev-proxy is HTTPS on purpose: routing the bearer token through an HTTP→HTTPS 307 redirect stripped the `Authorization` header.
 

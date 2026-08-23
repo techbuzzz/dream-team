@@ -1,4 +1,4 @@
----
+﻿---
 description: Verify changes don't violate architectural integrity — module boundaries, BuildingBlocks protection, the four-place module registration, and the architecture-test suite. Run before commit/PR. READ-ONLY.
 ---
 
@@ -22,12 +22,12 @@ Covers: cross-module references only via `.Contracts`, tenant-isolation rules on
 
 ### 3. Build clean
 ```bash
-dotnet build src/FSH.Starter.slnx 2>&1 | grep -E "warning|error"   # expect none (TreatWarningsAsErrors)
+dotnet build src/DreamTeam.slnx 2>&1 | grep -E "warning|error"   # expect none (TreatWarningsAsErrors)
 ```
 
 ### 4. Module boundary heuristic
 ```bash
-grep -rn "using FSH.Modules\." src/Modules --include="*.cs" | grep -v "\.Contracts"
+grep -rn "using DreamTeam.Modules\." src/Modules --include="*.cs" | grep -v "\.Contracts"
 ```
 Cross-module `using`s should resolve only to `*.Contracts` namespaces (same-module internal usings are fine — confirm the module name differs).
 
@@ -37,9 +37,9 @@ grep -rn "MediatR\|IRequest<\|IRequestHandler<" src/Modules --include="*.cs"   #
 ```
 
 ### 6. New-module registration (the four-place footgun)
-If a new `*Module` was added, confirm it appears in **all four**: Mediator `o.Assemblies` (Contracts marker **and** module type) + `moduleAssemblies` array, in **both** `FSH.Starter.Api/Program.cs` and `FSH.Starter.DbMigrator/Program.cs`.
+If a new `*Module` was added, confirm it appears in **all four**: Mediator `o.Assemblies` (Contracts marker **and** module type) + `moduleAssemblies` array, in **both** `DreamTeam.Api/Program.cs` and `DreamTeam.DbMigrator/Program.cs`.
 ```bash
-grep -rn "{New}Module\|{New}ContractsMarker" src/Host/FSH.Starter.Api/Program.cs src/Host/FSH.Starter.DbMigrator/Program.cs
+grep -rn "{New}Module\|{New}ContractsMarker" src/Host/DreamTeam.Api/Program.cs src/Host/DreamTeam.DbMigrator/Program.cs
 ```
 
 ### 7. Permission-gate integrity

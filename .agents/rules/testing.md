@@ -1,4 +1,4 @@
-# Testing conventions
+﻿# Testing conventions
 
 Read before writing or changing tests.
 
@@ -23,7 +23,7 @@ xUnit · Shouldly (`result.ShouldBe(...)`) · NSubstitute (`Substitute.For<IServ
 | `Integration.Middleware.Tests` | Real middleware wiring | **yes** |
 
 ```bash
-dotnet test src/FSH.Starter.slnx                 # all (integration needs Docker)
+dotnet test src/DreamTeam.slnx                 # all (integration needs Docker)
 dotnet test src/Tests/{Module}.Tests             # one project
 dotnet test --collect "XPlat Code Coverage" --settings coverage.runsettings
 ```

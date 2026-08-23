@@ -1,4 +1,4 @@
-# Frontend — shared conventions
+﻿# Frontend — shared conventions
 
 Applies to **both** `clients/admin` and `clients/dashboard`. Read this for any React work, then read
 the app-specific file (`admin.md` / `dashboard.md`) for divergences.
@@ -49,7 +49,7 @@ mutation.mutate({ text, clientId: crypto.randomUUID() });
 ## Auth (`src/auth/`)
 
 `token-store.ts` (localStorage + pub/sub), `jwt.ts` (`decodeJwt`), `AuthProvider`/`useAuth()`, `ProtectedRoute`.
-Login `POST /api/v1/identity/token/issue` with header `X-FSH-App: "admin"|"dashboard"`. **localStorage keys are namespaced per app** (`fsh.admin.*` / `fsh.dashboard.*`) so both run side-by-side. Permission *source* differs per app — see the app files.
+Login `POST /api/v1/identity/token/issue` with header `X-DreamTeam-App: "admin"|"dashboard"`. **localStorage keys are namespaced per app** (`fsh.admin.*` / `fsh.dashboard.*`) so both run side-by-side. Permission *source* differs per app — see the app files.
 
 ## Design system (Tailwind v4, shadcn-style)
 

@@ -1,4 +1,4 @@
----
+﻿---
 name: add-permission
 description: Add a new permission end-to-end — server constant + endpoint gate, and (admin app) mirror it into the permissions catalog + route guard. Use when a new endpoint needs authorization. See modules/identity.md + frontend/admin.md.
 argument-hint: "[ModuleName] [Resource] [Action]"
@@ -22,7 +22,7 @@ public static class {X}Permissions
         public const string View   = "Permissions.{Resources}.View";
         public const string Create = "Permissions.{Resources}.Create";   // ← new
     }
-    public static IReadOnlyList<FshPermission> All { get; } = [ /* … include the new one … */ ];
+    public static IReadOnlyList<DreamTeamPermission> All { get; } = [ /* … include the new one … */ ];
 }
 ```
 

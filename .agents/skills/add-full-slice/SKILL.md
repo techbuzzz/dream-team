@@ -1,4 +1,4 @@
----
+﻿---
 name: add-full-slice
 description: Build a capability end-to-end — backend vertical slice (Contracts→handler→validator→endpoint) AND the React page wired to it. Use when delivering a user-facing feature across API + UI. Composes add-feature + add-react-page.
 argument-hint: "[ModuleName] [admin|dashboard] [FeatureName]"
@@ -36,9 +36,9 @@ the order of operations and the **contract** that keeps the two halves in sync.
 ## Verify end-to-end
 
 ```bash
-dotnet build src/FSH.Starter.slnx && dotnet test src/Tests/{X}.Tests
+dotnet build src/DreamTeam.slnx && dotnet test src/Tests/{X}.Tests
 cd clients/{app} && npm run lint && npm run test:e2e
-# optional manual check: dotnet run --project src/Host/FSH.Starter.AppHost  (brings up API + both apps)
+# optional manual check: dotnet run --project src/Host/DreamTeam.AppHost  (brings up API + both apps)
 ```
 
 ## Checklist

@@ -1,8 +1,8 @@
-# Frontend — admin app (`clients/admin`)
+﻿# Frontend — admin app (`clients/admin`)
 
 Operator/SuperAdmin-facing console. Read `frontend/shared.md` first; this file is only the divergences.
 
-- **Port** 5173 · dev proxy target `http://localhost:5030` (HTTP) · localStorage prefix `fsh.admin.*` · login header `X-FSH-App: admin`.
+- **Port** 5173 · dev proxy target `http://localhost:5030` (HTTP) · localStorage prefix `fsh.admin.*` · login header `X-DreamTeam-App: admin`.
 - **Env** (`src/env.ts`): `{ apiBase, defaultTenant, dashboardUrl }`. `dashboardUrl` is used for the one-way impersonation handoff into the dashboard app.
 
 ## Forms — react-hook-form + zod

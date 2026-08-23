@@ -1,4 +1,4 @@
----
+﻿---
 name: add-integration-event
 description: Publish a cross-module integration event via the Outbox and handle it idempotently in another module. Use when one module must react to something that happened in another. See .agents/rules/eventing.md.
 argument-hint: "[SourceModule] [EventName] [ConsumerModule]"
@@ -30,7 +30,7 @@ public sealed record {Event}IntegrationEvent(
 
 ## Step 2 — Publish via the Outbox (source handler)
 
-Publishing needs **no module registration** — the outbox is framework-owned and the host wires it once. Inject `IOutboxWriter` (from `FSH.Framework.Eventing.Abstractions`) and add the event in the same unit of work:
+Publishing needs **no module registration** — the outbox is framework-owned and the host wires it once. Inject `IOutboxWriter` (from `DreamTeam.Framework.Eventing.Abstractions`) and add the event in the same unit of work:
 
 ```csharp
 public sealed class Do{Thing}CommandHandler({Source}DbContext db, IOutboxWriter outbox)
@@ -83,7 +83,7 @@ builder.Services.AddIntegrationEventHandlers(typeof({Consumer}Module).Assembly);
 - **Idempotency is free** with the in-memory bus (the Inbox dedups by `{eventId, handlerName}`) — don't hand-roll it.
 - The in-memory bus runs handlers **synchronously in the publisher's scope** — keep the handler lean; a throw surfaces to the originating request. Published via the outbox, that scope belongs to the dispatcher, so the consumer runs on the next cycle and its failures never reach the caller. Don't let a caller (or a test) assume the side effect already happened; integration tests drain with `OutboxDrain.DrainAsync`.
 - If the handler reads a **tenant-filtered** DbContext from a background path (open-generic handler, Hangfire job), restore Finbuckle context first via `IMultiTenantContextSetter` (see `WebhookFanoutHandler`).
-- **Module load order:** the consumer must load before the publisher if it must react (`Order` in `[assembly: FshModule]`) — e.g. Notifications (750) before Chat (800).
+- **Module load order:** the consumer must load before the publisher if it must react (`Order` in `[assembly: DreamTeamModule]`) — e.g. Notifications (750) before Chat (800).
 
 ## Checklist
 

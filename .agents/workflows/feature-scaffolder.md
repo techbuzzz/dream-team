@@ -1,4 +1,4 @@
----
+﻿---
 description: Orchestrate delivering a feature end-to-end. Sequences the scaffolding skills and verifies. Use when asked to "add a feature/endpoint/screen". Delegates the code recipes to skills — does not restate them.
 ---
 
@@ -21,7 +21,7 @@ backend↔frontend contract, and verification.
 
 ## Verify
 ```bash
-dotnet build src/FSH.Starter.slnx && dotnet test src/Tests/{X}.Tests
+dotnet build src/DreamTeam.slnx && dotnet test src/Tests/{X}.Tests
 # if a UI surface: cd clients/{app} && npm run lint && npm run test:e2e
 ```
 Then run the **`code-reviewer`** and **`architecture-guard`** workflows before commit.
