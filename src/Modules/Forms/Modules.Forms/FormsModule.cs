@@ -12,6 +12,7 @@ using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.GetProcessInstanceByI
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAsCompleted;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAsSkipped;
 using DreamTeam.Modules.Forms.Features.v1.Submissions.CreateSubmission;
+using DreamTeam.Modules.Forms.Features.v1.Submissions.GetSubmissionsByInstanceId;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.CreateProcessTemplate;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplateById;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplates;
@@ -90,5 +91,6 @@ public sealed class FormsModule : IModule
         // the instance to Completed in the same transaction (the second path to
         // completion, alongside MarkProcessInstanceAsCompleted).
         group.MapCreateSubmissionEndpoint();
+        group.MapGetSubmissionsByInstanceIdEndpoint();
     }
 }
