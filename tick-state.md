@@ -31,23 +31,26 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: ~60% done (foundation in place, missing feature coverage)
+- Status: ~65% done (foundation in place, 4 of ~10 features shipped)
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
-  - 3 ProcessTemplate features: CreateProcessTemplate, GetProcessTemplateById, GetProcessTemplates (handler+validator+endpoint each)
+  - 4 features shipped: CreateProcessTemplate, GetProcessTemplateById, GetProcessTemplates, CreateFormVersion (snapshot-on-publish) — handler+validator+endpoint each
   - Permissions catalog: FormsPermissions covers all 4 resource types
   - Initial migration: `Forms/20260101000001_Initial.cs` (creates 4 tables in `forms` schema)
-  - Forms.Tests project: 2 validator tests
+  - Forms.Tests project: 16 validator tests (ProcessTemplate 8 + FormVersion 8) — 23 total when including the parameterized slug tests
   - Wiring: Program.cs (Mediator + moduleAssemblies), DbMigrator, Migrations.PostgreSQL, slnx, Architecture.Tests
 - **Still needed:**
-  - FormVersion features: Publish, GetById, GetByTemplateId
+  - FormVersion features: GetById, GetByTemplateId
   - ProcessInstance features: Schedule, GetById, GetByUserId, Complete, Skip
   - Submission features: Submit, GetByInstanceId
-  - More unit tests (handler/endpoint coverage)
-  - Verifying smoke: `dotnet build src/DreamTeam.slnx` + `dotnet ef migrations add` works
-- Skills: `add-feature` (×6-8 features), `query-patterns`, `testing-guide`
+  - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator-only
+  - Smoke: actually run `dotnet run --project src/Host/DreamTeam.Api` and exercise the endpoint
+- Skills: `add-feature` (×6 remaining), `query-patterns`, `testing-guide`
 - Docs: `docs/architecture-v1.md` §1–§4, `.agents/rules/database.md`, `.agents/rules/api-conventions.md`
+
+#### E1.1 tick log
+- [2026-08-24 22:08 MSK] tick #1 — CreateFormVersion (snapshot-on-publish) — `024d153` — done — next: E1.1 FormVersion.GetById
 
 ### E1.2 — Auth: ASP.NET Identity + JWT + refresh rotation + RBAC  [ ]
 - Status: pending
