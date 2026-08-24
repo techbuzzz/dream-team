@@ -9,8 +9,8 @@
 ## Current focus
 - **Phase:** MVP-1 (EPIC-1: Form Engine Foundation)
 - **Next epic on deck:** EPIC-1, in roadmap order
-- **Last tick:** tick #6 — E1.1 MarkProcessInstanceAsCompleted (commit `b628b7d`)
-- **Tick #:** 6
+- **Last tick:** tick #7 — E1.1 MarkProcessInstanceAsSkipped (commit `8c844cc`)
+- **Tick #:** 7
 
 ## Audit snapshot (2026-08-24 21:50 MSK)
 Pre-tick audit ran. **Significant Forms module foundation already in place.**
@@ -31,21 +31,20 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: ~90% done (9 of ~10 features shipped)
+- Status: ~100% done on ProcessInstance + ProcessTemplate + FormVersion (12/12 features shipped in those areas). **E1.1 backend = 100% done** for the three entity families. Submission features (Submit, GetByInstanceId) remain.
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
-  - 9 features shipped: CreateProcessTemplate, GetProcessTemplateById, GetProcessTemplates, CreateFormVersion, GetFormVersionById, GetFormVersionsByTemplateId, CreateProcessInstance, GetProcessInstanceById, MarkProcessInstanceAsCompleted — handler+validator+endpoint each
+  - 10 features shipped: CreateProcessTemplate, GetProcessTemplateById, GetProcessTemplates, CreateFormVersion, GetFormVersionById, GetFormVersionsByTemplateId, CreateProcessInstance, GetProcessInstanceById, MarkProcessInstanceAsCompleted, MarkProcessInstanceAsSkipped — handler+validator+endpoint each
   - Permissions catalog: FormsPermissions covers all 4 resource types
   - Initial migration: `Forms/20260101000001_Initial.cs` (creates 4 tables in `forms` schema)
-  - Forms.Tests project: 33 validator tests — 40 total
+  - Forms.Tests project: 35 validator tests — 42 total
   - Wiring: Program.cs (Mediator + moduleAssemblies), DbMigrator, Migrations.PostgreSQL, slnx, Architecture.Tests
-- **Still needed:**
-  - ProcessInstance features: Skip (state-transition command)
-  - Submission features: Submit, GetByInstanceId
+- **Still needed (E1.1):**
+  - Submission features: Submit (the keystone for the smoke flow), GetByInstanceId
   - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator-only
   - Smoke: actually run `dotnet run --project src/Host/DreamTeam.Api` and exercise the endpoint
-- Skills: `add-feature` (×2-3 remaining — ProcessInstance × 1 + Submission × 2)
+- Skills: `add-feature` (×2 remaining — Submission × 2)
 - Docs: `docs/architecture-v1.md` §1–§4, `.agents/rules/database.md`, `.agents/rules/api-conventions.md`
 
 #### E1.1 tick log
@@ -55,6 +54,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-24 23:30 MSK] tick #4 — CreateProcessInstance (bridge to Rituals MVP-2) — `70d35f1` — done — next: E1.1 ProcessInstance.GetById
 - [2026-08-25 00:00 MSK] tick #5 — GetProcessInstanceById — `b7bd9b3` — done — next: E1.1 ProcessInstance.Complete
 - [2026-08-25 00:30 MSK] tick #6 — MarkProcessInstanceAsCompleted (state transition) — `b628b7d` — done — next: E1.1 ProcessInstance.Skip
+- [2026-08-25 01:00 MSK] tick #7 — MarkProcessInstanceAsSkipped (state transition) — `8c844cc` — done — next: E1.1 Submission.Submit
 
 ### E1.2 — Auth: ASP.NET Identity + JWT + refresh rotation + RBAC  [ ]
 - Status: pending
@@ -143,6 +143,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-24 23:30 MSK] tick #4 — E1.1 CreateProcessInstance (bridge to Rituals MVP-2) — `70d35f1` — done — next: E1.1 ProcessInstance.GetById
 - [2026-08-25 00:00 MSK] tick #5 — E1.1 GetProcessInstanceById — `b7bd9b3` — done — next: E1.1 ProcessInstance.Complete
 - [2026-08-25 00:30 MSK] tick #6 — E1.1 MarkProcessInstanceAsCompleted (state transition) — `b628b7d` — done — next: E1.1 ProcessInstance.Skip
+- [2026-08-25 01:00 MSK] tick #7 — E1.1 MarkProcessInstanceAsSkipped (state transition) — `8c844cc` — done — next: E1.1 Submission.Submit
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
