@@ -10,6 +10,7 @@ using DreamTeam.Modules.Forms.Features.v1.FormVersions.GetFormVersionsByTemplate
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.CreateProcessInstance;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.GetProcessInstanceById;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAsCompleted;
+using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAsSkipped;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.CreateProcessTemplate;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplateById;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplates;
@@ -80,5 +81,8 @@ public sealed class FormsModule : IModule
 
         // E1.1 next slice: state transition — mark instance Completed.
         group.MapMarkProcessInstanceAsCompletedEndpoint();
+
+        // E1.1 next slice: state transition — mark instance Skipped.
+        group.MapMarkProcessInstanceAsSkippedEndpoint();
     }
 }
