@@ -9,8 +9,8 @@
 ## Current focus
 - **Phase:** MVP-1 (EPIC-1: Form Engine Foundation)
 - **Next epic on deck:** EPIC-1, in roadmap order
-- **Last tick:** (not yet run)
-- **Tick #:** 0
+- **Last tick:** tick #1 — E1.1 CreateFormVersion (commit `024d153`)
+- **Tick #:** 1
 
 ## Audit snapshot (2026-08-24 21:50 MSK)
 Pre-tick audit ran. **Significant Forms module foundation already in place.**
@@ -130,7 +130,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ---
 
 ## Tick log
-(empty — first tick hasn't run yet)
+- [2026-08-24 22:08 MSK] tick #1 — E1.1 CreateFormVersion (snapshot-on-publish) — `024d153` — done — next: E1.1 FormVersion.GetById
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
