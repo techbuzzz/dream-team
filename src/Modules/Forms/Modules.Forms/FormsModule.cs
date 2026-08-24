@@ -4,6 +4,7 @@ using DreamTeam.Framework.Shared.Constants;
 using DreamTeam.Framework.Web.Modules;
 using DreamTeam.Modules.Forms.Contracts.Authorization;
 using DreamTeam.Modules.Forms.Data;
+using DreamTeam.Modules.Forms.Features.v1.FormVersions.CreateFormVersion;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.CreateProcessTemplate;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplateById;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplates;
@@ -62,5 +63,8 @@ public sealed class FormsModule : IModule
         group.MapCreateProcessTemplateEndpoint();
         group.MapGetProcessTemplateByIdEndpoint();
         group.MapGetProcessTemplatesEndpoint();
+
+        // E1.1 next slice: publish a FormVersion against a template (snapshot-on-publish).
+        group.MapCreateFormVersionEndpoint();
     }
 }
