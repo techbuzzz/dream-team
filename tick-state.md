@@ -9,8 +9,8 @@
 ## Current focus
 - **Phase:** MVP-1 (EPIC-1: Form Engine Foundation)
 - **Next epic on deck:** EPIC-1, in roadmap order
-- **Last tick:** tick #4 — E1.1 CreateProcessInstance (commit `70d35f1`)
-- **Tick #:** 4
+- **Last tick:** tick #5 — E1.1 GetProcessInstanceById (commit `b7bd9b3`)
+- **Tick #:** 5
 
 ## Audit snapshot (2026-08-24 21:50 MSK)
 Pre-tick audit ran. **Significant Forms module foundation already in place.**
@@ -31,21 +31,21 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: ~80% done (7 of ~10 features shipped)
+- Status: ~85% done (8 of ~10 features shipped)
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
-  - 7 features shipped: CreateProcessTemplate, GetProcessTemplateById, GetProcessTemplates, CreateFormVersion, GetFormVersionById, GetFormVersionsByTemplateId, CreateProcessInstance — handler+validator+endpoint each
+  - 8 features shipped: CreateProcessTemplate, GetProcessTemplateById, GetProcessTemplates, CreateFormVersion, GetFormVersionById, GetFormVersionsByTemplateId, CreateProcessInstance, GetProcessInstanceById — handler+validator+endpoint each
   - Permissions catalog: FormsPermissions covers all 4 resource types
   - Initial migration: `Forms/20260101000001_Initial.cs` (creates 4 tables in `forms` schema)
-  - Forms.Tests project: 29 validator tests — 36 total
+  - Forms.Tests project: 31 validator tests — 38 total
   - Wiring: Program.cs (Mediator + moduleAssemblies), DbMigrator, Migrations.PostgreSQL, slnx, Architecture.Tests
 - **Still needed:**
-  - ProcessInstance features: GetById, Complete, Skip
+  - ProcessInstance features: Complete, Skip (state-transition commands)
   - Submission features: Submit, GetByInstanceId
   - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator-only
   - Smoke: actually run `dotnet run --project src/Host/DreamTeam.Api` and exercise the endpoint
-- Skills: `add-feature` (×3 remaining — ProcessInstance × 3 + Submission × 2)
+- Skills: `add-feature` (×2-3 remaining — ProcessInstance × 2 + Submission × 2)
 - Docs: `docs/architecture-v1.md` §1–§4, `.agents/rules/database.md`, `.agents/rules/api-conventions.md`
 
 #### E1.1 tick log
@@ -53,6 +53,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-24 22:30 MSK] tick #2 — GetFormVersionById — `0dcadb2` — done — next: E1.1 FormVersion.GetByTemplateId
 - [2026-08-24 23:00 MSK] tick #3 — GetFormVersionsByTemplateId (paginated) — `055bf84` — done — next: E1.1 ProcessInstance.Schedule
 - [2026-08-24 23:30 MSK] tick #4 — CreateProcessInstance (bridge to Rituals MVP-2) — `70d35f1` — done — next: E1.1 ProcessInstance.GetById
+- [2026-08-25 00:00 MSK] tick #5 — GetProcessInstanceById — `b7bd9b3` — done — next: E1.1 ProcessInstance.Complete
 
 ### E1.2 — Auth: ASP.NET Identity + JWT + refresh rotation + RBAC  [ ]
 - Status: pending
@@ -139,6 +140,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-24 22:30 MSK] tick #2 — E1.1 GetFormVersionById — `0dcadb2` — done — next: E1.1 FormVersion.GetByTemplateId
 - [2026-08-24 23:00 MSK] tick #3 — E1.1 GetFormVersionsByTemplateId (paginated) — `055bf84` — done — next: E1.1 ProcessInstance.Schedule
 - [2026-08-24 23:30 MSK] tick #4 — E1.1 CreateProcessInstance (bridge to Rituals MVP-2) — `70d35f1` — done — next: E1.1 ProcessInstance.GetById
+- [2026-08-25 00:00 MSK] tick #5 — E1.1 GetProcessInstanceById — `b7bd9b3` — done — next: E1.1 ProcessInstance.Complete
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
