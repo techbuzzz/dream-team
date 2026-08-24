@@ -137,7 +137,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 -->
 
 ## Blockers
-(none)
+- Orphaned `PublishFormVersion*` placeholders (5 files: 3 in Contracts, 2 in Forms/Features, 1 test). Kept as comment-only stubs to preserve git history after the rename to `CreateFormVersion*`. Will be removed by a future tick once the rename is no longer novel.
 
 ---
 
