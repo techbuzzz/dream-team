@@ -10,6 +10,7 @@ using DreamTeam.Modules.Forms.Features.v1.FormVersions.GetFormVersionById;
 using DreamTeam.Modules.Forms.Features.v1.FormVersions.GetFormVersionsByTemplateId;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.CreateProcessInstance;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.GetProcessInstanceById;
+using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.GetProcessInstancesByTemplateId;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.GetProcessInstancesByUserId;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAsCompleted;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAsSkipped;
@@ -96,6 +97,9 @@ public sealed class FormsModule : IModule
 
         // E1.1 missed: list instances for a user (drives "My 1-1s" dashboard).
         group.MapGetProcessInstancesByUserIdEndpoint();
+
+        // E1.1 missed: list instances for a template (paginated, JOIN through FormVersion).
+        group.MapGetProcessInstancesByTemplateIdEndpoint();
 
         // E1.1 keystone: submit a response to a ProcessInstance. Auto-transitions
         // the instance to Completed in the same transaction (the second path to
