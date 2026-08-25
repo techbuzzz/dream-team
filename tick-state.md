@@ -161,6 +161,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 02:00 MSK] tick #9 — E1.1 GetSubmissionsByInstanceId (last E1.1 slice per scope) — `e36355f` — done — **E1.1 backend nominally COMPLETE** — next: E1.2 Auth OR handler tests
 - [2026-08-25 02:30 MSK] tick #10 — E1.1 GetProcessInstancesByUserId (missed slice, recovered) — `f3d797c` — done — **E1.1 backend 13/13 truly COMPLETE** — next: still E1.2 vs handler tests (user did not pick)
 - [2026-08-25 03:00 MSK] tick #11 — 18 entity tests (Domain layer: ProcessTemplate/ProcessInstance/FormVersion/Submission) — `5dce1db` — done — **Cron paused. Awaiting user direction.**
+- [2026-08-25 11:00 MSK] tick #12 — UpdateProcessTemplate (PATCH, missed slice, DDD Update() method) — `9473e8f` — done — **Git author switched to Viktor Buzin** — next: ArchiveProcessTemplate
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
