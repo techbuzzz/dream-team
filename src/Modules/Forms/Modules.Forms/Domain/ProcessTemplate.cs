@@ -71,4 +71,43 @@ public sealed class ProcessTemplate : IAuditableEntity, IHasTenant, ISoftDeletab
             IsDeleted = false,
         };
     }
+
+    /// <summary>
+    /// PATCH-style content update. All three fields are optional; null means
+    /// "leave unchanged". The caller is responsible for validating the input
+    /// (length, non-empty when present) before calling.
+    ///
+    /// Slug is intentionally NOT updatable here — it is the unique business
+    /// key per tenant and changing it would invalidate cached URLs, the
+    /// FormVersion chain, and any process instances already pointing at this
+    /// template. If a slug rename is ever needed it lands as a separate
+    /// dedicated flow (with URL-redirect issuance + instance rewriting).
+    ///
+    /// OwnerId is also NOT updatable — ownership transfer is a separate
+    /// concern (audit, notifications, "transfer to new lead" flow).
+    ///
+    /// Caller must check IsArchived before calling — the handler refuses
+    /// 409 on archived templates.
+    /// </summary>
+    public void Update(string? name, string? description, string? category)
+    {
+        if (name is not null)
+        {
+            ArgumentException.ThrowIfNullOrWhiteSpace(name);
+            Name = name;
+        }
+
+        if (description is not null)
+        {
+            // Description can be set to null to clear it. Empty string
+            // is rejected by the validator before we get here.
+            Description = description;
+        }
+
+        if (category is not null)
+        {
+            // Same as description: null clears, empty rejected upstream.
+            Category = category;
+        }
+    }
 }

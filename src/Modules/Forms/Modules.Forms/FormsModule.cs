@@ -17,6 +17,7 @@ using DreamTeam.Modules.Forms.Features.v1.Submissions.GetSubmissionsByInstanceId
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.CreateProcessTemplate;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplateById;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplates;
+using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.UpdateProcessTemplate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -72,6 +73,7 @@ public sealed class FormsModule : IModule
         group.MapCreateProcessTemplateEndpoint();
         group.MapGetProcessTemplateByIdEndpoint();
         group.MapGetProcessTemplatesEndpoint();
+        group.MapUpdateProcessTemplateEndpoint();
 
         // E1.1 next slice: publish a FormVersion against a template (snapshot-on-publish).
         group.MapCreateFormVersionEndpoint();
