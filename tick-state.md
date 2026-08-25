@@ -9,10 +9,10 @@
 ## Current focus
 - **Phase:** MVP-1 (EPIC-1: Form Engine Foundation)
 - **Next epic on deck:** EPIC-1, in roadmap order
-- **Last tick:** tick #14 — E1.1 GetCurrentFormVersion (commit `d522b0e`).
-- **Tick #:** 14
+- **Last tick:** tick #15 — E1.1 GetProcessInstancesByTemplateId (commit `ada8a9e`).
+- **Tick #:** 15
 - **Cron status:** active
-- **Direction:** continue E1.1 sub-slices (next: ListProcessInstancesByTemplate)
+- **Direction:** continue E1.1 sub-slices (next: GetSubmissionById)
 
 ## Audit snapshot (2026-08-24 21:50 MSK)
 Pre-tick audit ran. **Significant Forms module foundation already in place.**
@@ -33,7 +33,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: **E1.1 backend 16/16 features shipped + 18 entity tests. Git author = Viktor Buzin. Cron active, direction = continue.**
+- Status: **E1.1 backend 17/17 features shipped + 18 entity tests. Git author = Viktor Buzin. Cron active, direction = continue.**
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
@@ -46,10 +46,10 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
   - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator + entity. ~3-4 ticks. Defer to "tests" choice.
   - Smoke: actually run `dotnet run --project src/Host/DreamTeam.Api` and exercise the endpoint. ~1 tick (requires Docker for Postgres). Defer.
 - **E1.1 sub-slice backlog (under "continue" direction):**
-  - [x] **UpdateProcessTemplate** ✅ tick #12 — PATCH /templates/{id}
-  - [x] **ArchiveProcessTemplate** ✅ tick #13 — POST /templates/{id}/archive
-  - [x] **GetCurrentFormVersion** ✅ tick #14 — GET /templates/{templateId}/versions/current
-  - [ ] **ListProcessInstancesByTemplate** — GET /templates/{templateId}/instances (paginated)
+  - [x] **UpdateProcessTemplate** ✅ tick #12
+  - [x] **ArchiveProcessTemplate** ✅ tick #13
+  - [x] **GetCurrentFormVersion** ✅ tick #14
+  - [x] **ListProcessInstancesByTemplate** ✅ tick #15
   - [ ] **GetSubmissionById** — GET /submissions/{submissionId}
   - [ ] **UpdateProcessInstance** — PATCH /instances/{id} (change ScheduledAt / PairUserId before instance is terminal)
 - **Next epic (E1.2):**
@@ -164,6 +164,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 11:00 MSK] tick #12 — UpdateProcessTemplate (PATCH, missed slice, DDD Update() method) — `9473e8f` — done — **Git author switched to Viktor Buzin** — next: ArchiveProcessTemplate
 - [2026-08-25 11:30 MSK] tick #13 — ArchiveProcessTemplate (POST, soft archive, DDD Archive() method) — `f3e99d6` — done — next: GetCurrentFormVersion
 - [2026-08-25 12:00 MSK] tick #14 — GetCurrentFormVersion (GET, convenience, single-row seek) — `d522b0e` — done — next: ListProcessInstancesByTemplate
+- [2026-08-25 12:30 MSK] tick #15 — GetProcessInstancesByTemplateId (GET, paginated, JOIN through FormVersion) — `ada8a9e` — done — next: GetSubmissionById
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
