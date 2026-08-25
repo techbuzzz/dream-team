@@ -61,4 +61,42 @@ public sealed class ProcessInstance : IAuditableEntity, IHasTenant
             CompletedAt = null,
         };
     }
+
+    /// <summary>
+    /// PATCH-style content update. Both fields are optional; null means
+    /// "leave unchanged" (C# record syntax doesn't distinguish "omitted"
+    /// from "explicitly null" — the endpoint layer handles that). MVP-1
+    /// does not support clearing <c>PairUserId</c> to null; if that's ever
+    /// needed it lands as a separate "clear" flag on the request record.
+    ///
+    /// Mutability rules:
+    /// <list type="bullet">
+    ///   <item>Caller MUST check <c>Status</c> is <c>Planned</c> or
+    ///         <c>Running</c> before calling — the handler refuses 409 on
+    ///         terminal instances.</item>
+    ///   <item>FormVersionId is NOT updatable (changes would break the
+    ///         "ProcessInstance is bound to one FormVersion" invariant and
+    ///         invalidate any Submissions already on file).</item>
+    ///   <item>ScheduledAt must be in the future when changed — the
+    ///         validator enforces it before we get here.</item>
+    ///   <item>PairUserId, when non-null, must be non-empty (empty strings
+    ///         are rejected upstream).</item>
+    /// </list>
+    /// </summary>
+    public void Update(DateTime? scheduledAt, string? pairUserId)
+    {
+        if (scheduledAt.HasValue)
+        {
+            ScheduledAt = scheduledAt.Value;
+        }
+
+        if (pairUserId is not null)
+        {
+            // PairUserId is optional on the entity but, when present via
+            // update, cannot be empty. The validator catches this earlier
+            // (400) — we throw here as defence-in-depth.
+            ArgumentException.ThrowIfNullOrWhiteSpace(pairUserId);
+            PairUserId = pairUserId;
+        }
+    }
 }

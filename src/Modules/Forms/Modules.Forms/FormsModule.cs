@@ -14,6 +14,7 @@ using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.GetProcessInstancesBy
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.GetProcessInstancesByUserId;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAsCompleted;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAsSkipped;
+using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.UpdateProcessInstance;
 using DreamTeam.Modules.Forms.Features.v1.Submissions.CreateSubmission;
 using DreamTeam.Modules.Forms.Features.v1.Submissions.GetSubmissionById;
 using DreamTeam.Modules.Forms.Features.v1.Submissions.GetSubmissionsByInstanceId;
@@ -101,6 +102,9 @@ public sealed class FormsModule : IModule
 
         // E1.1 missed: list instances for a template (paginated, JOIN through FormVersion).
         group.MapGetProcessInstancesByTemplateIdEndpoint();
+
+        // E1.1 missed: PATCH an instance (reschedule / reassign pair). Terminal instances rejected.
+        group.MapUpdateProcessInstanceEndpoint();
 
         // E1.1 keystone: submit a response to a ProcessInstance. Auto-transitions
         // the instance to Completed in the same transaction (the second path to
