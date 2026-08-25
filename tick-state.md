@@ -9,10 +9,10 @@
 ## Current focus
 - **Phase:** MVP-1 (EPIC-1: Form Engine Foundation)
 - **Next epic on deck:** EPIC-1, in roadmap order
-- **Last tick:** tick #12 — E1.1 UpdateProcessTemplate (commit `9473e8f`). Git author switched to "Viktor Buzin".
-- **Tick #:** 12
+- **Last tick:** tick #13 — E1.1 ArchiveProcessTemplate (commit `f3e99d6`). User manually cleaned up orphan placeholders in commit `d996d83`.
+- **Tick #:** 13
 - **Cron status:** active
-- **Direction:** continue E1.1 sub-slices (next: ArchiveProcessTemplate)
+- **Direction:** continue E1.1 sub-slices (next: GetCurrentFormVersion)
 
 ## Audit snapshot (2026-08-24 21:50 MSK)
 Pre-tick audit ran. **Significant Forms module foundation already in place.**
@@ -33,7 +33,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: **E1.1 backend 14/14 features shipped + 18 entity tests. Git author now "Viktor Buzin" (no more "Mavis"). Cron active, direction = continue.**
+- Status: **E1.1 backend 15/15 features shipped + 18 entity tests. Git author = Viktor Buzin. User cleaned up orphan placeholders manually. Cron active, direction = continue.**
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
@@ -46,11 +46,11 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
   - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator + entity. ~3-4 ticks. Defer to "tests" choice.
   - Smoke: actually run `dotnet run --project src/Host/DreamTeam.Api` and exercise the endpoint. ~1 tick (requires Docker for Postgres). Defer.
 - **E1.1 sub-slice backlog (under "continue" direction):**
-  - [x] **UpdateProcessTemplate** ✅ tick #12 — PATCH /templates/{id} (name, description, category; NOT slug which is unique-keyed)
-  - [ ] **ArchiveProcessTemplate** — POST /templates/{id}/archive (soft archive via IsArchived; future Unarchive flow will reverse)
-  - [ ] **GetCurrentFormVersion** — GET /templates/{templateId}/versions/current (convenience for "live version")
-  - [ ] **ListProcessInstancesByTemplate** — GET /templates/{templateId}/instances (paginated; parallel to GetFormVersionsByTemplateId)
-  - [ ] **GetSubmissionById** — GET /submissions/{submissionId} (direct read)
+  - [x] **UpdateProcessTemplate** ✅ tick #12 — PATCH /templates/{id}
+  - [x] **ArchiveProcessTemplate** ✅ tick #13 — POST /templates/{id}/archive (soft archive via IsArchived)
+  - [ ] **GetCurrentFormVersion** — GET /templates/{templateId}/versions/current
+  - [ ] **ListProcessInstancesByTemplate** — GET /templates/{templateId}/instances (paginated)
+  - [ ] **GetSubmissionById** — GET /submissions/{submissionId}
   - [ ] **UpdateProcessInstance** — PATCH /instances/{id} (change ScheduledAt / PairUserId before instance is terminal)
 - **Next epic (E1.2):**
   - Auth: align Identity roles to TeamLead/PM/DeliveryManager/Member (FSH has `DreamTeamRole`); verify JWT + refresh rotation; add RBAC policies for Forms. Identity module is mature (9 migrations). ~2-3 ticks.
@@ -162,14 +162,14 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 02:30 MSK] tick #10 — E1.1 GetProcessInstancesByUserId (missed slice, recovered) — `f3d797c` — done — **E1.1 backend 13/13 truly COMPLETE** — next: still E1.2 vs handler tests (user did not pick)
 - [2026-08-25 03:00 MSK] tick #11 — 18 entity tests (Domain layer: ProcessTemplate/ProcessInstance/FormVersion/Submission) — `5dce1db` — done — **Cron paused. Awaiting user direction.**
 - [2026-08-25 11:00 MSK] tick #12 — UpdateProcessTemplate (PATCH, missed slice, DDD Update() method) — `9473e8f` — done — **Git author switched to Viktor Buzin** — next: ArchiveProcessTemplate
+- [2026-08-25 11:30 MSK] tick #13 — ArchiveProcessTemplate (POST, soft archive, DDD Archive() method) — `f3e99d6` — done — next: GetCurrentFormVersion
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
 -->
 
 ## Blockers
-- ~~Awaiting user decision on next direction~~ — RESOLVED at user request "continue". Cron re-enabled.
-- ~~Orphaned `PublishFormVersion*` placeholders~~ — CLEANED UP in tick #5. Codebase is now orphan-free.
+- ~~Orphaned `PublishFormVersion*` placeholders~~ — CLEANED UP by user in commit `d996d83` (Windows policy blocked my automated cleanup; user did it manually). Codebase is now truly orphan-free.
 
 ## Lessons learned for future ticks
 - **Endpoint verb convention:** `EndpointConventionTests.Endpoint_Names_Should_Follow_Convention` enforces verb-noun on endpoint class names. The allowlist (in `EndpointConventionTests.cs` ~lines 228-282) is large: Get / Create / Update / Delete / List / Search / Register / Generate / Refresh / Resend / Confirm / Reset / Forgot / Change / Toggle / Assign / Revoke / Admin / Upsert / Add / Remove / Retry / Upgrade / Renew / Self / Tenant / Start / End / Enroll / Verify / Disable / Enable / Restore / Adjust / Resolve / Reopen / Close / Test / Void / **Mark** / Issue / Capture / Request / Finalize / **Set** / Reorder / Archive / Find / Edit / Send / Discover / Pin / Unpin / Approve / Reject. **NOT in the list:** Publish, Schedule, Complete. For Complete-style state transitions use `Mark*` or `Set*` or `Update*`.
