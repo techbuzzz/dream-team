@@ -178,6 +178,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 16:00 MSK] tick #19 — E1.2 FdsRoleSeedService (idempotent startup seeder) — `1ee5b17` — done — next: E1.2 slice 3 (JWT audit) OR slice 4 (RBAC policies)
 - [2026-08-25 16:30 MSK] tick #20 — E1.2 FdsRolePolicies + FdsRolePolicyBootstrap (RBAC map + idempotent claim apply) — `6f19ae9` — done — next: E1.2 slice 4 (end-to-end smoke: login as PM, verify Forms endpoint accepts role)
 - [2026-08-25 17:00 MSK] tick #21 — E1.2 RBAC audit + fix (CreateProcessInstance + MarkCompleted used wrong perms) — `23afe96` — done — next: E1.2 slice 5 (smoke) OR stop
+- [2026-08-25 17:30 MSK] tick #22 — E1.2 close-out (state + audit-checklist; smoke deferred to manual run) — no code commit — **🎉 E1.2 BACKEND DONE — 4/4 feature slices shipped** — next: await user direction
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
