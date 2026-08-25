@@ -89,6 +89,10 @@ public class IdentityModule : IModule
         var services = builder.Services;
         services.AddScoped<RolePermissionSyncer>();
         services.AddHostedService<RolePermissionSyncHostedService>();
+
+        // E1.2 slice 2 — seed the 4 FDS role names (TeamLead/PM/DeliveryManager/Member)
+        // on every host startup. Idempotent: no-op if already present.
+        services.AddHostedService<FdsRoleSeedService>();
         services.AddSingleton<IAuthorizationMiddlewareResultHandler, PathAwareAuthorizationHandler>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<ICurrentUser>(sp => sp.GetRequiredService<ICurrentUserService>());
