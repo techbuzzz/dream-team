@@ -9,10 +9,10 @@
 ## Current focus
 - **Phase:** MVP-1 (EPIC-1: Form Engine Foundation)
 - **Next epic on deck:** EPIC-1, in roadmap order
-- **Last tick:** tick #15 — E1.1 GetProcessInstancesByTemplateId (commit `ada8a9e`).
-- **Tick #:** 15
+- **Last tick:** tick #16 — E1.1 GetSubmissionById (commit `d96449b`).
+- **Tick #:** 16
 - **Cron status:** active
-- **Direction:** continue E1.1 sub-slices (next: GetSubmissionById)
+- **Direction:** continue E1.1 sub-slices (next: UpdateProcessInstance)
 
 ## Audit snapshot (2026-08-24 21:50 MSK)
 Pre-tick audit ran. **Significant Forms module foundation already in place.**
@@ -33,7 +33,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: **E1.1 backend 17/17 features shipped + 18 entity tests. Git author = Viktor Buzin. Cron active, direction = continue.**
+- Status: **E1.1 backend 18/18 features shipped + 18 entity tests. Git author = Viktor Buzin. Cron active, direction = continue.**
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
@@ -50,7 +50,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
   - [x] **ArchiveProcessTemplate** ✅ tick #13
   - [x] **GetCurrentFormVersion** ✅ tick #14
   - [x] **ListProcessInstancesByTemplate** ✅ tick #15
-  - [ ] **GetSubmissionById** — GET /submissions/{submissionId}
+  - [x] **GetSubmissionById** ✅ tick #16
   - [ ] **UpdateProcessInstance** — PATCH /instances/{id} (change ScheduledAt / PairUserId before instance is terminal)
 - **Next epic (E1.2):**
   - Auth: align Identity roles to TeamLead/PM/DeliveryManager/Member (FSH has `DreamTeamRole`); verify JWT + refresh rotation; add RBAC policies for Forms. Identity module is mature (9 migrations). ~2-3 ticks.
@@ -165,6 +165,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 11:30 MSK] tick #13 — ArchiveProcessTemplate (POST, soft archive, DDD Archive() method) — `f3e99d6` — done — next: GetCurrentFormVersion
 - [2026-08-25 12:00 MSK] tick #14 — GetCurrentFormVersion (GET, convenience, single-row seek) — `d522b0e` — done — next: ListProcessInstancesByTemplate
 - [2026-08-25 12:30 MSK] tick #15 — GetProcessInstancesByTemplateId (GET, paginated, JOIN through FormVersion) — `ada8a9e` — done — next: GetSubmissionById
+- [2026-08-25 13:00 MSK] tick #16 — GetSubmissionById (GET, direct read) — `d96449b` — done — next: UpdateProcessInstance
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
