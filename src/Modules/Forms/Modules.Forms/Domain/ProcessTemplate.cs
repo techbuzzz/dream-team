@@ -110,4 +110,26 @@ public sealed class ProcessTemplate : IAuditableEntity, IHasTenant, ISoftDeletab
             Category = category;
         }
     }
+
+    /// <summary>
+    /// Soft-archive the template. Archived templates are hidden from the
+    /// default list (filter on IsArchived = false) and rejected by the
+    /// mutation endpoints with 409. The FormVersion chain stays intact —
+    /// historical instances and submissions continue to work and resolve
+    /// through their version pointers.
+    ///
+    /// Idempotency policy: this method throws on the second call. The
+    /// handler relies on that to surface 409; a future Unarchive flow
+    /// (not in MVP-1) will set IsArchived = false and accept a currently-
+    /// archived template.
+    /// </summary>
+    public void Archive()
+    {
+        if (IsArchived)
+        {
+            throw new InvalidOperationException(
+                $"Process template '{Id}' is already archived.");
+        }
+        IsArchived = true;
+    }
 }

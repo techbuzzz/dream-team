@@ -14,6 +14,7 @@ using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAs
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.MarkProcessInstanceAsSkipped;
 using DreamTeam.Modules.Forms.Features.v1.Submissions.CreateSubmission;
 using DreamTeam.Modules.Forms.Features.v1.Submissions.GetSubmissionsByInstanceId;
+using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.ArchiveProcessTemplate;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.CreateProcessTemplate;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplateById;
 using DreamTeam.Modules.Forms.Features.v1.ProcessTemplates.GetProcessTemplates;
@@ -74,6 +75,7 @@ public sealed class FormsModule : IModule
         group.MapGetProcessTemplateByIdEndpoint();
         group.MapGetProcessTemplatesEndpoint();
         group.MapUpdateProcessTemplateEndpoint();
+        group.MapArchiveProcessTemplateEndpoint();
 
         // E1.1 next slice: publish a FormVersion against a template (snapshot-on-publish).
         group.MapCreateFormVersionEndpoint();
