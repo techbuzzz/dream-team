@@ -33,7 +33,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: **E1.1 backend 19/19 features shipped + 18 entity tests = 103 Forms tests passing. E1.1 sub-slice backlog EXHAUSTED. Git author = Viktor Buzin. Cron active, awaiting next direction.**
+- Status: **E1.1 backend 19/19 features done. E1.2 STARTED — slice 1: FdsRoles contract (4 role name constants). Total tests now 109 Forms + 323 Identity + 54 Architecture. Cron paused for next-direction check-in.**
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
@@ -69,12 +69,19 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 02:30 MSK] tick #10 — GetProcessInstancesByUserId (missed slice, recovered) — `f3d797c` — done — **E1.1 backend 13/13 truly COMPLETE** — next: still E1.2 vs handler tests (user did not pick)
 - [2026-08-25 03:00 MSK] tick #11 — 18 entity tests (Domain layer: ProcessTemplate/ProcessInstance/FormVersion/Submission) — `5dce1db` — done — **Cron paused. Awaiting user direction.**
 
-### E1.2 — Auth: ASP.NET Identity + JWT + refresh rotation + RBAC  [ ]
-- Status: pending
-- Scope: align Identity roles to TeamLead/PM/DeliveryManager/Member (FSH uses DreamTeamRole); verify JWT + refresh rotation; add 4 RBAC policies for Forms
-- Skills: `add-permission` (×N for Forms resources already exist in FormsPermissions; just need role wiring)
+### E1.2 — Auth: ASP.NET Identity + JWT + refresh rotation + RBAC  [~]
+- Status: **in progress** — slice 1 done (FdsRoles contract)
+- **Done (tick #18):**
+  - `FdsRoles` static class in Identity.Contracts with 4 role name constants (TeamLead, PM, DeliveryManager, Member) + `All` registry + `IsFdsRole` + `Description` helpers
+  - 6 unit tests in Identity.Tests (contract pinned)
+- **Still needed (next slices):**
+  - **Slice 2:** Seed migration — insert the 4 FDS roles into `Identity.Roles` (DreamTeamRole rows). Single EF migration. ~1 tick.
+  - **Slice 3:** Verify JWT + refresh rotation (likely already in place; needs audit + possibly a test). ~1 tick.
+  - **Slice 4:** RBAC policies for Forms (Role → FormsPermissions mapping). 4 policies. ~1-2 ticks.
+  - **Slice 5:** End-to-end smoke: login as PM, see if Forms endpoints accept the role. ~1 tick.
+- Skills: `create-migration`, `add-permission` (×4 for the RBAC policies; Forms resources already exist in FormsPermissions)
 - Docs: `.agents/rules/modules/identity.md`, `.agents/rules/security.md`
-- Note: FSH Identity is mature (9 migrations); this is role + policy wiring, not rewrite
+- Note: FSH Identity is mature (9 migrations); we add a 10th for the role seed, plus wire 4 policies. We are NOT rewriting the identity module — just bolting on the FDS contract.
 
 ### E1.3 — Form DSL + Zod-builder + JSON Schema  [ ]
 - Status: pending
@@ -167,13 +174,14 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 12:30 MSK] tick #15 — GetProcessInstancesByTemplateId (GET, paginated, JOIN through FormVersion) — `ada8a9e` — done — next: GetSubmissionById
 - [2026-08-25 13:00 MSK] tick #16 — GetSubmissionById (GET, direct read) — `d96449b` — done — next: UpdateProcessInstance
 - [2026-08-25 13:30 MSK] tick #17 — UpdateProcessInstance (PATCH, reschedule/reassign, terminal-state guard) — `b4681d5` — done — **E1.1 sub-slice backlog COMPLETE** — awaiting user direction
+- [2026-08-25 15:53 MSK] tick #18 — E1.2 FdsRoles contract (4 FDS role names in Identity.Contracts) — `4952603` — done — **E1.2 started** — next: E1.2 slice 2 (seed migration)
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
 -->
 
 ## Blockers
-- **Awaiting user direction on what comes next** — E1.1 sub-slice backlog is empty. Options: (a) start E1.2 Auth, (b) start E1.3 Form DSL, (c) handler tests, (d) stop the cron. See tick #17 report.
+- ~~Awaiting user direction on what comes next~~ — RESOLVED ("auth"). E1.2 in progress, slice 1 done.
 - ~~Orphaned `PublishFormVersion*` placeholders~~ — CLEANED UP by user in commit `d996d83`. Codebase is now truly orphan-free.
 
 ## Lessons learned for future ticks
