@@ -9,10 +9,10 @@
 ## Current focus
 - **Phase:** MVP-1 (EPIC-1: Form Engine Foundation)
 - **Next epic on deck:** EPIC-1, in roadmap order
-- **Last tick:** tick #11 — E1.1 sub-tasks: 18 entity tests (commit `5dce1db`). Cron re-enabled after user said "continue".
-- **Tick #:** 11
-- **Cron status:** active (re-enabled at user request "continue")
-- **Direction:** continue E1.1 sub-slices (find more missed CRUD gaps)
+- **Last tick:** tick #12 — E1.1 UpdateProcessTemplate (commit `9473e8f`). Git author switched to "Viktor Buzin".
+- **Tick #:** 12
+- **Cron status:** active
+- **Direction:** continue E1.1 sub-slices (next: ArchiveProcessTemplate)
 
 ## Audit snapshot (2026-08-24 21:50 MSK)
 Pre-tick audit ran. **Significant Forms module foundation already in place.**
@@ -33,7 +33,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: **E1.1 backend 13/13 features shipped + 18 entity tests. Cron re-enabled, direction = "continue" (E1.1 sub-slices).**
+- Status: **E1.1 backend 14/14 features shipped + 18 entity tests. Git author now "Viktor Buzin" (no more "Mavis"). Cron active, direction = continue.**
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
@@ -45,14 +45,13 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - **Still needed (E1.1 sub-tasks, NOT new features):**
   - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator + entity. ~3-4 ticks. Defer to "tests" choice.
   - Smoke: actually run `dotnet run --project src/Host/DreamTeam.Api` and exercise the endpoint. ~1 tick (requires Docker for Postgres). Defer.
-- **E1.1 sub-slice backlog (next ~5-7 ticks under "continue" direction):**
-  1. **UpdateProcessTemplate** — PATCH /templates/{id} (name, description, category; NOT slug which is unique-keyed). 1 tick.
-  2. **ArchiveProcessTemplate** — POST /templates/{id}/archive (soft archive via IsArchived). 1 tick.
-  3. **GetCurrentFormVersion** — GET /templates/{templateId}/versions/current (convenience for "live version"; saves a list + filter). 1 tick.
-  4. **ListProcessInstancesByTemplate** — GET /templates/{templateId}/instances (paginated; parallel to GetFormVersionsByTemplateId). 1 tick.
-  5. **GetSubmissionById** — GET /submissions/{submissionId} (direct read). 1 tick.
-  6. **UpdateProcessInstance** — PATCH /instances/{id} (change ScheduledAt / PairUserId before instance is terminal; 409 if Completed/Skipped). 1 tick.
-  7. Optional: **GetProcessInstancesByTemplateAndStatus** (compound filter) — could be deferred.
+- **E1.1 sub-slice backlog (under "continue" direction):**
+  - [x] **UpdateProcessTemplate** ✅ tick #12 — PATCH /templates/{id} (name, description, category; NOT slug which is unique-keyed)
+  - [ ] **ArchiveProcessTemplate** — POST /templates/{id}/archive (soft archive via IsArchived; future Unarchive flow will reverse)
+  - [ ] **GetCurrentFormVersion** — GET /templates/{templateId}/versions/current (convenience for "live version")
+  - [ ] **ListProcessInstancesByTemplate** — GET /templates/{templateId}/instances (paginated; parallel to GetFormVersionsByTemplateId)
+  - [ ] **GetSubmissionById** — GET /submissions/{submissionId} (direct read)
+  - [ ] **UpdateProcessInstance** — PATCH /instances/{id} (change ScheduledAt / PairUserId before instance is terminal)
 - **Next epic (E1.2):**
   - Auth: align Identity roles to TeamLead/PM/DeliveryManager/Member (FSH has `DreamTeamRole`); verify JWT + refresh rotation; add RBAC policies for Forms. Identity module is mature (9 migrations). ~2-3 ticks.
 - Docs: `docs/architecture-v1.md` §1–§4, `.agents/rules/database.md`, `.agents/rules/api-conventions.md`
