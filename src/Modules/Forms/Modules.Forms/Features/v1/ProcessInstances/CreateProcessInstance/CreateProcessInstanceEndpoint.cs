@@ -31,7 +31,7 @@ public static class CreateProcessInstanceEndpoint
             })
             .WithName("CreateProcessInstance")
             .WithSummary("Schedule a process instance against a published form version")
-            .RequirePermission(FormsPermissions.ProcessInstances.View)   // View gate: only authorized users schedule
+            .RequirePermission(FormsPermissions.ProcessInstances.Create)
             .WithDescription("Creates a Planned ProcessInstance. The FormVersion must exist (404) and be the current published version (409 otherwise). PairUserId is required for 1-1s and null for whole-team rituals (Daily, Retro).")
             .Produces<ProcessInstanceDto>(StatusCodes.Status201Created)
             .Produces(StatusCodes.Status400BadRequest)

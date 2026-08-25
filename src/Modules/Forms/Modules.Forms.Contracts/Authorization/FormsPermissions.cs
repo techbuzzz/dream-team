@@ -34,8 +34,10 @@ public static class FormsPermissions
     public static class ProcessInstances
     {
         public const string Resource = nameof(ProcessInstances);
-        public const string View = "View";
-        public const string Skip = "Skip";
+        public const string View     = "View";
+        public const string Create   = "Create";
+        public const string Skip     = "Skip";
+        public const string Complete = "Complete";
     }
 
     public static class Submissions
@@ -62,8 +64,10 @@ public static class FormsPermissions
         new("View Form Versions",       FormVersions.View,      FormVersions.Resource,    IsBasic: true),
         new("Publish Form Version",     FormVersions.Publish,   FormVersions.Resource),
 
-        new("View Process Instances",   ProcessInstances.View,  ProcessInstances.Resource, IsBasic: true),
-        new("Skip Process Instance",    ProcessInstances.Skip,  ProcessInstances.Resource),
+        new("View Process Instances",   ProcessInstances.View,     ProcessInstances.Resource, IsBasic: true),
+        new("Create Process Instance",  ProcessInstances.Create,   ProcessInstances.Resource),
+        new("Skip Process Instance",    ProcessInstances.Skip,     ProcessInstances.Resource),
+        new("Complete Process Instance", ProcessInstances.Complete, ProcessInstances.Resource),
 
         new("View Submissions",         Submissions.View,       Submissions.Resource,     IsBasic: true),
         new("Create Submission",        Submissions.Create,     Submissions.Resource),

@@ -24,7 +24,7 @@ public static class MarkProcessInstanceAsCompletedEndpoint
             })
             .WithName("MarkProcessInstanceAsCompleted")
             .WithSummary("Mark a process instance as completed")
-            .RequirePermission(FormsPermissions.ProcessInstances.View)   // MVP-1: View gate; tighten in E1.2 (RBAC)
+            .RequirePermission(FormsPermissions.ProcessInstances.Complete)
             .WithDescription("Transitions a Planned/Running ProcessInstance to Completed. Idempotent only by rejection — a second call on a terminal instance returns 409. POST is used because this is an action endpoint, not a resource update.")
             .Produces<ProcessInstanceDto>(StatusCodes.Status200OK)
             .Produces(StatusCodes.Status400BadRequest)

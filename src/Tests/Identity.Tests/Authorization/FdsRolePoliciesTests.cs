@@ -49,14 +49,14 @@ public sealed class FdsRolePoliciesTests
     }
 
     [Fact]
-    public void TeamLead_HasFullFormsCrud_ExceptComplete()
+    public void TeamLead_HasFullFormsCrud_IncludingCompleteAndSkip()
     {
         // Arrange
         var perms = FdsRolePolicies.PolicyFor(FdsRoles.TeamLead);
 
-        // Assert — TeamLead = primary 1-1 actor with full CRUD except Complete
-        // (Complete is the user's own action when they submit, not the lead's
-        // explicit "mark done" — see FdsRolePolicies doc on DeliveryManager).
+        // Assert — TeamLead is the primary 1-1 actor with full instance management:
+        // Create, Skip, and Complete. The Complete action is the manual
+        // mark-done path; the Member's auto-complete path is via Submissions.Create.
         perms.ShouldContain($"Permissions.ProcessTemplates.{ActionConstants.View}");
         perms.ShouldContain($"Permissions.ProcessTemplates.{ActionConstants.Create}");
         perms.ShouldContain($"Permissions.ProcessTemplates.{ActionConstants.Update}");
@@ -64,9 +64,10 @@ public sealed class FdsRolePoliciesTests
         perms.ShouldContain("Permissions.FormVersions.View");
         perms.ShouldContain("Permissions.FormVersions.Publish");
         perms.ShouldContain("Permissions.ProcessInstances.View");
+        perms.ShouldContain($"Permissions.ProcessInstances.{ActionConstants.Create}");
         perms.ShouldContain("Permissions.ProcessInstances.Skip");
+        perms.ShouldContain("Permissions.ProcessInstances.Complete");
         perms.ShouldContain("Permissions.Submissions.View");
-        perms.ShouldNotContain("Permissions.ProcessInstances.Complete");
     }
 
     [Fact]
@@ -92,6 +93,7 @@ public sealed class FdsRolePoliciesTests
         perms.ShouldContain($"Permissions.ProcessTemplates.{ActionConstants.Update}");
         perms.ShouldContain($"Permissions.ProcessTemplates.{ActionConstants.Delete}");
         perms.ShouldNotContain($"Permissions.ProcessTemplates.{ActionConstants.Create}");
+        perms.ShouldNotContain($"Permissions.ProcessInstances.{ActionConstants.Create}");
         perms.ShouldContain("Permissions.ProcessInstances.Skip");
         perms.ShouldContain("Permissions.ProcessInstances.Complete");
     }

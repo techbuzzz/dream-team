@@ -73,7 +73,7 @@ public static class FdsRolePolicies
             {
                 [FdsRoles.TeamLead] = new[]
                 {
-                    // Full Forms CRUD
+                    // Full Forms CRUD on instances (including manual mark-done via Complete)
                     Perm(ProcessTemplates, ActionConstants.View),
                     Perm(ProcessTemplates, ActionConstants.Create),
                     Perm(ProcessTemplates, ActionConstants.Update),
@@ -81,7 +81,9 @@ public static class FdsRolePolicies
                     Perm(FormVersions, ActionConstants.View),
                     Perm(FormVersions, "Publish"),
                     Perm(ProcessInstances, ActionConstants.View),
+                    Perm(ProcessInstances, ActionConstants.Create),
                     Perm(ProcessInstances, "Skip"),
+                    Perm(ProcessInstances, "Complete"),
                     Perm(Submissions, ActionConstants.View),
                 },
                 [FdsRoles.PM] = new[]
@@ -94,12 +96,14 @@ public static class FdsRolePolicies
                     Perm(FormVersions, ActionConstants.View),
                     Perm(FormVersions, "Publish"),
                     Perm(ProcessInstances, ActionConstants.View),
+                    Perm(ProcessInstances, ActionConstants.Create),
                     Perm(ProcessInstances, "Skip"),
+                    Perm(ProcessInstances, "Complete"),
                     Perm(Submissions, ActionConstants.View),
                 },
                 [FdsRoles.DeliveryManager] = new[]
                 {
-                    // Read + intervene (no Create — the lead owns the ritual).
+                    // Read + intervene (no Create on templates OR instances — the lead owns the ritual).
                     Perm(ProcessTemplates, ActionConstants.View),
                     Perm(ProcessTemplates, ActionConstants.Update),
                     Perm(ProcessTemplates, ActionConstants.Delete),
