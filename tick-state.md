@@ -9,8 +9,10 @@
 ## Current focus
 - **Phase:** MVP-1 (EPIC-1: Form Engine Foundation)
 - **Next epic on deck:** EPIC-1, in roadmap order
-- **Last tick:** tick #11 — E1.1 sub-tasks: 18 entity tests (commit `5dce1db`). **Cron paused awaiting user decision.**
+- **Last tick:** tick #11 — E1.1 sub-tasks: 18 entity tests (commit `5dce1db`). Cron re-enabled after user said "continue".
 - **Tick #:** 11
+- **Cron status:** active (re-enabled at user request "continue")
+- **Direction:** continue E1.1 sub-slices (find more missed CRUD gaps)
 
 ## Audit snapshot (2026-08-24 21:50 MSK)
 Pre-tick audit ran. **Significant Forms module foundation already in place.**
@@ -31,7 +33,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: **🎉 E1.1 backend 13/13 features shipped** + 18 entity tests added in tick #11. **Cron paused (`dreamteam-mvp1-tick` enabled=false, status=paused) awaiting user direction** — see tick #10 report for the E1.2 vs handler-tests vs continue question.
+- Status: **E1.1 backend 13/13 features shipped + 18 entity tests. Cron re-enabled, direction = "continue" (E1.1 sub-slices).**
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
@@ -41,8 +43,16 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
   - Forms.Tests project: 50 validator tests + 18 entity tests = 68 — 75 total
   - Wiring: Program.cs (Mediator + moduleAssemblies), DbMigrator, Migrations.PostgreSQL, slnx, Architecture.Tests
 - **Still needed (E1.1 sub-tasks, NOT new features):**
-  - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator + entity. ~3-4 ticks.
-  - Smoke: actually run `dotnet run --project src/Host/DreamTeam.Api` and exercise the endpoint. ~1 tick (requires Docker for Postgres).
+  - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator + entity. ~3-4 ticks. Defer to "tests" choice.
+  - Smoke: actually run `dotnet run --project src/Host/DreamTeam.Api` and exercise the endpoint. ~1 tick (requires Docker for Postgres). Defer.
+- **E1.1 sub-slice backlog (next ~5-7 ticks under "continue" direction):**
+  1. **UpdateProcessTemplate** — PATCH /templates/{id} (name, description, category; NOT slug which is unique-keyed). 1 tick.
+  2. **ArchiveProcessTemplate** — POST /templates/{id}/archive (soft archive via IsArchived). 1 tick.
+  3. **GetCurrentFormVersion** — GET /templates/{templateId}/versions/current (convenience for "live version"; saves a list + filter). 1 tick.
+  4. **ListProcessInstancesByTemplate** — GET /templates/{templateId}/instances (paginated; parallel to GetFormVersionsByTemplateId). 1 tick.
+  5. **GetSubmissionById** — GET /submissions/{submissionId} (direct read). 1 tick.
+  6. **UpdateProcessInstance** — PATCH /instances/{id} (change ScheduledAt / PairUserId before instance is terminal; 409 if Completed/Skipped). 1 tick.
+  7. Optional: **GetProcessInstancesByTemplateAndStatus** (compound filter) — could be deferred.
 - **Next epic (E1.2):**
   - Auth: align Identity roles to TeamLead/PM/DeliveryManager/Member (FSH has `DreamTeamRole`); verify JWT + refresh rotation; add RBAC policies for Forms. Identity module is mature (9 migrations). ~2-3 ticks.
 - Docs: `docs/architecture-v1.md` §1–§4, `.agents/rules/database.md`, `.agents/rules/api-conventions.md`
@@ -158,7 +168,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 -->
 
 ## Blockers
-- **Awaiting user decision on next direction** (since tick #10): tests / auth / continue / delete. Cron paused at tick #11.
+- ~~Awaiting user decision on next direction~~ — RESOLVED at user request "continue". Cron re-enabled.
 - ~~Orphaned `PublishFormVersion*` placeholders~~ — CLEANED UP in tick #5. Codebase is now orphan-free.
 
 ## Lessons learned for future ticks
