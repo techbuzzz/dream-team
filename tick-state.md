@@ -33,7 +33,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: **E1.1 backend 19/19 features done. E1.2 STARTED — slice 1: FdsRoles contract (4 role name constants). Total tests now 109 Forms + 323 Identity + 54 Architecture. Cron paused for next-direction check-in.**
+- Status: **E1.1 backend 19/19 features done. E1.2 — 2/5 slices: FdsRoles contract ✅, FdsRoleSeedService ✅ (4 FDS roles auto-seeded on every host boot). Tests: 109 Forms + 329 Identity (+6) + 54 Architecture.**
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
@@ -175,6 +175,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 13:00 MSK] tick #16 — GetSubmissionById (GET, direct read) — `d96449b` — done — next: UpdateProcessInstance
 - [2026-08-25 13:30 MSK] tick #17 — UpdateProcessInstance (PATCH, reschedule/reassign, terminal-state guard) — `b4681d5` — done — **E1.1 sub-slice backlog COMPLETE** — awaiting user direction
 - [2026-08-25 15:53 MSK] tick #18 — E1.2 FdsRoles contract (4 FDS role names in Identity.Contracts) — `4952603` — done — **E1.2 started** — next: E1.2 slice 2 (seed migration)
+- [2026-08-25 16:00 MSK] tick #19 — E1.2 FdsRoleSeedService (idempotent startup seeder) — `1ee5b17` — done — next: E1.2 slice 3 (JWT audit) OR slice 4 (RBAC policies)
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
