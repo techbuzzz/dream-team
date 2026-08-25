@@ -5,6 +5,7 @@ using DreamTeam.Framework.Web.Modules;
 using DreamTeam.Modules.Forms.Contracts.Authorization;
 using DreamTeam.Modules.Forms.Data;
 using DreamTeam.Modules.Forms.Features.v1.FormVersions.CreateFormVersion;
+using DreamTeam.Modules.Forms.Features.v1.FormVersions.GetCurrentFormVersion;
 using DreamTeam.Modules.Forms.Features.v1.FormVersions.GetFormVersionById;
 using DreamTeam.Modules.Forms.Features.v1.FormVersions.GetFormVersionsByTemplateId;
 using DreamTeam.Modules.Forms.Features.v1.ProcessInstances.CreateProcessInstance;
@@ -81,6 +82,7 @@ public sealed class FormsModule : IModule
         group.MapCreateFormVersionEndpoint();
         group.MapGetFormVersionByIdEndpoint();
         group.MapGetFormVersionsByTemplateIdEndpoint();
+        group.MapGetCurrentFormVersionEndpoint();
 
         // E1.1 next slice: bridge to MVP-2 Rituals — schedule a ProcessInstance.
         group.MapCreateProcessInstanceEndpoint();
