@@ -9,8 +9,8 @@
 ## Current focus
 - **Phase:** MVP-1 (EPIC-1: Form Engine Foundation)
 - **Next epic on deck:** EPIC-1, in roadmap order
-- **Last tick:** tick #10 — E1.1 GetProcessInstancesByUserId (missed slice, recovered) (commit `f3d797c`)
-- **Tick #:** 10
+- **Last tick:** tick #11 — E1.1 sub-tasks: 18 entity tests (commit `5dce1db`). **Cron paused awaiting user decision.**
+- **Tick #:** 11
 
 ## Audit snapshot (2026-08-24 21:50 MSK)
 Pre-tick audit ran. **Significant Forms module foundation already in place.**
@@ -31,17 +31,17 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 ## MVP-1 Task Queue (EPIC-1, in order)
 
 ### E1.1 — Backend foundation: .NET 10 + EF Core + Postgres  [~]
-- Status: **🎉 E1.1 backend 13/13 features shipped** (added a missed `GetByUserId` slice in tick #10). E1.1 truly done.
+- Status: **🎉 E1.1 backend 13/13 features shipped** + 18 entity tests added in tick #11. **Cron paused (`dreamteam-mvp1-tick` enabled=false, status=paused) awaiting user direction** — see tick #10 report for the E1.2 vs handler-tests vs continue question.
 - **Already done:**
   - Forms module scaffold (FormsModule, FormsDbContext, both csproj, slnx entry)
   - 4 entities: ProcessTemplate, FormVersion, ProcessInstance, Submission (with domain logic + IAuditableEntity + IHasTenant)
   - 13 features shipped: CreateProcessTemplate, GetProcessTemplateById, GetProcessTemplates, CreateFormVersion, GetFormVersionById, GetFormVersionsByTemplateId, CreateProcessInstance, GetProcessInstanceById, GetProcessInstancesByUserId, MarkProcessInstanceAsCompleted, MarkProcessInstanceAsSkipped, CreateSubmission (keystone), GetSubmissionsByInstanceId — handler+validator+endpoint each
   - Permissions catalog: FormsPermissions covers all 4 resource types
   - Initial migration: `Forms/20260101000001_Initial.cs` (creates 4 tables in `forms` schema)
-  - Forms.Tests project: 50 validator tests — 57 total
+  - Forms.Tests project: 50 validator tests + 18 entity tests = 68 — 75 total
   - Wiring: Program.cs (Mediator + moduleAssemblies), DbMigrator, Migrations.PostgreSQL, slnx, Architecture.Tests
 - **Still needed (E1.1 sub-tasks, NOT new features):**
-  - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator-only. ~3-4 ticks.
+  - Handler tests (in-memory or testcontainer DbContext) — current coverage is validator + entity. ~3-4 ticks.
   - Smoke: actually run `dotnet run --project src/Host/DreamTeam.Api` and exercise the endpoint. ~1 tick (requires Docker for Postgres).
 - **Next epic (E1.2):**
   - Auth: align Identity roles to TeamLead/PM/DeliveryManager/Member (FSH has `DreamTeamRole`); verify JWT + refresh rotation; add RBAC policies for Forms. Identity module is mature (9 migrations). ~2-3 ticks.
@@ -58,6 +58,7 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 01:30 MSK] tick #8 — CreateSubmission (keystone, append-only, auto-completion) — `4da1cfb` — done — next: E1.1 Submission.GetByInstanceId
 - [2026-08-25 02:00 MSK] tick #9 — GetSubmissionsByInstanceId (last E1.1 slice per scope) — `e36355f` — done — **E1.1 backend nominally COMPLETE** — next: E1.2 Auth OR handler tests
 - [2026-08-25 02:30 MSK] tick #10 — GetProcessInstancesByUserId (missed slice, recovered) — `f3d797c` — done — **E1.1 backend 13/13 truly COMPLETE** — next: still E1.2 vs handler tests (user did not pick)
+- [2026-08-25 03:00 MSK] tick #11 — 18 entity tests (Domain layer: ProcessTemplate/ProcessInstance/FormVersion/Submission) — `5dce1db` — done — **Cron paused. Awaiting user direction.**
 
 ### E1.2 — Auth: ASP.NET Identity + JWT + refresh rotation + RBAC  [ ]
 - Status: pending
@@ -150,13 +151,15 @@ Source: `docs/roadmap.md` §"MVP-1: Form Engine Foundation".
 - [2026-08-25 01:30 MSK] tick #8 — E1.1 CreateSubmission (keystone, append-only, auto-completion) — `4da1cfb` — done — next: E1.1 Submission.GetByInstanceId
 - [2026-08-25 02:00 MSK] tick #9 — E1.1 GetSubmissionsByInstanceId (last E1.1 slice per scope) — `e36355f` — done — **E1.1 backend nominally COMPLETE** — next: E1.2 Auth OR handler tests
 - [2026-08-25 02:30 MSK] tick #10 — E1.1 GetProcessInstancesByUserId (missed slice, recovered) — `f3d797c` — done — **E1.1 backend 13/13 truly COMPLETE** — next: still E1.2 vs handler tests (user did not pick)
+- [2026-08-25 03:00 MSK] tick #11 — 18 entity tests (Domain layer: ProcessTemplate/ProcessInstance/FormVersion/Submission) — `5dce1db` — done — **Cron paused. Awaiting user direction.**
 
 <!-- Append one line per tick. Format:
 - [YYYY-MM-DD HH:MM MSK] tick #N — E?.? <short name> — <commit-sha|uncommitted> — status: done|partial|blocked — next: <E?.?>
 -->
 
 ## Blockers
-- ~~Orphaned `PublishFormVersion*` placeholders~~ — CLEANED UP in tick #5 (git rm equivalent via git reset --soft + manual `Rename-Item` + `git add` after rename). Codebase is now orphan-free.
+- **Awaiting user decision on next direction** (since tick #10): tests / auth / continue / delete. Cron paused at tick #11.
+- ~~Orphaned `PublishFormVersion*` placeholders~~ — CLEANED UP in tick #5. Codebase is now orphan-free.
 
 ## Lessons learned for future ticks
 - **Endpoint verb convention:** `EndpointConventionTests.Endpoint_Names_Should_Follow_Convention` enforces verb-noun on endpoint class names. The allowlist (in `EndpointConventionTests.cs` ~lines 228-282) is large: Get / Create / Update / Delete / List / Search / Register / Generate / Refresh / Resend / Confirm / Reset / Forgot / Change / Toggle / Assign / Revoke / Admin / Upsert / Add / Remove / Retry / Upgrade / Renew / Self / Tenant / Start / End / Enroll / Verify / Disable / Enable / Restore / Adjust / Resolve / Reopen / Close / Test / Void / **Mark** / Issue / Capture / Request / Finalize / **Set** / Reorder / Archive / Find / Edit / Send / Discover / Pin / Unpin / Approve / Reject. **NOT in the list:** Publish, Schedule, Complete. For Complete-style state transitions use `Mark*` or `Set*` or `Update*`.
